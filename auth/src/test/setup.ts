@@ -37,9 +37,16 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signup = async () => {
+// global.d.ts
+declare global {
+  async function signup(): Promise<string>;
+  var email: 'valid@email.com';
+  var password: 'password';
+}
+
+/* global.signup = async () => {
   const email = 'valid@email.com';
-  const password = 'password';
+  const password = 'password'; */
 
   const response = await request(app)
     .post('/api/users/signup')

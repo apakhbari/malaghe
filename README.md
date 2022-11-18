@@ -28,6 +28,10 @@ npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
 
 github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
 
+### Readme.md CheatSheet -->
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
+
 ---
 
 ## Service Setup:
@@ -43,6 +47,51 @@ github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
 5- set up file sync options in skaffold.yaml file
 
 6- set up routing rules in ingress service
+
+---
+
+## USER MODEL:
+
+Flags :
+
+t --> trim
+
+l --> lowercase
+
+d --> default
+
+minlength --> mn
+
+maxlength --> mx
+
+| Number |       Field        |      Type      | required |  flags  |
+| :----: | :----------------: | :------------: | :------: | :-----: |
+|   1    |       fiName       |     String     |    ✔     |    t    |
+|   2    |       laName       |     String     |    ✔     |    t    |
+|   3    |       email        |     String     | ✔ unique |   t-l   |
+|   4    |       mobile       |     Number     | ✔ unique |    t    |
+|   5    |       photo        |     String     |          |         |
+|   6    |     locations      | locationsAttrs |          |         |
+|   7    |        role        |   UsersRoles   |  d:user  |         |
+|   8    |      password      |     String     |    ✔     | t-mn-mx |
+|   9    |      isActive      |    Boolean     |  d:true  |         |
+|   10   |     createdAt      |      Date      |  d:now   |         |
+|   11   | passwordResetToken |     String     |          |         |
+
+### locationsAttrs
+
+| Number |    Field    |       Type       |
+| :----: | :---------: | :--------------: |
+|   1    | coordinates | coordinatesAttrs |
+|   2    |   address   |      String      |
+|   3    | postalCode  |      Number      |
+
+### coordinatesAttrs
+
+| Number | Field |  Type  |
+| :----: | :---: | :----: |
+|   1    | long  | number |
+|   2    |  lat  | number |
 
 ---
 
