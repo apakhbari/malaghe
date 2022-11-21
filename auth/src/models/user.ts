@@ -46,6 +46,7 @@ interface UserDoc extends mongoose.Document {
   isActive?: Boolean;
   createdAt?: Date;
   passwordResetToken?: string;
+  version: number;
 }
 
 const userSchema = new mongoose.Schema(
@@ -70,7 +71,6 @@ const userSchema = new mongoose.Schema(
     mobile: {
       type: Number,
       required: true,
-      unique: true,
       trim: true
     },
     photo: {

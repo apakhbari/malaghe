@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mag-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mag
+  template:
+    metadata:
+      labels:
+        app: mag
+    spec:
+      containers:
+        - name: mag
+          image: apakhbari/mag
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: malaghe
+            - name: MONGO_URI
+              value: 'mongodb://mag-mongo-srv:27017/mag'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mag-srv
+spec:
+  selector:
+    app: mag
+  ports:
+    - name: mag
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
