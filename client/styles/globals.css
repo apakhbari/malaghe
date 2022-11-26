@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../assets/fonts/Vazir.eot');
+  src: url('../assets/fonts/Vazir.woff') format('woff');
+}
+
+.font-face-vazir {
+  font-family: 'CustomFont';
+}
+
+* {
+  font-family: 'CustomFont' !important;
+}

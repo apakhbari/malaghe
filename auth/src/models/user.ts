@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import { Password } from '../services/password';
 import { UsersRoles } from '@apa_malaghe/utility';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
+
 
 // An interface that describes the properties that are required to create a new User
 interface UserAttrs {
@@ -9,7 +11,7 @@ interface UserAttrs {
   email: string;
   mobile: number;
   photo?: string;
-  locations?: locationsAttrs;
+  locations?: [locationsAttrs];
   role?: UsersRoles;
   password: string;
   isActive?: Boolean;
@@ -40,7 +42,7 @@ interface UserDoc extends mongoose.Document {
   email: string;
   mobile: number;
   photo?: string;
-  locations?: locationsAttrs;
+  locations?: [locationsAttrs];
   role?: UsersRoles;
   password: string;
   isActive?: Boolean;
@@ -77,8 +79,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false
     },
-    locations: [
-      {
+    locations: [{
         required: false,
         coordinates: [{
           type: Number,
@@ -92,8 +93,7 @@ const userSchema = new mongoose.Schema(
           type: Number,
           required: false
         },
-      }
-    ],
+      }],
     role: {
       type: UsersRoles,
       required: true,
@@ -141,6 +141,9 @@ userSchema.pre('save', async function (done) {
   }
   done();
 });
+
+userSchema.set('versionKey', 'version');
+userSchema.plugin(updateIfCurrentPlugin);
 
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);

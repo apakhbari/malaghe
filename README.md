@@ -13,6 +13,10 @@
       data: null
     });
 
+2- userClicks in the database model
+
+---
+
 ### ⌘K V --> split view
 
 ### ⇧⌘V --> separate view
@@ -139,6 +143,10 @@ ToDo:
 
 2- patch route
 
+3- delete route
+
+4- listeners
+
 <br>
 
 ### ROUTES:
@@ -167,7 +175,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 | :----: | :---------: | :------------: | :------: | :-----: |
 |   1    |    title    |     String     | ✔ unique | t-mn-mx |
 |   2    | description |     String     |    ✔     |  t-mn   |
-|   3    |   summary   |     String     |    ✔     |   t-l   |
+|   3    |   summary   |     String     |    ✔     |    t    |
 |   4    | imageCover  |     String     |    ✔     |         |
 |   5    |   photos    |    [String]    |          |         |
 |   6    |  videoLink  |     String     |          |         |
@@ -182,6 +190,73 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 | :----: | :---: | :------------: |
 |   1    |  id   | Types.ObjectId |
 |   2    | title |     String     |
+
+<br>
+
+---
+
+<br>
+
+# STORE SERVICE
+
+ToDo:
+
+<br>
+
+### ROUTES:
+
+- index: /api/v1/store --> GET
+- new: /api/v1/store --> POST
+
+  yo
+
+- show: /api/v1/store/:storeId --> GET
+- patch: /api/v1/mag/:storeId --> PATCH
+- delete: /api/v1/mag/:storeId --> DELETE
+
+### EVENTS:
+
+### STORE MODEL:
+
+<br>
+
+### - storeSchema -
+
+Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
+
+| Number |       Field       |      Type      | required |  flags  |
+| :----: | :---------------: | :------------: | :------: | :-----: |
+|   1    |       title       |     String     | ✔ unique | t-mn-mx |
+|   2    |    description    |     String     |          |  t-mn   |
+|   3    |      summary      |    [String]    |    ✔     | t-mn-mx |
+|   4    |      volumes      |     String     |          |    t    |
+|   5    |    imageCover     |     String     |    ✔     |         |
+|   6    |      photos       |    [String]    |          |         |
+|   7    | availableQuantity |     Number     |    ✔     |         |
+|   8    |  ratingsAverage   |     Number     |   d:5    |         |
+|   9    |  ratingsQuantity  |     Number     |   d:0    |         |
+|   10   |       price       |     Number     |    ✔     |         |
+|   11   |    hasDiscount    |    Boolean     | d:false  |         |
+|   12   |   discountKind    | `discountKind` |          |         |
+|   13   |  discountedPrice  |     Number     |          |         |
+|   14   |     createdAt     |      Date      |  d:now   |         |
+|   15   |      magData      |  `[magAttrs]`  |          |         |
+
+<br>
+
+### - magAttrs -
+
+| Number | Field |      Type      |
+| :----: | :---: | :------------: |
+|   1    |  id   | Types.ObjectId |
+|   2    | title |     String     |
+
+<br>
+
+### - discountKind enum -
+
+- percentage
+- exactPrice
 
 <br>
 
