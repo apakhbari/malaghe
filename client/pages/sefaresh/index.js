@@ -10,6 +10,11 @@ function Sefaresh() {
 
   const mobileRef = useRef()
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push('/sefaresh/gardeshkar')
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -33,15 +38,20 @@ function Sefaresh() {
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
             <button
-              onClick={() => router.push('/sefaresh/gardeshkar')}
+              onClick={handleClick}
               className="btn bg-base-100 text-neutral-content hover:bg-primary/80"
             >
-              مشاهده گردش‌کار
+              گردش‌کار
             </button>
             <button className="btn btn-active btn-disabled">
               لیست درخواست‌ها
             </button>
           </div>
+
+          <h3 dir="rtl" className="text-xl text-center">
+            مشاهده لیستی از تمامی سفارش‌ها و درخواست‌های تعمیرات
+          </h3>
+          <br />
 
           <div className=" form-control">
             <div className="mx-auto w-5/6">

@@ -14,6 +14,11 @@ const SignUp = () => {
   const genderRef = useRef()
   const passwordRef = useRef()
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push('/auth/signin')
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -41,7 +46,7 @@ const SignUp = () => {
               ثبت نام
             </button>
             <button
-              onClick={() => router.push('/auth/signin')}
+              onClick={handleClick}
               className="btn bg-base-100 hover:bg-primary/80"
             >
               ورود

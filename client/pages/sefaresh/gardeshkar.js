@@ -10,6 +10,11 @@ function GardeshKar() {
 
   const idRef = useRef()
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push('/sefaresh')
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -30,16 +35,19 @@ function GardeshKar() {
       <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
-            <button className="btn btn-active btn-disabled">
-              مشاهده گردش‌کار
-            </button>
+            <button className="btn btn-active btn-disabled">گردش‌کار</button>
             <button
               className="btn  bg-base-100 text-neutral-content hover:bg-primary/80"
-              onClick={() => router.push('/sefaresh')}
+              onClick={handleClick}
             >
               لیست درخواست‌ها
             </button>
           </div>
+
+          <h3 dir="rtl" className="text-xl text-center">
+            مشاهده گردش‌کار
+          </h3>
+          <br />
 
           <div className=" form-control">
             <div className="mx-auto w-5/6">

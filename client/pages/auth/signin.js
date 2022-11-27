@@ -11,6 +11,11 @@ const SignIn = () => {
   const userNameRef = useRef()
   const passwordRef = useRef()
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push('/auth/signup')
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -34,7 +39,7 @@ const SignIn = () => {
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
             <button
-              onClick={() => router.push('/auth/signup')}
+              onClick={handleClick}
               className="btn bg-base-100 text-neutral-content hover:bg-primary/80"
             >
               ثبت نام

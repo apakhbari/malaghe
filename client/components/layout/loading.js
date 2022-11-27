@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import Head from 'next/head'
 
 import Lottie from 'react-lottie-player'
-import lottieJson from '../../public/loading-animation.json'
+import lottieJson from '../../assets/animation/animation-loading.json'
 
 import { CLIENT_NAME_FA, CLIENT_VERSION } from '../../envConfig'
 
