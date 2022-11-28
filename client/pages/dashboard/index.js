@@ -116,7 +116,7 @@ function Dashboard() {
           <div>
             <div className=" mx-auto m-1">
               <div className="btn btn-ghost normal-case text-xl btn-active w-4/5 hover:cursor-default disabled text-neutral-content">
-                خانه
+                داشبورد
                 <IconDashboardHome
                   stylingProps={'w-8 h-8 ml-4 stroke-primary'}
                 />

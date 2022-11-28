@@ -81,7 +81,7 @@ const Navbar = ({ url }) => {
                   )}
                 </li>
                 <li>
-                  <div className="btn btn-ghost" tabIndex={-1}>
+                  <div className="btn btn-ghost mb-2" tabIndex={-1}>
                     <IconTheme
                       stylingProps1={
                         'w-6 h-6 place-self-center text-base-content'

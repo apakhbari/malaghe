@@ -27,7 +27,7 @@ function IconTheme(props) {
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          d="M19.5 8.25l-7.5 7.5-7.5-7.5"
         />
       </svg>
     </div>
