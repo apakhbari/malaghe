@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/layout/navbar'
+import Navbar from '../../components/layout/navbar/navbar'
 
 function Sefaresh() {
   const router = useRouter()
@@ -60,7 +60,6 @@ function Sefaresh() {
                   type="text"
                   set
                   ref={mobileRef}
-                  onChange={(e) => setUserName(e.target.value)}
                   placeholder="۰۹۱۲۲۴۵۳۲۵۸"
                   className="input input-bordered text-center"
                 ></input>

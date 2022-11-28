@@ -9,10 +9,11 @@ import { themeChange } from 'theme-change'
 import NavBarTheme from './navbarhelper/navbartheme'
 import NavBarThemeHamburger from './navbarhelper/navbarthemehamburger'
 
-import IconStore from '../../assets/icons/svg/iconstore'
-import IconMag from '../../assets/icons/svg/iconmag'
-import IconHamburger from '../../assets/icons/svg/iconhamburger'
-import IconThemeHamburger from '../../assets/icons/svg/icontheme'
+import IconStore from '../../../assets/icons/svg/iconstore'
+import IconMag from '../../../assets/icons/svg/iconmag'
+import IconHamburger from '../../../assets/icons/svg/iconhamburger'
+import IconTheme from '../../../assets/icons/svg/icontheme'
+import CartDropDown from './navbarhelper/cartdropdown'
 
 const Navbar = ({ url }) => {
   const router = useRouter()
@@ -27,7 +28,7 @@ const Navbar = ({ url }) => {
 
   return (
     <div className="fixed inset-x-0 top-0 object-center mt-2 mx-7 z-50">
-      <div className="navbar bg-primary rounded-box px-4 shadow-lg drop-shadow-lg">
+      <div className="navbar bg-primary rounded-box px-4 shadow-lg drop-shadow-lg items-center">
         <div className="navbar-start">
           <div className="sm:hidden">
             <div className="dropdown">
@@ -81,7 +82,7 @@ const Navbar = ({ url }) => {
                 </li>
                 <li>
                   <div className="btn btn-ghost" tabIndex={-1}>
-                    <IconThemeHamburger
+                    <IconTheme
                       stylingProps1={
                         'w-6 h-6 place-self-center text-base-content'
                       }
@@ -131,6 +132,10 @@ const Navbar = ({ url }) => {
               </Link>
             )}
           </div>
+
+          <CartDropDown
+            stylingProps={'text-primary-content rounded-full text-center'}
+          />
         </div>
 
         <div className="navbar-end">

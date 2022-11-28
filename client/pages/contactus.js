@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import Navbar from '../components/layout/navbar'
+import Navbar from '../components/layout/navbar/navbar'
 
 function ContactUs() {
   const nameRef = useRef()

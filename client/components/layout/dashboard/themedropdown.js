@@ -1,19 +1,19 @@
-import IconThemeHamburger from '../../../assets/icons/svg/icontheme'
+import IconDashboardTheme from '../../../assets/icons/svg/icondashboardtheme'
 
-function NavBarTheme() {
+function ThemeDropDown() {
   return (
-    <div className="dropdown">
-      <div className="btn btn-ghost text-primary-content" tabIndex={0}>
-        <IconThemeHamburger
-          stylingProps1={'w-6 h-6 place-self-center text-primary-content'}
-          stylingProps2={
-            'w-4 h-4 mt-1 place-self-center opacity-80 text-primary-content'
+    <div className="dropdown dropdown-left dropdown-end">
+      <div className="btn btn-ghost" tabIndex={0}>
+        <IconDashboardTheme
+          stylingProps1={
+            'w-4 h-4 mr-1 place-self-center opacity-80 text-neutral-content'
           }
+          stylingProps2={'w-6 h-6 place-self-center text-neutral-content'}
         />
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52"
+        className="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
       >
         <li>
           <div className="btn btn-ghost" data-set-theme="wireframe">
@@ -79,4 +79,4 @@ function NavBarTheme() {
   )
 }
 
-export default NavBarTheme
+export default ThemeDropDown

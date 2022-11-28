@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import React from 'react'
 
-import Navbar from '../components/layout/navbar'
+import Navbar from '../components/layout/navbar/navbar'
 
 import { CLIENT_NAME_FA, CLIENT_DESCRIPTION } from '../envConfig'
 

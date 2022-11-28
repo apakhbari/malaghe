@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/layout/navbar'
+import Navbar from '../../../components/layout/navbar/navbar'
 
 function GardeshKar() {
   const router = useRouter()
@@ -18,8 +18,10 @@ function GardeshKar() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    router.push('/sefaresh/gardeshkar/workflow1')
+
     if (!idRef) {
-      return
+      router.push('/sefaresh/gardeshkar/workflow1')
     }
 
     //Submit
@@ -54,9 +56,7 @@ function GardeshKar() {
               <label className="input-group">
                 <input
                   type="text"
-                  set
                   ref={idRef}
-                  onChange={(e) => setUserName(e.target.value)}
                   placeholder="۱۲۳۴۵۶۷۸"
                   className="input input-bordered text-center"
                 ></input>

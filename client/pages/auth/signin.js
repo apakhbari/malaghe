@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/layout/navbar'
+import Navbar from '../../components/layout/navbar/navbar'
 
 const SignIn = () => {
   const router = useRouter()
@@ -54,7 +54,6 @@ const SignIn = () => {
                   type="text"
                   set
                   ref={userNameRef}
-                  onChange={(e) => setUserName(e.target.value)}
                   placeholder="۰۹۱۲۲۴۵۳۲۵۸"
                   className="input input-bordered text-center"
                 ></input>
@@ -67,7 +66,6 @@ const SignIn = () => {
                 <input
                   type="password"
                   ref={passwordRef}
-                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="● ● ● ● ● ● ● ●"
                   className="input input-bordered text-center"
                 />

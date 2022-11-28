@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/layout/navbar'
+import Navbar from '../../components/layout/navbar/navbar'
 
 const SignUp = () => {
   const router = useRouter()
@@ -59,7 +59,6 @@ const SignUp = () => {
                 <input
                   type="text"
                   ref={nameRef}
-                  onChange={(e) => setName(e.target.value)}
                   placeholder="شهاب"
                   className="input input-bordered  text-center "
                 />
@@ -72,7 +71,6 @@ const SignUp = () => {
                 <input
                   type="text"
                   ref={familyNameRef}
-                  onChange={(e) => setFamilyName(e.target.value)}
                   placeholder="آواژ"
                   className="input input-bordered text-center  "
                 />
@@ -85,7 +83,6 @@ const SignUp = () => {
                 <input
                   type="number"
                   ref={mobileRef}
-                  onChange={(e) => setMobile(e.target.value)}
                   placeholder="۰۹۱۲۲۴۵۳۲۵۸"
                   className="input input-bordered text-center  "
                 />
