@@ -104,7 +104,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 |   2    |       laName       |       String       |    ✔     |    t    |
 |   3    |       gender       |       Number       |    ✔     |         |
 |   4    |       email        |       String       |          |   t-l   |
-|   5    |       mobile       |       Number       |    ✔     |    t    |
+|   5    |       mobile       |       String       |    ✔     |    t    |
 |   6    |       photo        |       String       |          |         |
 |   7    |     locations      | `[locationsAttrs]` |          |         |
 |   8    |        role        |     UsersRoles     |  d:user  |         |

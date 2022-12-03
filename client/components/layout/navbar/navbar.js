@@ -15,7 +15,7 @@ import IconHamburger from '../../../assets/icons/svg/iconhamburger'
 import IconTheme from '../../../assets/icons/svg/icontheme'
 import CartDropDown from './navbarhelper/cartdropdown'
 
-const Navbar = ({ url }) => {
+const Navbar = () => {
   const router = useRouter()
   const [theme, setTheme] = useState(true)
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -48,10 +48,10 @@ const Navbar = ({ url }) => {
                 tabindex="0"
                 class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {router.pathname !== ('/signin' || '/signup') && (
+                {!router.pathname.includes('/auth/sign') && (
                   <li>
                     <Link
-                      href="/auth/signin"
+                      href="/dashboard"
                       className="btn btn-outline btn-secondary m-1 normal-case text-xl mx-4"
                     >
                       داشبورد
@@ -59,18 +59,16 @@ const Navbar = ({ url }) => {
                   </li>
                 )}
                 <li>
-                  {router.pathname !== '/store' && (
-                    <Link
-                      href="/store"
-                      className="btn btn-ghost normal-case text-xl"
-                    >
-                      <IconStore stylingProps={'w-6 h-6'} />
-                      فروشگاه
-                    </Link>
-                  )}
+                  <Link
+                    href="/store"
+                    className="btn btn-ghost normal-case text-xl"
+                  >
+                    <IconStore stylingProps={'w-6 h-6'} />
+                    فروشگاه
+                  </Link>
                 </li>
                 <li>
-                  {router.pathname !== '/buyMana' && (
+                  {router.pathname !== '/mag' && (
                     <Link
                       href="/mag"
                       className="btn btn-ghost normal-case text-xl"
@@ -105,24 +103,22 @@ const Navbar = ({ url }) => {
           <div className="hidden sm:flex">
             <NavBarTheme />
 
-            {router.pathname !== ('/auth/signin' || '/auth/signup') && (
+            {!router.pathname.includes('/auth/sign') && (
               <Link
-                href="/auth/signin"
+                href="/dashboard"
                 className="btn btn-outline normal-case text-xl mx-4 text-primary-content"
               >
                 داشبورد
               </Link>
             )}
-            {router.pathname !== '/store' && (
-              <Link
-                href="/store"
-                className="btn btn-ghost normal-case text-xl text-primary-content"
-              >
-                <IconStore stylingProps={'w-6 h-6 mr-2'} />
-                فروشگاه
-              </Link>
-            )}
-            {router.pathname !== '/buyMana' && (
+            <Link
+              href="/store"
+              className="btn btn-ghost normal-case text-xl text-primary-content"
+            >
+              <IconStore stylingProps={'w-6 h-6 mr-2'} />
+              فروشگاه
+            </Link>
+            {router.pathname !== '/mag' && (
               <Link
                 href="/mag"
                 className="btn btn-ghost normal-case text-xl text-primary-content"
@@ -151,14 +147,6 @@ const Navbar = ({ url }) => {
       </div>
     </div>
   )
-}
-
-Navbar.defaultProps = {
-  url: '/',
-}
-
-Navbar.propTypes = {
-  url: PropTypes.string.isRequired,
 }
 
 export default Navbar

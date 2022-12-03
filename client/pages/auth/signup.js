@@ -1,38 +1,52 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Navbar from '../../components/layout/navbar/navbar'
 
+import useRequest from '../../hooks/use-request'
+
 const SignUp = () => {
   const router = useRouter()
 
-  const nameRef = useRef()
-  const familyNameRef = useRef()
-  const mobileRef = useRef()
-  const genderRef = useRef()
-  const passwordRef = useRef()
+  const [fiName, setFiName] = useState('')
+  const [laName, setLaName] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [password, setPassword] = useState('')
+  const [gender, setGender] = useState()
+
+  const { doRequest, errors } = useRequest({
+    url: '/api/v1/users/signup',
+    method: 'post',
+    body: {
+      fiName,
+      laName,
+      gender,
+      mobile,
+      password,
+    },
+    onSuccess: () => router.push('/dashboard'),
+  })
 
   const handleClick = (e) => {
     e.preventDefault()
     router.push('/auth/signin')
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const handleSelectChange = (event) => {
+    if (event.target.value === 'مرد') {
+      setGender(1)
+    } else {
+      setGender(0)
+    }
+    console.log(gender)
+  }
 
-    router.push('/dashboard')
+  const onSubmit = async (event) => {
+    event.preventDefault()
 
-    //if (
-    //!nameRef ||
-    //!familyNameRef ||
-    //!mobileRef ||
-    //!genderRef ||
-    //!passwordRef
-    //) {
-    //return
-    //}
+    doRequest()
   }
 
   return (
@@ -58,7 +72,8 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  ref={nameRef}
+                  value={fiName}
+                  onChange={(e) => setFiName(e.target.value)}
                   placeholder="شهاب"
                   className="input input-bordered  text-center "
                 />
@@ -70,7 +85,8 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  ref={familyNameRef}
+                  value={laName}
+                  onChange={(e) => setLaName(e.target.value)}
                   placeholder="آواژ"
                   className="input input-bordered text-center  "
                 />
@@ -82,7 +98,8 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="number"
-                  ref={mobileRef}
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
                   placeholder="۰۹۱۲۲۴۵۳۲۵۸"
                   className="input input-bordered text-center  "
                 />
@@ -93,6 +110,7 @@ const SignUp = () => {
             <select
               className="select select-bordered mx-auto max-w-xs mt-3 mb-3 w-5/6"
               dir="rtl"
+              onChange={handleSelectChange}
             >
               <option disabled selected className="text-center content-center">
                 جنسیت
@@ -104,6 +122,19 @@ const SignUp = () => {
                 زن
               </option>
             </select>
+
+            <div className="form-control mx-auto w-5/6 items-center justify-center content-center">
+              <label className="input-group">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="● ● ● ● ● ● ● ●"
+                  className="input input-bordered  text-center "
+                />
+                <span className="  text-center">رمز</span>
+              </label>
+            </div>
 
             <button type="submit" className="btn btn-primary  mt-6 ">
               ثبت نام

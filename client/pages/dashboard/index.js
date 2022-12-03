@@ -3,6 +3,10 @@ import { useRouter } from 'next/router'
 
 import { useEffect } from 'react'
 
+import useRequest from '../../hooks/use-request'
+
+import buildClient from '../../api/build-client'
+
 import { themeChange } from 'theme-change'
 import Stat1 from '../../components/layout/dashboard/stat1'
 import Stat2 from '../../components/layout/dashboard/stat2'
@@ -20,8 +24,17 @@ import IconDashboardLogOut from '../../assets/icons/svg/icondashboardlogout'
 import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdown'
 import NotificationDropDown from '../../components/layout/store/notificationdropdown'
 
-function Dashboard() {
+function Dashboard({ data }) {
   const router = useRouter()
+
+  console.log(data)
+
+  const { doRequest } = useRequest({
+    url: '/api/v1/users/signout',
+    method: 'post',
+    body: {},
+    onSuccess: () => router.push('/'),
+  })
 
   useEffect(() => {
     themeChange(false)
@@ -36,6 +49,12 @@ function Dashboard() {
   const onWorkFlowClick = (e) => {
     e.preventDefault()
     router.push('/sefaresh/gardeshkar')
+  }
+
+  const onLogOutClick = (e) => {
+    e.preventDefault()
+
+    doRequest()
   }
 
   const onAccountClick = (e) => {
@@ -158,7 +177,9 @@ function Dashboard() {
             >
               <div className="flex flex-col justify-center mr-3">
                 <div className="cursor-pointer content-center justify-center text-neutral-content">
-                  کاربر تست
+                  {data.currentUser.role
+                    ? data.currentUser.laName + ' خانم'
+                    : data.currentUser.laName + ' آقای'}
                 </div>
                 <div className="text-sm text-neutral-content text-opacity-70">
                   اکانت حقیقی
@@ -167,12 +188,17 @@ function Dashboard() {
 
               <div class="avatar online placeholder cursor-pointer">
                 <div class="bg-primary-focus text-neutral-content rounded-full w-16">
-                  <span class="text-xl text-neutral-content">کاربرتست</span>
+                  <span class="text-xl text-neutral-content">
+                    {data.currentUser.laName}
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly">
+            <div
+              className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly"
+              onClick={onLogOutClick}
+            >
               خروج
               <IconDashboardLogOut stylingProps={'w-6 h-6'} />
             </div>
@@ -181,6 +207,40 @@ function Dashboard() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const client = buildClient(context)
+  const { data } = await client.get('/api/v1/users/currentuser')
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/auth/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  if (!data.currentUser) {
+    return {
+      redirect: {
+        destination: '/auth/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  if (!data.currentUser.id) {
+    return {
+      redirect: {
+        destination: '/auth/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  return { props: { data } }
 }
 
 export default Dashboard

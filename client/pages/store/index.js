@@ -75,7 +75,7 @@ function Store() {
                       >
                         <li>
                           <Link
-                            href="/auth/signin"
+                            href="/dashboard"
                             className="btn btn-outline m-1 normal-case text-xl mx-4"
                           >
                             داشبورد
@@ -116,7 +116,7 @@ function Store() {
                     <NavBarTheme />
 
                     <Link
-                      href="/auth/signin"
+                      href="/dashboard"
                       className="btn btn-outline normal-case text-xl mx-4 text-primary-content"
                     >
                       داشبورد

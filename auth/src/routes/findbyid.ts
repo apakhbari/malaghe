@@ -1,0 +1,26 @@
+import express, { Request, Response } from 'express'
+import { BadRequestError } from '@apa_malaghe/utility'
+
+import { User } from '../models/user'
+
+const ObjectId = require('mongodb').ObjectId
+
+const router = express.Router()
+
+router.get('/api/v1/users/:id', async (req: Request, res: Response) => {
+  console.log({ id: req.params.id })
+
+  const id = ObjectId(req.params.id) // convert to ObjectId
+
+  const existingUser = await User.findById(req.params.id).select('-createdAt')
+
+  if (!existingUser) {
+    throw new BadRequestError('find user by id failed')
+  }
+
+  const sendingOne = JSON.stringify({ findbyid: existingUser })
+
+  res.send(sendingOne)
+})
+
+export { router as findByIDRouter }

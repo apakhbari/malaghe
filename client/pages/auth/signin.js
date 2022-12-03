@@ -1,34 +1,39 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import useRequest from '../../hooks/use-request'
+
 import Navbar from '../../components/layout/navbar/navbar'
+
+import buildClient from '../../api/build-client'
 
 const SignIn = () => {
   const router = useRouter()
 
-  const userNameRef = useRef()
-  const passwordRef = useRef()
+  const [mobile, setMobile] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { doRequest, errors } = useRequest({
+    url: '/api/v1/users/signin',
+    method: 'post',
+    body: {
+      mobile,
+      password,
+    },
+    onSuccess: () => router.push('/dashboard'),
+  })
 
   const handleClick = (e) => {
     e.preventDefault()
     router.push('/auth/signup')
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = async (event) => {
+    event.preventDefault()
 
-    router.push('/dashboard')
-
-    //if (!userNameRef || !passwordRef) {
-    //return
-    //}
-
-    //Submit
-
-    // setUserName('')
-    // setPassword('')
+    doRequest()
   }
 
   return (
@@ -52,8 +57,8 @@ const SignIn = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  set
-                  ref={userNameRef}
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
                   placeholder="۰۹۱۲۲۴۵۳۲۵۸"
                   className="input input-bordered text-center"
                 ></input>
@@ -65,7 +70,8 @@ const SignIn = () => {
               <label className="input-group">
                 <input
                   type="password"
-                  ref={passwordRef}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="● ● ● ● ● ● ● ●"
                   className="input input-bordered text-center"
                 />
@@ -90,6 +96,28 @@ const SignIn = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const client = buildClient(context)
+  const { data } = await client.get('/api/v1/users/currentuser')
+
+  if (data) {
+    if (data.currentUser) {
+      if (data.currentUser.id) {
+        return {
+          redirect: {
+            destination: '/dashboard',
+            permanent: false,
+          },
+        }
+      }
+    }
+  }
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  }
 }
 
 export default SignIn

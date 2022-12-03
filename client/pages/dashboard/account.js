@@ -4,13 +4,9 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import { themeChange } from 'theme-change'
-import Stat1 from '../../components/layout/dashboard/stat1'
-import Stat2 from '../../components/layout/dashboard/stat2'
-import IconService from '../../assets/icons/svg/iconservice'
-import IconGardeshKar from '../../assets/icons/svg/icongardeshkar'
-import IconSefaresh from '../../assets/icons/svg/iconSefaresh'
-import IconStar from '../../assets/icons/svg/iconstar'
-import IconWallet from '../../assets/icons/svg/iconwallet'
+
+import axios from 'axios'
+
 import IconDashboardHome from '../../assets/icons/svg/icondashboardhome'
 import IconDashboardMag from '../../assets/icons/svg/icondashboardmag'
 import IconDashboardStore from '../../assets/icons/svg/icondashboardstore'
@@ -20,33 +16,26 @@ import IconDashboardLogOut from '../../assets/icons/svg/icondashboardlogout'
 import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdown'
 import NotificationDropDown from '../../components/layout/store/notificationdropdown'
 
-function Account() {
+import buildClient from '../../api/build-client'
+import useRequest from '../../hooks/use-request'
+
+import RemoveUndefinedsToPleaseNext from '../../hooks/removeUndefineds'
+
+function Account({ data }) {
   const router = useRouter()
+
+  console.log({ data })
 
   useEffect(() => {
     themeChange(false)
     // 👆 false parameter is required for react project
   }, [])
 
-  const onRequstServiceClick = (e) => {
-    e.preventDefault()
-    router.push('/sefaresh/new/1')
-  }
-
-  const onWorkFlowClick = (e) => {
-    e.preventDefault()
-    router.push('/sefaresh/gardeshkar')
-  }
-
   const onAccountClick = (e) => {
     e.preventDefault()
     router.push('/dashboard/account')
   }
 
-  const onTransactionsClick = (e) => {
-    e.preventDefault()
-    router.push('/sefaresh/list')
-  }
   return (
     <div className="flex flex-col content-center justify-center">
       <div className=" bg-neutral flex justify-around border-b border-zinc-800 ">
@@ -72,9 +61,9 @@ function Account() {
           <div className="m-8 bg-base-100 rounded-2xl p-3 flex flex-col shadow-md drop-shadow-md w-3/5 mx-auto">
             <div className="grid grid-cols-2 gap-4 w-full mx-auto">
               <div className="ml-6 flex">
-                <div class="avatar online placeholder cursor-pointer">
-                  <div class="bg-primary-focus text-neutral-content rounded-full w-16">
-                    <span class="text-xl text-neutral-content">کاربرتست</span>
+                <div className="avatar online placeholder cursor-default">
+                  <div className="bg-primary-focus text-neutral-content rounded-full w-16">
+                    <span className="text-xl text-neutral-content"></span>
                   </div>
                 </div>
                 <svg
@@ -269,26 +258,6 @@ function Account() {
           </div>
 
           <div className="bottom-3/4">
-            <div
-              className=" w-4/5 border m-4 rounded-box p-2 bg-neutral-focus flex justify-center mx-auto border-dashed border-primary-focus"
-              onClick={onAccountClick}
-            >
-              <div className="flex flex-col justify-center mr-3">
-                <div className="content-center justify-center text-neutral-content cursor-default">
-                  کاربر تست
-                </div>
-                <div className="text-sm text-neutral-content text-opacity-70 cursor-default">
-                  اکانت حقیقی
-                </div>
-              </div>
-
-              <div class="avatar online placeholder cursor-default">
-                <div class="bg-primary-focus text-neutral-content rounded-full w-16">
-                  <span class="text-xl text-neutral-content">کاربرتست</span>
-                </div>
-              </div>
-            </div>
-
             <div className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly">
               خروج
               <IconDashboardLogOut stylingProps={'w-6 h-6'} />
@@ -298,6 +267,17 @@ function Account() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const client = buildClient(context)
+  const { data2 } = await client.get('/api/v1/users/currentuser')
+
+  const { data } = await client.get('/api/v1/users/638b333d6b904200836044d8')
+  return {
+    props: RemoveUndefinedsToPleaseNext({ data }),
+  }
+  //return { props: { data, res } }
 }
 
 export default Account

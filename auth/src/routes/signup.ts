@@ -33,7 +33,6 @@ router.post(
     body('mobile')
       .trim()
       .notEmpty()
-      .isNumeric()
       .isLength({ min: 11, max: 11 })
       .withMessage('mobile must be valid'),
 
@@ -46,6 +45,8 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { fiName, laName, gender, mobile, password } = req.body
+
+    console.log(req.body)
 
     const existingUser = await User.findOne({ mobile })
 
