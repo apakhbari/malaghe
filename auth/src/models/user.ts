@@ -1,54 +1,56 @@
-import mongoose from 'mongoose';
-import { Password } from '../services/password';
-import { UsersRoles } from '@apa_malaghe/utility';
-import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
-
+import mongoose from 'mongoose'
+import { Password } from '../services/password'
+import { UsersRoles } from '@apa_malaghe/utility'
+import { UsersGender } from '@apa_malaghe/utility'
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 // An interface that describes the properties that are required to create a new User
 interface UserAttrs {
-  fiName: string;
-  laName: string;
-  email: string;
-  mobile: number;
-  photo?: string;
-  locations?: [locationsAttrs];
-  role?: UsersRoles;
-  password: string;
-  isActive?: Boolean;
-  createdAt?: Date;
-  passwordResetToken?: string;
+  fiName: string
+  laName: string
+  gender: UsersGender
+  email?: string
+  mobile: number
+  photo?: string
+  locations?: [locationsAttrs]
+  role?: UsersRoles
+  password: string
+  isActive?: Boolean
+  createdAt?: Date
+  passwordResetToken?: string
 }
 
 interface locationsAttrs {
   coordinates?: Array<coordinatesAttrs>
-  address?: string;
-  postalCode?: number;
+  address?: string
+  postalCode?: number
 }
 
 interface coordinatesAttrs {
-  long?: number;
-  lat?: number;
+  long?: number
+  lat?: number
 }
 
 // An interface that describes the properties that a User Model has
 interface UserModel extends mongoose.Model<UserDoc> {
-  build(attrs: UserAttrs): UserDoc;
+  build(attrs: UserAttrs): UserDoc
 }
 
 // An interface that describes the properties that a User Document has
 interface UserDoc extends mongoose.Document {
-  fiName: string;
-  laName: string;
-  email: string;
-  mobile: number;
-  photo?: string;
-  locations?: [locationsAttrs];
-  role?: UsersRoles;
-  password: string;
-  isActive?: Boolean;
-  createdAt?: Date;
-  passwordResetToken?: string;
-  version: number;
+  fiName: string
+  laName: string
+  gender: UsersGender
+  email?: string
+  mobile: number
+  photo?: string
+  locations?: [locationsAttrs]
+  role?: UsersRoles
+  password: string
+  isActive?: Boolean
+  createdAt?: Date
+  passwordResetToken?: string
+  version: number
 }
 
 const userSchema = new mongoose.Schema(
@@ -56,99 +58,107 @@ const userSchema = new mongoose.Schema(
     fiName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     laName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
+    },
+    gender: {
+      type: UsersGender,
+      required: true,
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
       lowercase: true,
-      trim: true
+      trim: true,
     },
     mobile: {
       type: Number,
       required: true,
-      trim: true
+      trim: true,
+      unique: true,
     },
     photo: {
       type: String,
-      required: false
+      required: false,
     },
-    locations: [{
+    locations: [
+      {
         required: false,
-        coordinates: [{
-          type: Number,
-          required: false
-        }],
+        coordinates: [
+          {
+            type: Number,
+            required: false,
+          },
+        ],
         address: {
           type: String,
-          required: false
+          required: false,
         },
         postalCode: {
           type: Number,
-          required: false
+          required: false,
         },
-      }],
+      },
+    ],
     role: {
       type: UsersRoles,
       required: true,
-      default: UsersRoles.User
+      default: UsersRoles.User,
     },
     password: {
       type: String,
       required: true,
       minlength: 8,
       maxlength: 20,
-      trim: true
+      trim: true,
     },
-    isActive:  {
+    isActive: {
       type: Boolean,
       required: true,
-      default: true
+      default: true,
     },
     createdAt: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now,
     },
     passwordResetToken: {
       type: String,
-      required: false
+      required: false,
     },
   },
   {
     toJSON: {
       transform(_doc, ret) {
-        ret.id = ret._id;
-        delete ret._id;
-        delete ret.password;
-        delete ret.role;
-        delete ret.__v;
+        ret.id = ret._id
+        delete ret._id
+        delete ret.password
+        delete ret.role
+        delete ret.__v
       },
     },
   }
-);
+)
 
 userSchema.pre('save', async function (done) {
   if (this.isModified('password')) {
-    const hashed = await Password.toHash(this.get('password'));
-    this.set('password', hashed);
+    const hashed = await Password.toHash(this.get('password'))
+    this.set('password', hashed)
   }
-  done();
-});
+  done()
+})
 
-userSchema.set('versionKey', 'version');
-userSchema.plugin(updateIfCurrentPlugin);
+userSchema.set('versionKey', 'version')
+userSchema.plugin(updateIfCurrentPlugin)
 
 userSchema.statics.build = (attrs: UserAttrs) => {
-  return new User(attrs);
-};
+  return new User(attrs)
+}
 
-const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
+const User = mongoose.model<UserDoc, UserModel>('User', userSchema)
 
-export { User };
+export { User }

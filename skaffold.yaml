@@ -16,11 +16,3 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: apakhbari/mag
-      context: mag
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .

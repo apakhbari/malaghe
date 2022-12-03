@@ -1,17 +1,23 @@
-import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
-import { validateRequest, BadRequestError } from '@apa_malaghe/utility';
+import express, { Request, Response } from 'express'
+import { body } from 'express-validator'
+import jwt from 'jsonwebtoken'
+import { validateRequest, BadRequestError } from '@apa_malaghe/utility'
 
-import { User } from '../models/user';
-import { Password } from '../services/password';
+import { User } from '../models/user'
+import { Password } from '../services/password'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
   '/api/v1/users/signin',
   [
-    body('email').isEmail().withMessage('Email must be valid'),
+    body('mobile')
+      .trim()
+      .notEmpty()
+      .isNumeric()
+      .isLength({ min: 11, max: 11 })
+      .withMessage('mobile must be valid'),
+
     body('password')
       .trim()
       .notEmpty()
@@ -19,43 +25,42 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const { mobile, password } = req.body
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ mobile })
 
     if (!existingUser) {
-      throw new BadRequestError('Login request failed');
+      throw new BadRequestError('Login request failed')
     }
 
     const passwordsMatch = await Password.compare(
       existingUser.password,
       password
-    );
+    )
 
     if (!passwordsMatch) {
-      throw new BadRequestError('Invalid Credentials');
+      throw new BadRequestError('Invalid Credentials')
     }
 
     // Generate JWT
     const userJWT = jwt.sign(
       {
         id: existingUser.id,
-        email: existingUser.email,
         mobile: existingUser.mobile,
-        fiName: existingUser.fiName,
         laName: existingUser.laName,
+        gender: existingUser.gender,
         role: existingUser.role,
       },
       process.env.JWT_KEY!
-    );
+    )
 
     // Store it on session object
     req.session = {
       jwt: userJWT,
-    };
+    }
 
-    res.status(200).send(existingUser);
+    res.status(200).send(existingUser)
   }
-);
+)
 
-export { router as signinRouter };
+export { router as signinRouter }

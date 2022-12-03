@@ -102,15 +102,16 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 | :----: | :----------------: | :----------------: | :------: | :-----: |
 |   1    |       fiName       |       String       |    ✔     |    t    |
 |   2    |       laName       |       String       |    ✔     |    t    |
-|   3    |       email        |       String       | ✔ unique |   t-l   |
-|   4    |       mobile       |       Number       |    ✔     |    t    |
-|   5    |       photo        |       String       |          |         |
-|   6    |     locations      | `[locationsAttrs]` |          |         |
-|   7    |        role        |     UsersRoles     |  d:user  |         |
-|   8    |      password      |       String       |    ✔     | t-mn-mx |
-|   9    |      isActive      |      Boolean       |  d:true  |         |
-|   10   |     createdAt      |        Date        |  d:now   |         |
-|   11   | passwordResetToken |       String       |          |         |
+|   3    |       gender       |       Number       |    ✔     |         |
+|   4    |       email        |       String       |          |   t-l   |
+|   5    |       mobile       |       Number       |    ✔     |    t    |
+|   6    |       photo        |       String       |          |         |
+|   7    |     locations      | `[locationsAttrs]` |          |         |
+|   8    |        role        |     UsersRoles     |  d:user  |         |
+|   9    |      password      |       String       |    ✔     | t-mn-mx |
+|   10   |      isActive      |      Boolean       |  d:true  |         |
+|   11   |     createdAt      |        Date        |  d:now   |         |
+|   12   | passwordResetToken |       String       |          |         |
 
 <br>
 

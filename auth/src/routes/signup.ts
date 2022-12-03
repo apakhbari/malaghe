@@ -1,11 +1,11 @@
-import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
-import { validateRequest, BadRequestError } from '@apa_malaghe/utility';
+import express, { Request, Response } from 'express'
+import { body } from 'express-validator'
+import jwt from 'jsonwebtoken'
+import { validateRequest, BadRequestError } from '@apa_malaghe/utility'
 
-import { User } from '../models/user';
+import { User } from '../models/user'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
   '/api/v1/users/signup',
@@ -23,18 +23,18 @@ router.post(
       .notEmpty()
       .isLength({ min: 2, max: 20 })
       .withMessage('last Name must be valid'),
-    
-    body('email')
+
+    body('gender')
       .trim()
       .notEmpty()
-      .isEmail()
-      .withMessage('Email must be valid'),
+      .isLength({ min: 1, max: 1 })
+      .withMessage('gender must be valid'),
 
     body('mobile')
       .trim()
       .notEmpty()
       .isNumeric()
-      .isLength({ min:11, max:11 })
+      .isLength({ min: 11, max: 11 })
       .withMessage('mobile must be valid'),
 
     body('password')
@@ -45,37 +45,36 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { fiName, laName, email, mobile, password} = req.body;
+    const { fiName, laName, gender, mobile, password } = req.body
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ mobile })
 
     if (existingUser) {
-      throw new BadRequestError('Email in use');
+      throw new BadRequestError('mobile in use')
     }
 
-    const user = User.build({ fiName, laName, email, mobile, password });
-    await user.save();
+    const user = User.build({ fiName, laName, gender, mobile, password })
+    await user.save()
 
     // Generate JWT
     const userJWT = jwt.sign(
       {
         id: user.id,
-        email: user.email,
         mobile: user.mobile,
-        fiName: user.fiName,
         laName: user.laName,
-        role: user.role
+        gender: user.gender,
+        role: user.role,
       },
       process.env.JWT_KEY!
-    );
+    )
 
     // Store it on session object
     req.session = {
       jwt: userJWT,
-    };
+    }
 
-    res.status(201).send(user);
+    res.status(201).send(user)
   }
-);
+)
 
-export { router as signupRouter };
+export { router as signupRouter }
