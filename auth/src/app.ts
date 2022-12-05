@@ -15,12 +15,27 @@ import { findByIDRouter } from './routes/findbyid'
 import { findByIDForServiceRouter } from './routes/findbyidforservice'
 import { updateUserRouter } from './routes/updateuser'
 
+import { rateLimit } from 'express-rate-limit'
+import helmet from 'helmet'
+import ExpressMongoSanitize from 'express-mongo-sanitize'
+
 var rfs = require('rotating-file-stream') // version 2.x
 var morgan = require('morgan')
 var path = require('path')
 
 const app = express()
 app.set('trust proxy', true)
+
+// Set security HTTP headers
+app.use(helmet())
+
+// Limit requests from same API
+const limiter = rateLimit({
+  max: 300,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
+})
+app.use('/api', limiter)
 
 app.use(json())
 
@@ -43,6 +58,9 @@ app.get('/logger', (_, res) => {
 
   res.send('Hello world')
 })
+
+// Data sanitization against NoSQL query injection
+app.use(ExpressMongoSanitize())
 
 app.use(
   cookieSession({
