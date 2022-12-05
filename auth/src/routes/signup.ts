@@ -24,11 +24,7 @@ router.post(
       .isLength({ min: 2, max: 20 })
       .withMessage('last Name must be valid'),
 
-    body('gender')
-      .trim()
-      .notEmpty()
-      .isLength({ min: 1, max: 1 })
-      .withMessage('gender must be valid'),
+    body('gender').trim().notEmpty().withMessage('gender must be valid'),
 
     body('mobile')
       .trim()

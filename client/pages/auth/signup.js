@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -32,15 +32,6 @@ const SignUp = () => {
   const handleClick = (e) => {
     e.preventDefault()
     router.push('/auth/signin')
-  }
-
-  const handleSelectChange = (event) => {
-    if (event.target.value === 'مرد') {
-      setGender(1)
-    } else {
-      setGender(0)
-    }
-    console.log(gender)
   }
 
   const onSubmit = async (event) => {
@@ -110,7 +101,7 @@ const SignUp = () => {
             <select
               className="select select-bordered mx-auto max-w-xs mt-3 mb-3 w-5/6"
               dir="rtl"
-              onChange={handleSelectChange}
+              onChange={(e) => setGender(e.target.value)}
             >
               <option disabled selected className="text-center content-center">
                 جنسیت

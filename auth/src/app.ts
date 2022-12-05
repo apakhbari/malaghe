@@ -12,6 +12,8 @@ import { signupRouter } from './routes/signup'
 import morganMiddleware from './middleware/morganMiddleware'
 import Logger from './middleware/logger'
 import { findByIDRouter } from './routes/findbyid'
+import { findByIDForServiceRouter } from './routes/findbyidforservice'
+import { updateUserRouter } from './routes/updateuser'
 
 var rfs = require('rotating-file-stream') // version 2.x
 var morgan = require('morgan')
@@ -54,6 +56,8 @@ app.use(signinRouter)
 app.use(signoutRouter)
 app.use(signupRouter)
 app.use(findByIDRouter)
+app.use(findByIDForServiceRouter)
+app.use(updateUserRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()

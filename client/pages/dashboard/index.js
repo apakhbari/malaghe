@@ -43,7 +43,14 @@ function Dashboard({ data }) {
 
   const onRequstServiceClick = (e) => {
     e.preventDefault()
-    router.push('/sefaresh/new/1')
+
+    router.push(
+      {
+        pathname: '/sefaresh/new/1',
+        query: { accountId: `${data.currentUser.id}` },
+      },
+      '/sefaresh/new/1'
+    )
   }
 
   const onWorkFlowClick = (e) => {
@@ -59,7 +66,7 @@ function Dashboard({ data }) {
 
   const onAccountClick = (e) => {
     e.preventDefault()
-    router.push('/dashboard/account')
+    router.push(`/dashboard/${data.currentUser.id}`)
   }
 
   const onTransactionsClick = (e) => {
@@ -67,7 +74,7 @@ function Dashboard({ data }) {
     router.push('/sefaresh/list')
   }
   return (
-    <div className="flex flex-col content-center justify-center">
+    <div className="flex flex-col content-center justify-center h-screen bg-neutral">
       <div className=" bg-neutral flex justify-around border-b border-zinc-800 ">
         <div className="flex">
           <NotificationDropDown />
@@ -87,9 +94,8 @@ function Dashboard({ data }) {
         </Link>
       </div>
       <div className="grid grid-cols-4 h-full">
-        <div className="bg-neutral col-span-3 p-2  h-screen">
-          <div className="m-8 bg-base-100 rounded-2xl p-2 flex flex-col text-center items-center max-w-4xl shadow-md drop-shadow-md">
-            <Stat1 />
+        <div className="bg-neutral col-span-3 p-2  ">
+          <div className="m-8 bg-base-100 rounded-box p-2 flex flex-col text-center items-center max-w-4xl shadow-md drop-shadow-md">
             <Stat2 />
             <div className="divider">خدمات و تعمیرات</div>
 
@@ -125,7 +131,7 @@ function Dashboard({ data }) {
               className="btn btn-primary hover:border-slate-400 gap-8 mx-16 mb-2 shadow max-w-lg w-full"
               onClick={onTransactionsClick}
             >
-              تاریخچه تراکنش‌ها
+              تاریخچه سفارش‌ها و درخواست‌ها
               <IconWallet stylingProps={'w-6 h-6'} />
             </div>
           </div>
@@ -172,17 +178,20 @@ function Dashboard({ data }) {
 
           <div className="bottom-3/4">
             <div
-              className=" w-4/5 border m-4 rounded-box p-2 hover:bg-neutral-focus hover:cursor-pointer flex justify-center mx-auto hover:border-dashed border-primary-focus"
+              className=" transition-colors duration-300 w-4/5 border m-4 rounded-box p-2 hover:bg-neutral-focus hover:cursor-pointer flex justify-center mx-auto hover:border-dashed border-primary-focus"
               onClick={onAccountClick}
             >
               <div className="flex flex-col justify-center mr-3">
-                <div className="cursor-pointer content-center justify-center text-neutral-content">
-                  {data.currentUser.role
-                    ? data.currentUser.laName + ' خانم'
-                    : data.currentUser.laName + ' آقای'}
+                <div
+                  className="cursor-pointer content-center justify-center text-neutral-content"
+                  dir="rtl"
+                >
+                  {data.currentUser.gender
+                    ? ' خانم ' + data.currentUser.laName
+                    : ' آقای ' + data.currentUser.laName}
                 </div>
                 <div className="text-sm text-neutral-content text-opacity-70">
-                  اکانت حقیقی
+                  اکانت فعال
                 </div>
               </div>
 

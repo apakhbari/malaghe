@@ -7,8 +7,10 @@ const ObjectId = require('mongodb').ObjectId
 
 const router = express.Router()
 
-router.get('/api/v1/users/:id', async (req: Request, res: Response) => {
-  const existingUser = await User.findById(req.params.id).select('-createdAt')
+router.get('/api/v1/users/service/:id', async (req: Request, res: Response) => {
+  const existingUser = await User.findById(req.params.id).select(
+    'fiName laName mobile postalCode address lat long'
+  )
 
   if (!existingUser) {
     throw new BadRequestError('find user by id failed')
@@ -17,4 +19,4 @@ router.get('/api/v1/users/:id', async (req: Request, res: Response) => {
   res.send(existingUser)
 })
 
-export { router as findByIDRouter }
+export { router as findByIDForServiceRouter }

@@ -1,34 +1,52 @@
-import { useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
+import BuildClient from '../../../api/build-client'
+import RemoveUndefinedsToPleaseNext from '../../../hooks/removeUndefineds'
+
 import Navbar from '../../../components/layout/navbar/navbar'
 
-const RequestService1 = () => {
+const RequestService1 = ({ data }) => {
   const router = useRouter()
 
-  const nameRef = useRef()
-  const serviceRef = useRef()
-  const mobileRef = useRef()
+  const [enteredName, setEnteredName] = useState()
+  const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredMobile, setEnteredMobile] = useState()
+  const [enteredServiceKind, setEnteredServiceKind] = useState()
+  const [isExpress, setIsExpress] = useState(false)
+
+  const { address, lat, long, postalCode } = data
+
+  if (data) {
+    if (data.id) {
+      useEffect(() => {
+        setEnteredName(data.fiName + ' ' + data.laName)
+        setEnteredMobile(data.mobile)
+      })
+    }
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    //if (!name || !unitsNumber) {
-    //toast('لطفاً مقادیر را پر کنید.')
-    //return
-    //}
-
-    //Submit
-
-    router.push({
-      pathname: '/sefaresh/new/2',
-      query: {
-        nameRef: 'nameref',
-        serviceRef: 'serviceRef',
-        mobileRef: 'mobileRef',
+    router.push(
+      {
+        pathname: '/sefaresh/new/2',
+        query: {
+          enteredName,
+          enteredDevice,
+          enteredMobile,
+          enteredServiceKind,
+          isExpress,
+          address,
+          lat,
+          long,
+          postalCode,
+        },
       },
-    })
+      '/sefaresh/new/2'
+    )
   }
 
   return (
@@ -61,7 +79,8 @@ const RequestService1 = () => {
               <label className="input-group mt-6">
                 <input
                   type="text"
-                  ref={nameRef}
+                  value={enteredName}
+                  onChange={(e) => setEnteredName(e.target.value)}
                   placeholder="شهاب آواژ"
                   className="input input-bordered  text-center "
                 />
@@ -71,7 +90,8 @@ const RequestService1 = () => {
               <label className="input-group mt-3">
                 <input
                   type="text"
-                  ref={serviceRef}
+                  value={enteredDevice}
+                  onChange={(e) => setEnteredDevice(e.target.value)}
                   placeholder="دستگاه آبمیوه‌ گیری"
                   className="input input-bordered  text-center "
                 />
@@ -81,14 +101,18 @@ const RequestService1 = () => {
               <label className="input-group mt-3">
                 <input
                   type="number"
-                  value={mobileRef}
+                  value={enteredMobile}
+                  onChange={(e) => setEnteredMobile(e.target.value)}
                   placeholder="۰۹۱۲۴۵۰۳۲۳۲"
                   className="input input-bordered  text-center "
                 />
                 <span className="text-center">شماره موبایل</span>
               </label>
 
-              <select className="select select-bordered w-full max-w-xs mt-3 mb-3">
+              <select
+                className="select select-bordered w-full max-w-xs mt-3 mb-3"
+                onChange={(e) => setEnteredServiceKind(e.target.value)}
+              >
                 <option
                   disabled
                   selected
@@ -105,7 +129,11 @@ const RequestService1 = () => {
 
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <input type="checkbox" className="toggle toggle-primary" />
+                  <input
+                    type="checkbox"
+                    className="toggle toggle-primary"
+                    onClick={(e) => setIsExpress(!isExpress)}
+                  />
                   <div>
                     <div className="dropdown dropdown-left">
                       <label
@@ -131,9 +159,7 @@ const RequestService1 = () => {
                         className="card compact dropdown-content shadow bg-base-100 rounded-box w-64"
                       >
                         <div className="card-body" dir="rtl">
-                          <p>
-                            بسته به خدمت، شامل ۵ تا ۱۵ درصد هزینه بالاتر است.
-                          </p>
+                          <p>شامل ۱۰ درصد هزینه بالاتر است.</p>
                         </div>
                       </div>
                     </div>
@@ -153,6 +179,19 @@ const RequestService1 = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  //const accountId = context.params
+  var id = context.query.accountId
+
+  const client = BuildClient(context)
+  const { data } = await client.get(
+    '/api/v1/users/service/' + context.query.accountId
+  )
+  return {
+    props: RemoveUndefinedsToPleaseNext({ data }),
+  }
 }
 
 export default RequestService1

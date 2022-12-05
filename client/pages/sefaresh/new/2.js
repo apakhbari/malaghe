@@ -1,18 +1,43 @@
-import { useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import Navbar from '../../../components/layout/navbar/navbar'
+import RemoveUndefinedsToPleaseNext from '../../../hooks/removeUndefineds'
 
-const RequestService2 = (props) => {
+import Navbar from '../../../components/layout/navbar/navbar'
+import IconGeoLocation from '../../../assets/icons/svg/icongeolocation'
+
+const RequestService2 = () => {
   const router = useRouter()
 
-  const addressRef = useRef()
+  //for this page
+  const [postalCodeNum, setPostalCodeNum] = useState()
+  const [addressStr, setAddressStr] = useState()
+
+  //for last page
+  const [enteredName, setEnteredName] = useState()
+  const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredMobile, setEnteredMobile] = useState()
+  const [enteredServiceKind, setEnteredServiceKind] = useState()
+  const [isExpress, setIsExpress] = useState()
 
   useEffect(() => {
-    //nameRef, serviceRef, mobileRef
-    console.log(router.query.nameRef)
-  }, [router.query.nameRef])
+    if (router.isReady) {
+      // Code using query
+      var passedData = router.query
+      console.log(passedData)
+      setPostalCodeNum(passedData.postalCode)
+      setAddressStr(passedData.address)
+
+      setEnteredName(passedData.enteredName)
+      setEnteredDevice(passedData.enteredDevice)
+      setEnteredMobile(passedData.enteredMobile)
+      setEnteredServiceKind(passedData.enteredServiceKind)
+      setIsExpress(passedData.isExpress)
+    }
+  }, [router.isReady])
+
+  //console.log(data)
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -24,14 +49,21 @@ const RequestService2 = (props) => {
 
     //Submit
 
-    router.push({
-      pathname: '/sefaresh/new/3',
-      query: {
-        nameRef: 'nameref',
-        serviceRef: 'serviceRef',
-        mobileRef: 'mobileRef',
+    router.push(
+      {
+        pathname: '/sefaresh/new/3',
+        query: {
+          enteredName,
+          enteredDevice,
+          enteredMobile,
+          enteredServiceKind,
+          isExpress,
+          postalCodeNum,
+          addressStr,
+        },
       },
-    })
+      '/sefaresh/new/3'
+    )
   }
 
   return (
@@ -61,109 +93,35 @@ const RequestService2 = (props) => {
             </li>
           </ul>
 
-          <div className="form-control">
-            <div className="form-control mx-auto">
-              <select
-                name="state"
-                onChange="CityList(this.value);"
-                className="select select-bordered w-full mt-3"
-              >
-                <option
-                  disabled
-                  selected
-                  value="0"
-                  className="text-center content-center"
-                >
-                  لطفا استان را انتخاب نمایید
-                </option>
-                <option value="1" className="text-center content-center">
-                  تهران
-                </option>
-                <option value="2">گیلان</option>
-                <option value="3">آذربایجان شرقی</option>
-                <option value="4">خوزستان</option>
-                <option value="5">فارس</option>
-                <option value="6">اصفهان</option>
-                <option value="7">خراسان رضوی</option>
-                <option value="8">قزوین</option>
-                <option value="9">سمنان</option>
-                <option value="10">قم</option>
-                <option value="11">مرکزی</option>
-                <option value="12">زنجان</option>
-                <option value="13">مازندران</option>
-                <option value="14">گلستان</option>
-                <option value="15">اردبیل</option>
-                <option value="16">آذربایجان غربی</option>
-                <option value="17">همدان</option>
-                <option value="18">کردستان</option>
-                <option value="19">کرمانشاه</option>
-                <option value="20">لرستان</option>
-                <option value="21">بوشهر</option>
-                <option value="22">کرمان</option>
-                <option value="23">هرمزگان</option>
-                <option value="24">چهارمحال و بختیاری</option>
-                <option value="25">یزد</option>
-                <option value="26">سیستان و بلوچستان</option>
-                <option value="27">ایلام</option>
-                <option value="28">کهگلویه و بویراحمد</option>
-                <option value="29">خراسان شمالی</option>
-                <option value="30">خراسان جنوبی</option>
-                <option value="31">البرز</option>
-              </select>
-
-              <select
-                name="city"
-                id="city"
-                onChange="CityList(this.value);"
-                className="select select-bordered w-full mt-3 mx-auto content-center"
-              >
-                <option
-                  disabled
-                  selected
-                  value="0"
-                  className="text-center content-center"
-                >
-                  لطفا شهر را انتخاب نمایید
-                </option>
-              </select>
-
-              <div class="divider"></div>
-
-              <label className="input-group">
-                <input
-                  type="text"
-                  ref={addressRef}
-                  placeholder="میدان هروی، خیابان مکران"
-                  className="input input-bordered  text-center "
-                />
-                <span className="text-center">آدرس</span>
-              </label>
-
-              <div className="inline-flex items-center btn btn-accent mt-3 justify-evenly">
-                {' '}
-                پین کردن روی نقشه
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                  />
-                </svg>
-              </div>
-            </div>
+          <div className="form-control mx-auto mt-6">
+            <label className="input-group">
+              <input
+                type="text"
+                value={addressStr === 'تخصیص داده نشده' ? '' : addressStr}
+                placeholder="میدان هروی، خیابان مکران"
+                className="input input-bordered  text-center "
+              />
+              <span className="text-center">آدرس</span>
+            </label>
           </div>
+
+          <div className="form-control mx-auto">
+            <label className="input-group">
+              <input
+                type="number"
+                value={postalCodeNum === 'تخصیص داده نشده' ? '' : postalCodeNum}
+                placeholder="1668737864"
+                className="input input-bordered  text-center "
+              />
+              <span className="text-center">کد پستی</span>
+            </label>
+          </div>
+
+          <div className="inline-flex items-center btn btn-accent mt-3 mx-auto justify-evenly">
+            پین کردن آدرس روی نقشه
+            <IconGeoLocation stylingProps={'w-6 h-6'} />
+          </div>
+
           <div className="form-control mt-6">
             <button type="submit" className="btn btn-primary">
               مرحله بعد

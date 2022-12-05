@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -7,12 +7,35 @@ import Navbar from '../../../components/layout/navbar/navbar'
 const RequestService3 = () => {
   const router = useRouter()
 
-  const addressRef = useRef()
+  //for 1 page
+  const [enteredName, setEnteredName] = useState()
+  const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredMobile, setEnteredMobile] = useState()
+  const [enteredServiceKind, setEnteredServiceKind] = useState()
+  const [isExpress, setIsExpress] = useState()
+  //for 2 page
+  const [postalCodeNum, setPostalCodeNum] = useState()
+  const [addressStr, setAddressStr] = useState()
+  //for this page
+  const [enteredPaymentKind, setEnteredPaymentKind] = useState(
+    'پرداخت از طریق درگاه بانکی'
+  )
 
   useEffect(() => {
-    //nameRef, serviceRef, mobileRef
-    console.log(router.query.nameRef)
-  }, [router.query.nameRef])
+    if (router.isReady) {
+      // Code using query
+      var passedData = router.query
+      console.log(passedData)
+      setPostalCodeNum(passedData.postalCode)
+      setAddressStr(passedData.address)
+
+      setEnteredName(passedData.enteredName)
+      setEnteredDevice(passedData.enteredDevice)
+      setEnteredMobile(passedData.enteredMobile)
+      setEnteredServiceKind(passedData.enteredServiceKind)
+      setIsExpress(passedData.isExpress)
+    }
+  }, [router.isReady])
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -25,11 +48,16 @@ const RequestService3 = () => {
     //Submit
 
     router.push({
-      pathname: '/sefaresh/new/3',
+      pathname: '/developing',
       query: {
-        nameRef: 'nameref',
-        serviceRef: 'serviceRef',
-        mobileRef: 'mobileRef',
+        enteredName,
+        enteredDevice,
+        enteredMobile,
+        enteredServiceKind,
+        isExpress,
+        postalCodeNum,
+        addressStr,
+        enteredPaymentKind,
       },
     })
   }
@@ -64,6 +92,21 @@ const RequestService3 = () => {
             </li>
           </ul>
 
+          <select
+            className="select select-bordered w-full max-w-xs mt-6"
+            onChange={(e) => setEnteredPaymentKind(e.target.value)}
+          >
+            <option selected className="text-center content-center" dir="rtl">
+              پرداخت از طریق درگاه بانکی
+            </option>
+            <option className="text-center content-center" dir="rtl">
+              کارت به کارت
+            </option>
+            <option className="text-center content-center" dir="rtl">
+              پرداخت حضوری
+            </option>
+          </select>
+
           <div className="form-control">
             <div className="form-control mx-auto text-neutral-content">
               <div dir="rtl" className="flex justify-between mt-6">
@@ -88,9 +131,22 @@ const RequestService3 = () => {
             </div>
           </div>
 
+          {enteredPaymentKind === 'کارت به کارت' && (
+            <div>
+              <h3 className="mt-3" dir="rtl">
+                انتقال وجه به کارت بانک پاسارگاد، به نام امین کراچیان با شماره:
+              </h3>
+              <h3 className="mt-3 text-center font-bold">
+                ۵۰۲۲-۲۹۱۰-۶۳۰۰-۴۰۲۰
+              </h3>
+            </div>
+          )}
+
           <div className="form-control mt-6">
             <button type="submit" className="btn btn-primary">
-              انتقال به درگاه پرداخت
+              {enteredPaymentKind === 'پرداخت از طریق درگاه بانکی'
+                ? 'انتقال به درگاه پرداخت'
+                : 'ثبت درخواست'}
             </button>
           </div>
         </form>

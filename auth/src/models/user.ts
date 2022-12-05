@@ -6,12 +6,13 @@ import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 interface UserAttrs {
   fiName: string
   laName: string
-  gender: number
+  gender: string
   email?: string
   mobile: string
+  phone?: string
   photo?: string
   address?: string
-  postalCode?: String
+  postalCode?: string
   long?: String
   lat?: String
   role?: number
@@ -30,12 +31,13 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
   fiName: string
   laName: string
-  gender: number
+  gender: string
   email?: string
   mobile: string
+  phone?: string
   photo?: string
   address?: string
-  postalCode?: String
+  postalCode?: string
   long?: String
   lat?: String
   role?: number
@@ -59,7 +61,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     gender: {
-      type: Number,
+      type: String,
       required: true,
     },
     email: {
@@ -73,6 +75,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
       unique: true,
+    },
+    phone: {
+      type: String,
+      default: 'تخصیص داده نشده',
     },
     photo: {
       type: String,
