@@ -57,25 +57,6 @@ interface UserDoc extends mongoose.Document {
   version: number
 }
 
-const locationSchema = new mongoose.Schema({
-  lat: {
-    type: String,
-    default: 'تخصیص داده نشده',
-  },
-  long: {
-    type: String,
-    default: 'تخصیص داده نشده',
-  },
-  address: {
-    type: String,
-    default: 'تخصیص داده نشده',
-  },
-  postalCode: {
-    type: String,
-    default: 'تخصیص داده نشده',
-  },
-})
-
 const userSchema = new mongoose.Schema(
   {
     fiName: {

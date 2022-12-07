@@ -136,68 +136,6 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-# MAG SERVICE
-
-ToDo:
-
-1- Add requireAdmin to new rout
-
-2- patch route
-
-3- delete route
-
-4- listeners
-
-<br>
-
-### ROUTES:
-
-- index: /api/v1/mag --> GET
-- new: /api/v1/mag --> POST
-- show: /api/v1/mag/:magId --> GET
-- patch: /api/v1/mag/:magId --> PATCH
-- delete: /api/v1/mag/:magId --> DELETE
-
-### EVENTS:
-
-- mag:assigned
-- mag:updated
-- mag:deleted
-
-### MAG MODEL:
-
-<br>
-
-### - magSchema -
-
-Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
-
-| Number |    Field    |      Type      | required |  flags  |
-| :----: | :---------: | :------------: | :------: | :-----: |
-|   1    |    title    |     String     | ✔ unique | t-mn-mx |
-|   2    | description |     String     |    ✔     |  t-mn   |
-|   3    |   summary   |     String     |    ✔     |    t    |
-|   4    | imageCover  |     String     |    ✔     |         |
-|   5    |   photos    |    [String]    |          |         |
-|   6    |  videoLink  |     String     |          |         |
-|   7    |  createdAt  |      Date      |  d:now   |         |
-|   8    |  storeData  | `[storeAttrs]` |          |         |
-
-<br>
-
-### - storeAttrs -
-
-| Number | Field |      Type      |
-| :----: | :---: | :------------: |
-|   1    |  id   | Types.ObjectId |
-|   2    | title |     String     |
-
-<br>
-
----
-
-<br>
-
 # STORE SERVICE
 
 ToDo:
@@ -209,7 +147,7 @@ ToDo:
 - index: /api/v1/store --> GET
 - new: /api/v1/store --> POST
 
-  yo
+  yoooooooooo
 
 - show: /api/v1/store/:storeId --> GET
 - patch: /api/v1/mag/:storeId --> PATCH
@@ -242,15 +180,6 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 |   13   |  discountedPrice  |     Number     |          |         |
 |   14   |     createdAt     |      Date      |  d:now   |         |
 |   15   |      magData      |  `[magAttrs]`  |          |         |
-
-<br>
-
-### - magAttrs -
-
-| Number | Field |      Type      |
-| :----: | :---: | :------------: |
-|   1    |  id   | Types.ObjectId |
-|   2    | title |     String     |
 
 <br>
 
