@@ -2,11 +2,13 @@ import mongoose from 'mongoose'
 import { Password } from '../services/password'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
+import { UsersRoles, UsersGender } from '@apa_malaghe/utility'
+
 // An interface that describes the properties that are required to create a new User
 interface UserAttrs {
   fiName: string
   laName: string
-  gender: string
+  gender: UsersGender
   email?: string
   mobile: string
   phone?: string
@@ -15,11 +17,18 @@ interface UserAttrs {
   postalCode?: string
   long?: String
   lat?: String
-  role?: number
+  role?: UsersRoles
   password: string
   isActive?: Boolean
   createdAt?: Date
   passwordResetToken?: string
+}
+
+interface locationsAttrs {
+  long: string
+  lat: string
+  address: string
+  postalCode: string
 }
 
 // An interface that describes the properties that a User Model has
@@ -31,7 +40,7 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
   fiName: string
   laName: string
-  gender: string
+  gender: UsersGender
   email?: string
   mobile: string
   phone?: string
@@ -40,13 +49,32 @@ interface UserDoc extends mongoose.Document {
   postalCode?: string
   long?: String
   lat?: String
-  role?: number
+  role?: UsersRoles
   password: string
   isActive?: Boolean
   createdAt?: Date
   passwordResetToken?: string
   version: number
 }
+
+const locationSchema = new mongoose.Schema({
+  lat: {
+    type: String,
+    default: 'تخصیص داده نشده',
+  },
+  long: {
+    type: String,
+    default: 'تخصیص داده نشده',
+  },
+  address: {
+    type: String,
+    default: 'تخصیص داده نشده',
+  },
+  postalCode: {
+    type: String,
+    default: 'تخصیص داده نشده',
+  },
+})
 
 const userSchema = new mongoose.Schema(
   {
@@ -61,7 +89,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     gender: {
-      type: String,
+      type: UsersGender,
       required: true,
     },
     email: {
@@ -101,9 +129,9 @@ const userSchema = new mongoose.Schema(
       default: 'تخصیص داده نشده',
     },
     role: {
-      type: Number,
+      type: UsersRoles,
       required: true,
-      default: 0,
+      default: UsersRoles.User,
     },
     password: {
       type: String,

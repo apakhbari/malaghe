@@ -24,9 +24,6 @@ router.put(
       throw new NotFoundError()
     }
 
-    console.log(user.id)
-    console.log(req.currentUser!.id)
-
     User.findByIdAndUpdate(
       req.params.id,
       {

@@ -28,6 +28,8 @@ import IconGearAccount from '../../assets/icons/svg/icongearaccount'
 function Account({ data }) {
   const router = useRouter()
 
+  console.log(data)
+
   const [editing, setEditing] = useState(true)
 
   const [firstName, setFirstName] = useState(data.fiName)
@@ -68,6 +70,19 @@ function Account({ data }) {
     },
     onSuccess: () => router.push('/dashboard'),
   })
+
+  const { doRequest: doSignOutRequest } = useRequest({
+    url: '/api/v1/users/signout',
+    method: 'post',
+    body: {},
+    onSuccess: () => router.push('/'),
+  })
+
+  const onLogOutClick = (e) => {
+    e.preventDefault()
+
+    doSignOutRequest()
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -312,7 +327,10 @@ function Account({ data }) {
           </div>
 
           <div className="bottom-3/4">
-            <div className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly">
+            <div
+              className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly"
+              onClick={onLogOutClick}
+            >
               خروج
               <IconDashboardLogOut stylingProps={'w-6 h-6'} />
             </div>
