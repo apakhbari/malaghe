@@ -25,7 +25,13 @@ import IconMag from '../../assets/icons/svg/iconmag'
 import IconCart from '../../assets/icons/svg/iconcart'
 import IconTheme from '../../assets/icons/svg/icontheme'
 
-function Store() {
+import RemoveUndefinedsToPleaseNext from '../../hooks/removeUndefineds'
+
+import BuildClient from '../../api/build-client'
+
+function Store(data) {
+  console.log(data)
+
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [theme, setTheme] = useState(true)
 
@@ -41,7 +47,7 @@ function Store() {
   }, [])
 
   return (
-    <div>
+    <div className="h-screen">
       {/*{domLoaded && ( */}
       <div class="drawer drawer-end">
         <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
@@ -189,7 +195,24 @@ function Store() {
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8"
                 dir="rtl"
               >
-                <StoreAtropos />
+                {data &&
+                  data.data.map((item) => (
+                    <StoreAtropos
+                      key={item.id}
+                      id={item.id}
+                      slug={item.slug}
+                      title={item.title}
+                      hasDiscount={item.hasDiscount}
+                      discountKind={item.discountKind}
+                      discountedPrice={item.discountedPrice}
+                      goodKind={item.goodKind}
+                      hasMag={item.hasMag}
+                      imageCover={item.imageCover}
+                      madeIn={item.madeIn}
+                      price={item.price}
+                      summary={item.summary}
+                    />
+                  ))}
               </div>
             )}
           </div>
@@ -221,10 +244,21 @@ function Store() {
           </div>
         </div>
       </div>
-      {/*)}*/}
       <FooterNotMain />
+      {/*)}*/}
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  //const accountId = context.params
+  var id = context.query.accountId
+
+  const client = BuildClient(context)
+  const { data } = await client.get('/api/v1/store')
+  return {
+    props: RemoveUndefinedsToPleaseNext({ data }),
+  }
 }
 
 export default Store

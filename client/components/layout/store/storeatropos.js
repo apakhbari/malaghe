@@ -5,12 +5,19 @@ import Atropos from 'atropos/react'
 
 import hamzan from '../../../assets/images/store/hamzan.jpg'
 
-function StoreAtropos() {
+function StoreAtropos(props) {
   const router = useRouter()
 
   const handleClick = (e) => {
     e.preventDefault()
-    router.push('/store/hamzan')
+
+    router.push(
+      {
+        pathname: `/store/${props.slug}`,
+        query: { id: props.id },
+      },
+      `/store/${props.slug}`
+    )
   }
 
   return (
@@ -42,34 +49,65 @@ function StoreAtropos() {
               dir="rtl"
               data-atropos-offset="6"
             >
-              <span className="group-hover:scale-105">دستگاه هم‌زن</span>
-              <div
-                className="badge badge-secondary"
-                dir="rtl"
+              <span>{props.title}</span>
+              {props.hasDiscount && (
+                <div
+                  className="badge badge-secondary"
+                  dir="rtl"
+                  data-atropos-offset="6"
+                >
+                  {props.discountKind === 'درصد'
+                    ? `${props.discountedPrice}٪ تخفیف`
+                    : '+ تخفیف'}
+                </div>
+              )}
+            </h2>
+            {props.hasDiscount && (
+              <h2
+                className="card-title text-neutral-content"
                 data-atropos-offset="6"
+                dir="rtl"
               >
-                ۱۵٪ تخفیف
-              </div>
-            </h2>
-            <h2
-              className="card-title text-neutral-content"
-              data-atropos-offset="6"
-              dir="rtl"
-            >
-              تومن ۲۰۰,۰۰۰
-              <span className="line-through text-xs">۲۵۰,۰۰۰</span>
-            </h2>
+                {props.discountKind === 'درصد'
+                  ? `${Math.round(
+                      ((100 - props.discountedPrice) * props.price) / 100
+                    )}  تومن`
+                  : `${props.discountedPrice}  تومن`}
+                <span className="line-through text-xs">{props.price}</span>
+              </h2>
+            )}
+
+            {!props.hasDiscount && (
+              <h2
+                className="card-title text-neutral-content"
+                data-atropos-offset="6"
+                dir="rtl"
+              >
+                {props.price}
+              </h2>
+            )}
+
             <p dir="rtl" data-atropos-offset="6">
               <div className="text-neutral-content" dir="rtl">
-                به همراه ویدیو مقایسه در مجله
+                {props.summary}
               </div>
             </p>
             <div class="card-actions justify-start" data-atropos-offset="6">
-              <div class="badge badge-success" dir="rtl">
-                + ویدیو
-              </div>
-              <div class="badge badge-outline">تولید چین</div>
-              <div class="badge badge-outline badge-primary">دستگاه</div>
+              {props.hasMag && (
+                <div class="badge badge-success" dir="rtl">
+                  + مجله
+                </div>
+              )}
+
+              {props.madeIn && (
+                <div class="badge badge-outline">تولید {props.madeIn}</div>
+              )}
+
+              {props.goodKind && (
+                <div class="badge badge-outline badge-primary">
+                  {props.goodKind}
+                </div>
+              )}
             </div>
           </div>
         </div>

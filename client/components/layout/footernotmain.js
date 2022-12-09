@@ -9,7 +9,7 @@ import {
 function FooterNotMain() {
   return (
     <div>
-      <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+      <footer class="footer absolute inset-x-0 bottom-0 items-center p-4 bg-neutral text-neutral-content">
         <div class="items-center grid-flow-col">
           <a>
             <svg

@@ -7,7 +7,11 @@ export default ({ url, method, body, onSuccess }) => {
   const doRequest = async (props = {}) => {
     try {
       setErrors(null)
-      const response = await axios[method](url, { ...body, ...props })
+
+      const response = await axios[method](url, {
+        ...removeEmpty(body),
+        ...props,
+      })
 
       if (onSuccess) {
         console.log(response.data)
@@ -33,4 +37,8 @@ export default ({ url, method, body, onSuccess }) => {
   }
 
   return { doRequest, errors }
+}
+
+function removeEmpty(obj) {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null))
 }

@@ -13,10 +13,14 @@ interface UserAttrs {
   mobile: string
   phone?: string
   photo?: string
-  address?: string
-  postalCode?: string
-  long?: String
-  lat?: String
+  locations?: [
+    {
+      address?: string
+      postalCode?: string
+      long?: string
+      lat?: string
+    }
+  ]
   role?: UsersRoles
   password: string
   isActive?: Boolean
@@ -45,10 +49,14 @@ interface UserDoc extends mongoose.Document {
   mobile: string
   phone?: string
   photo?: string
-  address?: string
-  postalCode?: string
-  long?: String
-  lat?: String
+  locations?: [
+    {
+      address?: string
+      postalCode?: string
+      long?: string
+      lat?: string
+    }
+  ]
   role?: UsersRoles
   password: string
   isActive?: Boolean
@@ -93,22 +101,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 'تخصیص داده نشده',
     },
-    address: {
-      type: String,
-      default: 'تخصیص داده نشده',
-    },
-    postalCode: {
-      type: String,
-      default: 'تخصیص داده نشده',
-    },
-    long: {
-      type: String,
-      default: 'تخصیص داده نشده',
-    },
-    lat: {
-      type: String,
-      default: 'تخصیص داده نشده',
-    },
+    locations: [
+      {
+        address: String,
+        postalCode: String,
+        long: String,
+        lat: String,
+      },
+    ],
     role: {
       type: UsersRoles,
       required: true,

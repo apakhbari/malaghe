@@ -1,4 +1,6 @@
 import { useRef } from 'react'
+import CardComponent from '../components/layout/card'
+import FooterNotMain from '../components/layout/footernotmain'
 
 import Navbar from '../components/layout/navbar/navbar'
 
@@ -20,8 +22,7 @@ function ContactUs() {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <div className="form-control">
             <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
@@ -63,7 +64,8 @@ function ContactUs() {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>
+      <FooterNotMain />
     </div>
   )
 }

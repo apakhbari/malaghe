@@ -32,6 +32,7 @@ router.put(
         email: req.body.email,
         mobile: req.body.mobile,
         phone: req.body.phone,
+        locations: req.body.locations,
         address: req.body.address,
         postalCode: req.body.postalCode,
       },

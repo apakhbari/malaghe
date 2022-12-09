@@ -6,6 +6,8 @@ import RemoveUndefinedsToPleaseNext from '../../../hooks/removeUndefineds'
 
 import Navbar from '../../../components/layout/navbar/navbar'
 import IconGeoLocation from '../../../assets/icons/svg/icongeolocation'
+import CardComponent from '../../../components/layout/card'
+import FooterNotMain from '../../../components/layout/footernotmain'
 
 const RequestService2 = () => {
   const router = useRouter()
@@ -69,8 +71,7 @@ const RequestService2 = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
             ثبت درخواست تعمیر
@@ -97,8 +98,13 @@ const RequestService2 = () => {
             <label className="input-group">
               <input
                 type="text"
-                value={addressStr === 'تخصیص داده نشده' ? '' : addressStr}
-                placeholder="میدان هروی، خیابان مکران"
+                value={addressStr}
+                onChange={(e) => setAddressStr(e.target.value)}
+                placeholder={
+                  addressStr === 'تخصیص داده نشده'
+                    ? 'تخصیص داده نشده'
+                    : addressStr
+                }
                 className="input input-bordered  text-center "
               />
               <span className="text-center">آدرس</span>
@@ -109,8 +115,13 @@ const RequestService2 = () => {
             <label className="input-group">
               <input
                 type="number"
-                value={postalCodeNum === 'تخصیص داده نشده' ? '' : postalCodeNum}
-                placeholder="1668737864"
+                onChange={(e) => setPostalCodeNum(e.target.value)}
+                value={postalCodeNum}
+                placeholder={
+                  postalCodeNum === 'تخصیص داده نشده'
+                    ? 'تخصیص داده نشده'
+                    : postalCodeNum
+                }
                 className="input input-bordered  text-center "
               />
               <span className="text-center">کد پستی</span>
@@ -128,7 +139,8 @@ const RequestService2 = () => {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>
+      <FooterNotMain />
     </div>
   )
 }

@@ -23,6 +23,7 @@ import ThemeDropDown from '../../components/layout/dashboard/themedropdown'
 import IconDashboardLogOut from '../../assets/icons/svg/icondashboardlogout'
 import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdown'
 import NotificationDropDown from '../../components/layout/store/notificationdropdown'
+import FooterNotMain from '../../components/layout/footernotmain'
 
 function Dashboard({ data }) {
   const router = useRouter()

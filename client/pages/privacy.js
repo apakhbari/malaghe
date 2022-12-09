@@ -1,3 +1,5 @@
+import CardComponent from '../components/layout/card'
+import FooterNotMain from '../components/layout/footernotmain'
 import Navbar from '../components/layout/navbar/navbar'
 
 function Privacy() {
@@ -5,8 +7,7 @@ function Privacy() {
     <div>
       <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
         <Navbar />
-
-        <div className="card w-4/5 bg-neutral shadow-xl drop-shadow-xl p-8 text-neutral-content">
+        <CardComponent>
           <h3 dir="rtl" className="text-2xl mb-2">
             حریم خصوصی کاربر
           </h3>
@@ -58,7 +59,8 @@ function Privacy() {
           <p className="py-1 text-2xl text-secondary text-center" dir="rtl">
             تلفن تماس : ۰۹۰۱۷۸۲۹۹۲۲
           </p>
-        </div>
+        </CardComponent>
+        <FooterNotMain />
       </div>
     </div>
   )

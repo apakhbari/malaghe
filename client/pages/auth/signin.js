@@ -8,6 +8,7 @@ import useRequest from '../../hooks/use-request'
 import Navbar from '../../components/layout/navbar/navbar'
 
 import buildClient from '../../api/build-client'
+import CardComponent from '../../components/layout/card'
 
 const SignIn = () => {
   const router = useRouter()
@@ -39,8 +40,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
             <button
@@ -93,7 +93,7 @@ const SignIn = () => {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>{' '}
     </div>
   )
 }

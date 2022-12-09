@@ -1,16 +1,15 @@
+import CardComponent from '../../../components/layout/card'
+import FooterNotMain from '../../../components/layout/footernotmain'
 import Navbar from '../../../components/layout/navbar/navbar'
 import Workflow from '../../../components/layout/sefaresh/workflow'
 
 function workflow1() {
   return (
-    <div>
+    <div className="h-screen">
       <Navbar />
 
-      <div className="flex flex-col items-center justify-center h-screen mx-auto">
-        <div
-          className="card w-96 bg-neutral shadow-xl drop-shadow-xl px-10 py-4"
-          dir="rtl"
-        >
+      <div className="flex flex-col items-center justify-center mx-auto">
+        <CardComponent direction={'rtl'}>
           <h3 dir="rtl" className="text-2xl mb-4 ">
             گردش کار
           </h3>
@@ -19,8 +18,9 @@ function workflow1() {
             <Workflow />
             <Workflow />
           </ol>
-        </div>
+        </CardComponent>
       </div>
+      <FooterNotMain />
     </div>
   )
 }

@@ -4,11 +4,19 @@ import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 interface storeAttrs {
   title: string
+  slug: string
   description?: string
-  summary?: [string]
-  volumes?: [string]
+  summary?: string
+  volumes?: {
+    width: string
+    length: string
+    height: string
+    weight: string
+  }
   imageCover: string
   photos?: [string]
+  madeIn?: string
+  goodKind: goodKind
   availableQuantity: number
   ratingsAverage?: number
   ratingsQuantity?: number
@@ -17,20 +25,35 @@ interface storeAttrs {
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
+  hasMag: boolean
+  magLink?: string
 }
 
 enum discountKind {
-  percentage = 'percentage',
-  exactPrice = 'exactPrice',
+  percentage = 'درصد',
+  exactPrice = 'قیمت نهایی',
+}
+
+enum goodKind {
+  device = 'دستگاه',
+  segment = 'قطعه',
 }
 
 interface storeDoc extends mongoose.Document {
   title: string
+  slug: string
   description?: string
-  summary?: [string]
-  volumes?: [string]
+  summary?: string
+  volumes?: {
+    width: string
+    length: string
+    height: string
+    weight: string
+  }
   imageCover: string
   photos?: [string]
+  madeIn?: string
+  goodKind: goodKind
   availableQuantity: number
   ratingsAverage?: number
   ratingsQuantity?: number
@@ -39,6 +62,8 @@ interface storeDoc extends mongoose.Document {
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
+  hasMag: boolean
+  magLink?: string
   version: number
 }
 
@@ -54,25 +79,28 @@ const storeSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: false,
       trim: true,
     },
-    summary: [
-      {
-        type: String,
-        required: true,
-        trim: true,
-      },
-    ],
-    volumes: [
-      {
-        type: String,
-        required: false,
-        trim: true,
-      },
-    ],
+    summary: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    volumes: {
+      width: String,
+      length: String,
+      height: String,
+      weight: String,
+    },
+
     imageCover: {
       type: String,
       required: true,
@@ -83,6 +111,14 @@ const storeSchema = new mongoose.Schema(
         required: false,
       },
     ],
+
+    madeIn: {
+      type: String,
+    },
+    goodKind: {
+      type: goodKind,
+    },
+
     availableQuantity: {
       type: Number,
       required: true,
@@ -106,11 +142,18 @@ const storeSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    hasMag: {
+      type: Boolean,
+    },
+    magLink: {
+      type: String,
+      required: false,
+    },
     discountKind: {
       type: discountKind,
       required: false,
     },
-    discountPrice: {
+    discountedPrice: {
       type: Number,
       required: false,
     },

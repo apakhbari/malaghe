@@ -1,3 +1,5 @@
+import CardComponent from '../components/layout/card'
+import FooterNotMain from '../components/layout/footernotmain'
 import Navbar from '../components/layout/navbar/navbar'
 
 import { CLIENT_VERSION } from '../envConfig'
@@ -6,8 +8,7 @@ function AboutUs() {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-8">
+      <CardComponent>
         <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
           درباره ما
         </h3>
@@ -26,7 +27,8 @@ function AboutUs() {
         <p className="text-center py-1 text-neutral-content">
           Copyright © 2022
         </p>
-      </div>
+      </CardComponent>
+      <FooterNotMain />
     </div>
   )
 }

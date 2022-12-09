@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Navbar from '../../components/layout/navbar/navbar'
 
 import useRequest from '../../hooks/use-request'
+import CardComponent from '../../components/layout/card'
 
 const SignUp = () => {
   const router = useRouter()
@@ -43,8 +44,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
             <button className="btn btn-active hover:bg-primary-400  btn-disabled">
@@ -132,7 +132,7 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>{' '}
     </div>
   )
 }

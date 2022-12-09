@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Navbar from '../../../components/layout/navbar/navbar'
+import CardComponent from '../../../components/layout/card'
+import FooterNotMain from '../../../components/layout/footernotmain'
 
 function GardeshKar() {
   const router = useRouter()
@@ -33,8 +35,7 @@ function GardeshKar() {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <div className="btn-group justify-center mb-8">
             <button className="btn btn-active btn-disabled">گردش‌کار</button>
@@ -69,7 +70,8 @@ function GardeshKar() {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>
+      <FooterNotMain />
     </div>
   )
 }

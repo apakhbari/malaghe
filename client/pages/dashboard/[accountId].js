@@ -37,8 +37,21 @@ function Account({ data }) {
   const [mobileNum, setMobileNum] = useState(data.mobile)
   const [phoneNum, setPhoneNum] = useState(data.phone)
   const [emailStr, setEmailStr] = useState(data.email)
-  const [postalCodeNum, setPostalCodeNum] = useState(data.postalCode)
-  const [addressStr, setAddressStr] = useState(data.address)
+  const [postalCodeNum, setPostalCodeNum] = useState('تخصیص داده نشده')
+  const [addressStr, setAddressStr] = useState('تخصیص داده نشده')
+
+  if (data.locations.length > 0) {
+    if (data.locations[0].address) {
+      useEffect(() => {
+        setAddressStr(data.locations[0].address)
+      })
+    }
+    if (data.locations[0].postalCode) {
+      useEffect(() => {
+        setPostalCodeNum(data.locations[0].postalCode)
+      })
+    }
+  }
 
   useEffect(() => {
     themeChange(false)
@@ -65,8 +78,7 @@ function Account({ data }) {
       email: emailStr,
       mobile: mobileNum,
       phone: phoneNum,
-      address: addressStr,
-      postalCode: postalCodeNum,
+      locations: { address: addressStr, postalCode: postalCodeNum },
     },
     onSuccess: () => router.push('/dashboard'),
   })

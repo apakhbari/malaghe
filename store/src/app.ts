@@ -64,8 +64,8 @@ app.use(
 )
 app.use(currentUser)
 
-app.use(indexStoreRouter)
 app.use(newStoreRouter)
+app.use(indexStoreRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()

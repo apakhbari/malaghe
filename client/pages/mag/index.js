@@ -1,3 +1,4 @@
+import FooterNotMain from '../../components/layout/footernotmain'
 import Navbar from '../../components/layout/navbar/navbar'
 
 function AboutUs() {
@@ -8,6 +9,7 @@ function AboutUs() {
       <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
         mag
       </h3>
+      <FooterNotMain />
     </div>
   )
 }

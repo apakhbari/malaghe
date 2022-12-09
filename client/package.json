@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lottie-player": "^1.5.0",
+    "slugify-persian": "^1.0.1",
     "swiper": "^8.4.5",
     "tailwindcss-rtl": "^0.9.0",
     "theme-change": "^2.2.0"

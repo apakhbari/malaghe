@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get('/api/v1/users/service/:id', async (req: Request, res: Response) => {
   const existingUser = await User.findById(req.params.id).select(
-    'fiName laName mobile postalCode address lat long'
+    'fiName laName mobile locations'
   )
 
   if (!existingUser) {

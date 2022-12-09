@@ -6,9 +6,13 @@ import BuildClient from '../../../api/build-client'
 import RemoveUndefinedsToPleaseNext from '../../../hooks/removeUndefineds'
 
 import Navbar from '../../../components/layout/navbar/navbar'
+import CardComponent from '../../../components/layout/card'
+import FooterNotMain from '../../../components/layout/footernotmain'
 
 const RequestService1 = ({ data }) => {
   const router = useRouter()
+
+  console.log(data)
 
   const [enteredName, setEnteredName] = useState()
   const [enteredDevice, setEnteredDevice] = useState()
@@ -16,7 +20,17 @@ const RequestService1 = ({ data }) => {
   const [enteredServiceKind, setEnteredServiceKind] = useState()
   const [isExpress, setIsExpress] = useState(false)
 
-  const { address, lat, long, postalCode } = data
+  var postalCode = 'تخصیص داده نشده'
+  var address = 'تخصیص داده نشده'
+
+  if (data.locations.length > 0) {
+    if (data.locations[0].address) {
+      address = data.locations[0].address
+    }
+    if (data.locations[0].postalCode) {
+      postalCode = data.locations[0].postalCode
+    }
+  }
 
   if (data) {
     if (data.id) {
@@ -40,8 +54,6 @@ const RequestService1 = ({ data }) => {
           enteredServiceKind,
           isExpress,
           address,
-          lat,
-          long,
           postalCode,
         },
       },
@@ -52,8 +64,7 @@ const RequestService1 = ({ data }) => {
   return (
     <div className="flex flex-col items-center justify-center h-screen mx-auto">
       <Navbar />
-
-      <div className="card w-96 bg-neutral shadow-xl drop-shadow-xl p-1 overflow-visible">
+      <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
             ثبت درخواست تعمیر
@@ -176,7 +187,8 @@ const RequestService1 = ({ data }) => {
             </button>
           </div>
         </form>
-      </div>
+      </CardComponent>
+      <FooterNotMain />
     </div>
   )
 }
