@@ -12,6 +12,7 @@ import Logger from './middleware/logger'
 import { rateLimit } from 'express-rate-limit'
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
+import { findByIDRouter } from './routes/findbyid'
 
 var rfs = require('rotating-file-stream') // version 2.x
 var morgan = require('morgan')
@@ -66,6 +67,7 @@ app.use(currentUser)
 
 app.use(newStoreRouter)
 app.use(indexStoreRouter)
+app.use(findByIDRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()

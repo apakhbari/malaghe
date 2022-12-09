@@ -29,6 +29,7 @@ router.put(
       {
         fiName: req.body.fiName,
         laName: req.body.laName,
+        slug: req.body.slug,
         email: req.body.email,
         mobile: req.body.mobile,
         phone: req.body.phone,

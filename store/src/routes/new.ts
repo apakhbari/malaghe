@@ -20,11 +20,9 @@ router.post(
   async (req: Request, res: Response) => {
     const {
       title,
-      slug,
       description,
       summary,
       volumes,
-      imageCover,
       photos,
       availableQuantity,
       price,
@@ -47,11 +45,9 @@ router.post(
     // Build the store and save it to the database
     const store = Store.build({
       title,
-      slug,
       description,
       summary,
       volumes,
-      imageCover,
       photos,
       availableQuantity,
       price,

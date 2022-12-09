@@ -4,7 +4,6 @@ import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 interface storeAttrs {
   title: string
-  slug: string
   description?: string
   summary?: string
   volumes?: {
@@ -13,7 +12,6 @@ interface storeAttrs {
     height: string
     weight: string
   }
-  imageCover: string
   photos?: [string]
   madeIn?: string
   goodKind: goodKind
@@ -41,7 +39,6 @@ enum goodKind {
 
 interface storeDoc extends mongoose.Document {
   title: string
-  slug: string
   description?: string
   summary?: string
   volumes?: {
@@ -50,7 +47,6 @@ interface storeDoc extends mongoose.Document {
     height: string
     weight: string
   }
-  imageCover: string
   photos?: [string]
   madeIn?: string
   goodKind: goodKind
@@ -79,10 +75,6 @@ const storeSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    slug: {
-      type: String,
-      required: true,
-    },
     description: {
       type: String,
       required: false,
@@ -101,10 +93,6 @@ const storeSchema = new mongoose.Schema(
       weight: String,
     },
 
-    imageCover: {
-      type: String,
-      required: true,
-    },
     photos: [
       {
         type: String,

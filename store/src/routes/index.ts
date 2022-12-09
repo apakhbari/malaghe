@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/api/v1/store', async (req: Request, res: Response) => {
   const stores = await Store.find(
     {},
-    'title slug id summary imageCover createdAt price hasDiscount discountKind discountedPrice madeIn goodKind hasMag'
+    'title id summary createdAt price hasDiscount discountKind discountedPrice madeIn goodKind hasMag'
   )
     .sort('-createdAt')
     .limit(10)

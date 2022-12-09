@@ -8,6 +8,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('daisyui'),
     require('tailwindcss-rtl'),
+    require('tailwindcss-animation-delay'),
   ],
 
   daisyui: {

@@ -25,6 +25,8 @@ import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdo
 import NotificationDropDown from '../../components/layout/store/notificationdropdown'
 import FooterNotMain from '../../components/layout/footernotmain'
 
+var slugify = require('slugify-persian')
+
 function Dashboard({ data }) {
   const router = useRouter()
 
@@ -67,7 +69,22 @@ function Dashboard({ data }) {
 
   const onAccountClick = (e) => {
     e.preventDefault()
-    router.push(`/dashboard/${data.currentUser.id}`)
+
+    console.log(
+      slugify(data.currentUser.fiName + ' ' + data.currentUser.laName)
+    )
+
+    router.push(
+      {
+        pathname: `/dashboard/${slugify(
+          data.currentUser.fiName + ' ' + data.currentUser.laName
+        )}`,
+        query: { id: data.currentUser.id },
+      },
+      `/dashboard/${slugify(
+        data.currentUser.fiName + ' ' + data.currentUser.laName
+      )}`
+    )
   }
 
   const onTransactionsClick = (e) => {
@@ -199,7 +216,7 @@ function Dashboard({ data }) {
               <div class="avatar online placeholder cursor-pointer">
                 <div class="bg-primary-focus text-neutral-content rounded-full w-16">
                   <span class="text-xl text-neutral-content">
-                    {data.currentUser.laName}
+                    {data.currentUser.fiName + data.currentUser.laName}
                   </span>
                 </div>
               </div>

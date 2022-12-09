@@ -5,18 +5,22 @@ import Atropos from 'atropos/react'
 
 import hamzan from '../../../assets/images/store/hamzan.jpg'
 
+var slugify = require('slugify-persian')
+
 function StoreAtropos(props) {
   const router = useRouter()
 
   const handleClick = (e) => {
     e.preventDefault()
 
+    var slug = slugify(props.title)
+
     router.push(
       {
-        pathname: `/store/${props.slug}`,
+        pathname: `/store/${slug}`,
         query: { id: props.id },
       },
-      `/store/${props.slug}`
+      `/store/${slug}`
     )
   }
 

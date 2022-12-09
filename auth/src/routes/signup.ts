@@ -40,7 +40,7 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { fiName, laName, gender, mobile, password } = req.body
+    const { fiName, laName, slug, gender, mobile, password } = req.body
 
     console.log(req.body)
 
@@ -58,6 +58,7 @@ router.post(
       {
         id: user.id,
         mobile: user.mobile,
+        fiName: user.fiName,
         laName: user.laName,
         gender: user.gender,
         role: user.role,

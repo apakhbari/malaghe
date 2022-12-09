@@ -200,7 +200,6 @@ function Store(data) {
                     <StoreAtropos
                       key={item.id}
                       id={item.id}
-                      slug={item.slug}
                       title={item.title}
                       hasDiscount={item.hasDiscount}
                       discountKind={item.discountKind}

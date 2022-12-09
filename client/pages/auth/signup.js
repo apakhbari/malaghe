@@ -8,11 +8,13 @@ import Navbar from '../../components/layout/navbar/navbar'
 import useRequest from '../../hooks/use-request'
 import CardComponent from '../../components/layout/card'
 
+var slugify = require('slugify-persian')
+
 const SignUp = () => {
   const router = useRouter()
 
-  const [fiName, setFiName] = useState('')
-  const [laName, setLaName] = useState('')
+  const [fiName, setFiName] = useState('نام')
+  const [laName, setLaName] = useState('نام خانوادگی')
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState()
@@ -23,6 +25,7 @@ const SignUp = () => {
     body: {
       fiName,
       laName,
+      slug: slugify(fiName + ' ' + laName),
       gender,
       mobile,
       password,
@@ -63,7 +66,6 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  value={fiName}
                   onChange={(e) => setFiName(e.target.value)}
                   placeholder="شهاب"
                   className="input input-bordered  text-center "
@@ -76,7 +78,6 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  value={laName}
                   onChange={(e) => setLaName(e.target.value)}
                   placeholder="آواژ"
                   className="input input-bordered text-center  "

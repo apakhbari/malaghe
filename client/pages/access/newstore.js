@@ -19,7 +19,6 @@ const NewStore = () => {
   const [strVolumesWidth, setStrVolumesWidth] = useState()
   const [strVolumesLength, setStrVolumesLength] = useState()
   const [strVolumesWeight, setStrVolumesWeight] = useState()
-  const [strImageCover, setStrImageCover] = useState()
   const [numPrice, setNumPrice] = useState()
   const [numAvailableQuantity, setNumAvailableQuantity] = useState()
   const [boolHasDiscount, setBoolHasDiscount] = useState(false)
@@ -46,7 +45,6 @@ const NewStore = () => {
         height: strVolumesHeight,
         weight: strVolumesWeight,
       },
-      imageCover: strImageCover,
       availableQuantity: numAvailableQuantity,
       hasDiscount: boolHasDiscount,
       discountKind: enumDiscountKind,
@@ -79,7 +77,9 @@ const NewStore = () => {
           <div className="form-control">
             <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
               <div className="indicator">
-                <span className="indicator-item badge">لازم</span>
+                <span className="indicator-item badge badge-secondary">
+                  لازم
+                </span>
                 <label className="input-group">
                   <input
                     type="text"
@@ -129,19 +129,6 @@ const NewStore = () => {
                   className="input input-bordered  text-center "
                 />
                 <span className="  text-center">قیمت اولیه (ت)</span>
-              </label>
-            </div>
-
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
-              <label className="input-group">
-                <input
-                  type="text"
-                  value={strImageCover}
-                  onChange={(e) => setStrImageCover(e.target.value)}
-                  placeholder="عنوان، با - به جای اسپیس"
-                  className="input input-bordered  text-center "
-                />
-                <span className="  text-center">تصویر</span>
               </label>
             </div>
 
