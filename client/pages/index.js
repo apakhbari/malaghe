@@ -52,7 +52,7 @@ function Home() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-12 h-12 text-secondary motion-safe:animate-bounce animation-delay-75"
+              className="w-12 h-12 text-secondary animate-bounce animation-delay-400"
             >
               <path
                 strokeLinecap="round"
