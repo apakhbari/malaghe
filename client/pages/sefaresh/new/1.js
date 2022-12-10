@@ -15,7 +15,9 @@ const RequestService1 = ({ data }) => {
   console.log(data)
 
   const [enteredName, setEnteredName] = useState()
+  const [enteredGender, setEnteredGender] = useState()
   const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredDescription, setEnteredDescription] = useState()
   const [enteredMobile, setEnteredMobile] = useState()
   const [enteredServiceKind, setEnteredServiceKind] = useState()
   const [isExpress, setIsExpress] = useState(false)
@@ -36,6 +38,7 @@ const RequestService1 = ({ data }) => {
     if (data.id) {
       useEffect(() => {
         setEnteredName(data.fiName + ' ' + data.laName)
+        setEnteredGender(data.gender)
         setEnteredMobile(data.mobile)
       })
     }
@@ -49,7 +52,9 @@ const RequestService1 = ({ data }) => {
         pathname: '/sefaresh/new/2',
         query: {
           enteredName,
+          enteredGender,
           enteredDevice,
+          enteredDescription,
           enteredMobile,
           enteredServiceKind,
           isExpress,
@@ -111,6 +116,17 @@ const RequestService1 = ({ data }) => {
 
               <label className="input-group mt-3">
                 <input
+                  type="text"
+                  value={enteredDescription}
+                  onChange={(e) => setEnteredDescription(e.target.value)}
+                  placeholder="نیازمند تعویض تیغه"
+                  className="input input-bordered  text-center "
+                />
+                <span className=" text-center">توضیحات</span>
+              </label>
+
+              <label className="input-group mt-3">
+                <input
                   type="number"
                   value={enteredMobile}
                   onChange={(e) => setEnteredMobile(e.target.value)}
@@ -134,7 +150,7 @@ const RequestService1 = ({ data }) => {
                 <option className="text-center content-center">تعمیر</option>
                 <option className="text-center content-center">تعویض</option>
                 <option className="text-center content-center">
-                  عیب‌ یابی
+                  عیب‌‌یابی
                 </option>
               </select>
 

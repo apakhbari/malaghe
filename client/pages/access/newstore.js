@@ -319,7 +319,7 @@ const NewStore = () => {
             </button>
           </div>
         </form>
-      </CardComponent>{' '}
+      </CardComponent>
     </div>
   )
 }

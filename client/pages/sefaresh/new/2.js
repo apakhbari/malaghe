@@ -18,7 +18,9 @@ const RequestService2 = () => {
 
   //for last page
   const [enteredName, setEnteredName] = useState()
+  const [enteredGender, setEnteredGender] = useState()
   const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredDescription, setEnteredDescription] = useState()
   const [enteredMobile, setEnteredMobile] = useState()
   const [enteredServiceKind, setEnteredServiceKind] = useState()
   const [isExpress, setIsExpress] = useState()
@@ -32,7 +34,9 @@ const RequestService2 = () => {
       setAddressStr(passedData.address)
 
       setEnteredName(passedData.enteredName)
+      setEnteredGender(passedData.enteredGender)
       setEnteredDevice(passedData.enteredDevice)
+      setEnteredDescription(passedData.enteredDescription)
       setEnteredMobile(passedData.enteredMobile)
       setEnteredServiceKind(passedData.enteredServiceKind)
       setIsExpress(passedData.isExpress)
@@ -56,7 +60,9 @@ const RequestService2 = () => {
         pathname: '/sefaresh/new/3',
         query: {
           enteredName,
+          enteredGender,
           enteredDevice,
+          enteredDescription,
           enteredMobile,
           enteredServiceKind,
           isExpress,

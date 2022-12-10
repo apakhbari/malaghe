@@ -133,7 +133,7 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-      </CardComponent>{' '}
+      </CardComponent>
     </div>
   )
 }

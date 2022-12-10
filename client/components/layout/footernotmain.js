@@ -49,7 +49,6 @@ function FooterNotMain() {
           <div>
             <p dir="rtl">تمامی حقوق برای {CLIENT_NAME_FA} محفوظ است.</p>
             <p dir="rtl">
-              {' '}
               نسخه: {CLIENT_VERSION} - {CLIENT_COPYRIGHT}
             </p>
             <p dir="rtl"></p>

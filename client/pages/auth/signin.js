@@ -93,7 +93,7 @@ const SignIn = () => {
             </button>
           </div>
         </form>
-      </CardComponent>{' '}
+      </CardComponent>
     </div>
   )
 }

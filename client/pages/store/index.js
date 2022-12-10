@@ -119,7 +119,14 @@ function Store(data) {
                   </div>
 
                   <div className="hidden sm:flex">
-                    <NavBarTheme />
+                    <NavBarTheme
+                      stylingProps1={
+                        'w-6 h-6 place-self-center text-primary-content'
+                      }
+                      stylingProps2={
+                        'w-4 h-4 mt-1 place-self-center opacity-80 text-primary-content'
+                      }
+                    />
 
                     <Link
                       href="/dashboard"

@@ -10,11 +10,13 @@ import { UserCredentialsContextProvider } from '../store/user-context'
 
 import ErrorBoundary from '../components/layout/ErrorBoundary'
 
+import { CartsContextProvider } from '../store/cart-context'
+
 function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
       <ErrorBoundary>
-        <UserCredentialsContextProvider>
+        <CartsContextProvider>
           <Head>
             <title>{CLIENT_NAME_FA}</title>
             <meta name="description" content={CLIENT_DESCRIPTION} />
@@ -25,7 +27,7 @@ function MyApp({ Component, pageProps }) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Component {...pageProps} />
-        </UserCredentialsContextProvider>
+        </CartsContextProvider>
       </ErrorBoundary>
     </Fragment>
   )

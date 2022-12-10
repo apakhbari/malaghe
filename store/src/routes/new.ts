@@ -32,14 +32,16 @@ router.post(
       madeIn,
       goodKind,
       hasMag,
+      magLink,
     } = req.body
 
     console.log(req.body)
 
     // Make sure the post is not already db
-    const post = await Store.findOne({ title })
-    if (post) {
-      throw new BadRequestError('Post Already in DB!')
+    const product = await Store.findOne({ title })
+
+    if (product) {
+      throw new BadRequestError('product Already in DB!')
     }
 
     // Build the store and save it to the database
@@ -57,6 +59,7 @@ router.post(
       madeIn,
       goodKind,
       hasMag,
+      magLink,
     })
     await store.save()
 
