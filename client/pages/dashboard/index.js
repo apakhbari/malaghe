@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 
 import useRequest from '../../hooks/use-request'
 
@@ -15,6 +15,7 @@ import IconGardeshKar from '../../assets/icons/svg/icongardeshkar'
 import IconSefaresh from '../../assets/icons/svg/iconSefaresh'
 import IconStar from '../../assets/icons/svg/iconstar'
 import IconWallet from '../../assets/icons/svg/iconwallet'
+import IconCart from '../../assets/icons/svg/iconcart'
 import IconDashboardHome from '../../assets/icons/svg/icondashboardhome'
 import IconDashboardMag from '../../assets/icons/svg/icondashboardmag'
 import IconDashboardStore from '../../assets/icons/svg/icondashboardstore'
@@ -25,10 +26,15 @@ import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdo
 import NotificationDropDown from '../../components/layout/store/notificationdropdown'
 import FooterNotMain from '../../components/layout/footernotmain'
 
+import CartsContext from '../../store/cart-context'
+import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
+
 var slugify = require('slugify-persian')
 
 function Dashboard({ data }) {
   const router = useRouter()
+
+  const cartsCtx = useContext(CartsContext)
 
   console.log(data)
 
@@ -44,7 +50,7 @@ function Dashboard({ data }) {
     // 👆 false parameter is required for react project
   }, [])
 
-  const onRequstServiceClick = (e) => {
+  const onRequestServiceClick = (e) => {
     e.preventDefault()
 
     router.push(
@@ -95,12 +101,16 @@ function Dashboard({ data }) {
     <div className="flex flex-col content-center justify-center h-screen bg-neutral">
       <div className=" bg-neutral flex justify-around border-b border-zinc-800 ">
         <div className="flex">
-          <NotificationDropDown />
-
-          <CartDropDown
-            stylingProps={'text-neutral-content rounded-full text-center'}
+          <NavBarTheme
+            stylingProps1={'w-6 h-6 place-self-center text-neutral-content'}
+            stylingProps2={
+              'w-4 h-4 mt-1 place-self-center opacity-80 text-neutral-content'
+            }
           />
+
+          <NotificationDropDown />
         </div>
+
         <div className="text-2xl place-self-center hover:cursor-default text-neutral-content">
           داشبورد
         </div>
@@ -119,7 +129,7 @@ function Dashboard({ data }) {
 
             <div
               className="btn btn-primary btn-outline gap-8 mx-16 mb-2 flex justify-center shadow max-w-lg w-full"
-              onClick={onRequstServiceClick}
+              onClick={onRequestServiceClick}
             >
               درخواست خدمات و تعمیرات
               <IconService stylingProps={'w-6 h-6'} />
@@ -191,7 +201,23 @@ function Dashboard({ data }) {
             </div>
             <div className="divider"></div>
 
-            <ThemeDropDown />
+            <div>
+              <Link
+                href="/dashboard/cart"
+                className="btn btn-ghost normal-case text-xl  w-4/5 text-neutral-content"
+              >
+                سبد خرید
+                {cartsCtx.totalCarts > 0 && (
+                  <div className="badge badge-secondary ml-2">
+                    {cartsCtx.totalCarts}
+                  </div>
+                )}
+                <IconCart
+                  stylingProps={'w-8 h-8 ml-4 stroke-primary fill-none'}
+                />
+              </Link>
+            </div>
+            <div className="divider"></div>
           </div>
 
           <div className="bottom-3/4">
@@ -204,7 +230,7 @@ function Dashboard({ data }) {
                   className="cursor-pointer content-center justify-center text-neutral-content"
                   dir="rtl"
                 >
-                  {data.currentUser.gender
+                  {data.currentUser.gender === 'زن'
                     ? ' خانم ' + data.currentUser.laName
                     : ' آقای ' + data.currentUser.laName}
                 </div>

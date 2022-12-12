@@ -13,6 +13,7 @@ import ThemeDropDown from '../../components/layout/dashboard/themedropdown'
 import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
 import IconDashboardTheme from '../../assets/icons/svg/icondashboardtheme'
 import IconMag from '../../assets/icons/svg/iconmag'
+
 import CartsContext from '../../store/cart-context'
 
 function StoreSlug({ data }) {
@@ -20,10 +21,23 @@ function StoreSlug({ data }) {
 
   const cartsCtx = useContext(CartsContext)
 
-  cartsCtx.useEffect(() => {
+  useEffect(() => {
     themeChange(false)
     // 👆 false parameter is required for react project
   }, [])
+
+  const clickOnAddCart = (e) => {
+    cartsCtx.addCart({
+      id: data.id,
+      title: data.title,
+      price: data.price,
+      hasDiscount: data.hasDiscount,
+      discountKind: data.discountKind,
+      discountedPrice: data.discountedPrice,
+    })
+
+    console.log('cart:' + cartsCtx.totalCarts)
+  }
 
   console.log(data)
   return (
@@ -98,7 +112,7 @@ function StoreSlug({ data }) {
             <div className="stat-title">قیمت (تومن)</div>
             <div className="stat-value">
               {data.hasDiscount && (
-                <h2 className="card-title" dir="rtl">
+                <h2 className="card-title font-extrabold" dir="rtl">
                   {data.discountKind === 'درصد'
                     ? `${Math.round(
                         ((100 - data.discountedPrice) * data.price) / 100
@@ -140,7 +154,11 @@ function StoreSlug({ data }) {
           </div>
         )}
 
-        <div className="btn btn-primary mx-3 shadow mt-4" dir="rtl">
+        <div
+          className="btn btn-primary mx-3 shadow mt-4"
+          dir="rtl"
+          onClick={clickOnAddCart}
+        >
           + اضافه به سبد خرید
         </div>
       </div>

@@ -134,9 +134,11 @@ const Navbar = () => {
             )}
           </div>
 
-          <CartDropDown
-            stylingProps={'text-primary-content rounded-full text-center'}
-          />
+          {!router.pathname.includes('/sefaresh') && (
+            <CartDropDown
+              stylingProps={'text-primary-content rounded-full text-center'}
+            />
+          )}
         </div>
 
         <div className="navbar-end">

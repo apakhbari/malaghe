@@ -57,7 +57,7 @@ const RequestService2 = () => {
 
     router.push(
       {
-        pathname: '/sefaresh/new/3',
+        pathname: '/sefaresh/cart/3',
         query: {
           enteredName,
           enteredGender,
@@ -70,7 +70,7 @@ const RequestService2 = () => {
           addressStr,
         },
       },
-      '/sefaresh/new/3'
+      '/sefaresh/cart/3'
     )
   }
 
@@ -80,7 +80,7 @@ const RequestService2 = () => {
       <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
           <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
-            ثبت درخواست تعمیر
+            ثبت درخواست خرید
           </h3>
           <ul className="steps">
             <li data-content="3" className="step text-neutral-content">

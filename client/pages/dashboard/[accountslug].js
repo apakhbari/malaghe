@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 
 import { themeChange } from 'theme-change'
 
@@ -13,6 +13,7 @@ import IconDashboardHome from '../../assets/icons/svg/icondashboardhome'
 import IconDashboardMag from '../../assets/icons/svg/icondashboardmag'
 import IconDashboardStore from '../../assets/icons/svg/icondashboardstore'
 import ThemeDropDown from '../../components/layout/dashboard/themedropdown'
+import IconCart from '../../assets/icons/svg/iconcart'
 import IconDashboardLogOut from '../../assets/icons/svg/icondashboardlogout'
 import IconEditingAccount from '../../assets/icons/svg/iconeditingaccount'
 import IconDoneEditingAccount from '../../assets/icons/svg/icondoneedittingaccount'
@@ -25,10 +26,16 @@ import BuildClient from '../../api/build-client'
 import RemoveUndefinedsToPleaseNext from '../../hooks/removeUndefineds'
 import IconGearAccount from '../../assets/icons/svg/icongearaccount'
 
+import CartsContext from '../../store/cart-context'
+
+import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
+
 function Account({ data }) {
   const router = useRouter()
 
   console.log(data)
+
+  const cartsCtx = useContext(CartsContext)
 
   const [editing, setEditing] = useState(true)
 
@@ -106,11 +113,13 @@ function Account({ data }) {
     <div className="flex flex-col content-center justify-center h-screen bg-neutral">
       <div className=" bg-neutral flex justify-around border-b border-zinc-800 ">
         <div className="flex">
-          <NotificationDropDown />
-
-          <CartDropDown
-            stylingProps={'text-neutral-content rounded-full text-center'}
+          <NavBarTheme
+            stylingProps1={'w-6 h-6 place-self-center text-neutral-content'}
+            stylingProps2={
+              'w-4 h-4 mt-1 place-self-center opacity-80 text-neutral-content'
+            }
           />
+          <NotificationDropDown />
         </div>
         <div className="text-2xl place-self-center hover:cursor-default text-neutral-content">
           اطلاعات اکانت
@@ -335,7 +344,24 @@ function Account({ data }) {
             </div>
             <div className="divider"></div>
 
-            <ThemeDropDown />
+            <div>
+              <Link
+                href="/dashboard/cart"
+                className="btn btn-ghost normal-case text-xl  w-4/5 text-neutral-content"
+              >
+                سبد خرید
+                {cartsCtx.totalCarts > 0 && (
+                  <div className="badge badge-secondary ml-2">
+                    {cartsCtx.totalCarts}
+                  </div>
+                )}
+                <IconCart
+                  stylingProps={'w-8 h-8 ml-4 stroke-primary fill-none'}
+                />
+              </Link>
+            </div>
+
+            <div className="divider"></div>
           </div>
 
           <div className="bottom-3/4">

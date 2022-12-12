@@ -4,7 +4,7 @@ import Lottie from 'react-lottie-player'
 
 import lottieJson from '../assets/animation/animation-under-construction.json'
 
-const NotFound = () => {
+const Developing = () => {
   const router = useRouter()
 
   return (
@@ -43,4 +43,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default Developing
