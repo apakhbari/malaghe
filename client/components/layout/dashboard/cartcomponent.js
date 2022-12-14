@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import CartsContext from '../../../store/cart-context'
 
 import hamzan from '../../../assets/images/store/hamzan.jpg'
+import GroupDigital from '../../../hooks/groupDigital'
 
 var slugify = require('slugify-persian')
 
@@ -99,11 +100,15 @@ function CartComponent(props) {
                 dir="rtl"
               >
                 {props.discountKind === 'درصد'
-                  ? `${Math.round(
-                      ((100 - props.discountedPrice) * props.price) / 100
-                    )}  تومن`
-                  : `${props.discountedPrice}  تومن`}
-                <span className="line-through text-xs">{props.price}</span>
+                  ? `${GroupDigital(
+                      Math.round(
+                        ((100 - props.discountedPrice) * props.price) / 100
+                      )
+                    )} تومن`
+                  : `${GroupDigital(props.discountedPrice)} تومن`}
+                <span className="line-through text-xs">
+                  {GroupDigital(props.price)}
+                </span>
               </h2>
             )}
 
@@ -113,7 +118,7 @@ function CartComponent(props) {
                 data-atropos-offset="6"
                 dir="rtl"
               >
-                {props.price}
+                {GroupDigital(props.price)}
               </h2>
             )}
             <div className="badge badge-primary">1</div>

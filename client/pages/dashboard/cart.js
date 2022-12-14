@@ -37,6 +37,7 @@ import CartsContext from '../../store/cart-context'
 import CartComponent from '../../components/layout/dashboard/cartcomponent'
 
 import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
+import GroupDigital from '../../hooks/groupDigital'
 
 function CartPage({ data }) {
   const router = useRouter()
@@ -200,7 +201,10 @@ function CartPage({ data }) {
               <Fragment>
                 <div className="divider"></div>
                 <h3 className=" text-xl mb-2 text-secondary-focus font-extrabold">
-                  قیمت کل: {overAllPrice}
+                  : قیمت کل (تومن)
+                </h3>
+                <h3 className=" text-xl mb-2 text-secondary-focus font-extrabold">
+                  {GroupDigital(overAllPrice)}
                 </h3>
                 <div>
                   <div

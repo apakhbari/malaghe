@@ -49,7 +49,7 @@ function Sefaresh() {
             </button>
           </div>
 
-          <h3 dir="rtl" className="text-xl text-center">
+          <h3 dir="rtl" className="text-xl text-center text-neutral-content">
             مشاهده لیستی از تمامی سفارش‌ها و درخواست‌های تعمیرات
           </h3>
           <br />

@@ -7,7 +7,7 @@ function AboutUs() {
       <Navbar />
 
       <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
-        mag
+        مجله
       </h3>
       <FooterNotMain />
     </div>

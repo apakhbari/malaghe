@@ -1,10 +1,14 @@
+import FooterNotMain from '../../components/layout/footernotmain'
 import Navbar from '../../components/layout/navbar/navbar'
 
 function List() {
   return (
-    <div>
+    <div className="h-screen bg-neutral p-4">
       <Navbar />
-      <table className="table table-zebra w-full text-center mt-24">
+      <h3 className=" mt-24 text-neutral-content text-2xl" dir="rtl">
+        لیستی از تمامی سفارش‌ها، خدمات و تعمیرات
+      </h3>
+      <table className="table table-zebra w-full text-center overflow-scroll overscroll-contain mt-3">
         <thead>
           <tr>
             <th>نوع خدمت</th>
@@ -56,6 +60,7 @@ function List() {
           </tr>
         </tbody>
       </table>
+      <FooterNotMain />
     </div>
   )
 }

@@ -6,6 +6,7 @@ import Navbar from '../../../components/layout/navbar/navbar'
 import CardComponent from '../../../components/layout/card'
 import FooterNotMain from '../../../components/layout/footernotmain'
 import CartsContext from '../../../store/cart-context'
+import GroupDigital from '../../../hooks/groupDigital'
 
 const RequestService3 = () => {
   const router = useRouter()
@@ -137,7 +138,7 @@ const RequestService3 = () => {
             <div className="form-control mx-auto text-neutral-content">
               <div dir="rtl" className="flex justify-between mt-6">
                 <p className=" text-xl">مبلغ :</p>
-                <p className=" text-xl">{overAllPrice} تومان</p>
+                <p className=" text-xl">{GroupDigital(overAllPrice)} تومان</p>
               </div>
             </div>
             <br />
@@ -160,7 +161,7 @@ const RequestService3 = () => {
           {enteredPaymentKind === 'کارت به کارت' && (
             <div>
               <h3 className="mt-3" dir="rtl">
-                انتقال وجه به کارت بانک پاسارگاد، به نام امین کراچیان با شماره:
+                انتقال وجه به کارت بانک پاسارگاد، به نام با شماره:
               </h3>
               <h3 className="mt-3 text-center font-bold">
                 ۵۰۲۲-۲۹۱۰-۶۳۰۰-۴۰۲۰

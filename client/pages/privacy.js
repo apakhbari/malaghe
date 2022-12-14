@@ -5,7 +5,7 @@ import Navbar from '../components/layout/navbar/navbar'
 function Privacy() {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
+      <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto text-neutral-content">
         <Navbar />
         <CardComponent>
           <h3 dir="rtl" className="text-2xl mb-2">

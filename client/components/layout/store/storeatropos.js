@@ -5,6 +5,8 @@ import Atropos from 'atropos/react'
 
 import hamzan from '../../../assets/images/store/hamzan.jpg'
 
+import GroupDigital from '../../../hooks/groupDigital'
+
 var slugify = require('slugify-persian')
 
 function StoreAtropos(props) {
@@ -73,11 +75,15 @@ function StoreAtropos(props) {
                 dir="rtl"
               >
                 {props.discountKind === 'درصد'
-                  ? `${Math.round(
-                      ((100 - props.discountedPrice) * props.price) / 100
+                  ? `${GroupDigital(
+                      Math.round(
+                        ((100 - props.discountedPrice) * props.price) / 100
+                      )
                     )}  تومن`
-                  : `${props.discountedPrice}  تومن`}
-                <span className="line-through text-xs">{props.price}</span>
+                  : `${GroupDigital(props.discountedPrice)}  تومن`}
+                <span className="line-through text-xs">
+                  {GroupDigital(props.price)}
+                </span>
               </h2>
             )}
 
@@ -87,7 +93,7 @@ function StoreAtropos(props) {
                 data-atropos-offset="6"
                 dir="rtl"
               >
-                {props.price}
+                {GroupDigital(props.price)}
               </h2>
             )}
 
