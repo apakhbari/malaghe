@@ -1,7 +1,27 @@
 module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        blob: 'blob 7s infinite',
+      },
+      keyframes: {
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(35px, -55px) scale(1.2)',
+          },
+          '66%': {
+            transform: 'translate(-25px, 25px) scale(0.8)',
+          },
+          '100%': {
+            transform: 'tranlate(0px, 0px) scale(1)',
+          },
+        },
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

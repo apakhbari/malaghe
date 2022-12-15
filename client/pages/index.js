@@ -41,13 +41,19 @@ function Home() {
   }
 
   return (
-    <div className="relative align-self: stretch  pt-12">
+    <div className="relative  pt-12">
       {/*<Banner />*/}
       <Navbar url="/" />
 
       {/*<div className="pt-12 h-96"><Swiper /></div>*/}
 
-      <div name="home" className="w-full h-screen flex flex-col justify-around">
+      <div
+        name="home"
+        className="relative w-full h-screen flex flex-col items-center justify-center"
+      >
+        <div class="absolute top-28 left-72 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-xl -z-10  opacity-60 animate-blob"></div>
+        <div class="absolute top-36 right-64 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-xl -z-10  opacity-60 animate-blob animation-delay-4000"></div>
+        <div class="absolute left-72  w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-xl -z-10 opacity-60 animate-blob animation-delay-2000"></div>
         <div className="grid grid-cols-5 gap-5 mx-4">
           <div
             className="flex justify-around items-center rounded-box bg-accent-content/30 transition ease-in-out hover:scale-105 hover:cursor-pointer shadow"
@@ -58,7 +64,7 @@ function Home() {
             </p>
           </div>
           <div
-            className="rounded-box bg-secondary/50 items-center text-center mx-auto p-12 transition ease-in-out hover:scale-105 hover:cursor-pointer shadow"
+            className="rounded-box bg-secondary/80 items-center text-center mx-auto p-12 transition ease-in-out hover:scale-105 hover:cursor-pointer shadow"
             onClick={onPrivacyClick}
           >
             <p dir="rtl" className="text-3xl font-extrabold text-center ">
@@ -66,7 +72,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="col-span-3 row-span-2 rounded-box bg-accent/50 flex flex-col items-center text-center w-full p-16 hover:cursor-default shadow-2xl">
+          <div className="col-span-3 row-span-2 rounded-box bg-accent/80 flex flex-col items-center text-center w-full p-16 hover:cursor-default shadow-2xl">
             <h3 className=" flex mb-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +80,7 @@ function Home() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-12 h-12 text-secondary motion-safe:animate-bounce"
+                className="w-12 h-12 text-secondary-focus motion-safe:animate-bounce"
               >
                 <path
                   strokeLinecap="round"
@@ -89,7 +95,7 @@ function Home() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-12 h-12 text-secondary animate-bounce animation-delay-500"
+                className="w-12 h-12 text-secondary-focus animate-bounce animation-delay-500"
               >
                 <path
                   strokeLinecap="round"
@@ -104,7 +110,7 @@ function Home() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-12 h-12 text-secondary motion-safe:animate-bounce"
+                className="w-12 h-12 text-secondary-focus motion-safe:animate-bounce"
               >
                 <path
                   strokeLinecap="round"
@@ -118,7 +124,7 @@ function Home() {
           </div>
 
           <div
-            className="flex justify-around items-center rounded-box col-span-2 bg-primary-focus text-start p-12 transition ease-in-out hover:scale-105 hover:cursor-pointer shadow-md"
+            className="flex justify-around items-center rounded-box col-span-2 bg-primary-focus/80 text-start p-12 transition ease-in-out hover:scale-105 hover:cursor-pointer shadow-md"
             onClick={onWorkFlowClick}
           >
             <p
