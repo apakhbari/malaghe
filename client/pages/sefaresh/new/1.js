@@ -9,6 +9,8 @@ import Navbar from '../../../components/layout/navbar/navbar'
 import CardComponent from '../../../components/layout/card'
 import FooterNotMain from '../../../components/layout/footernotmain'
 
+import Snackbar from 'awesome-snackbar'
+
 const RequestService1 = ({ data }) => {
   const router = useRouter()
 
@@ -16,10 +18,10 @@ const RequestService1 = ({ data }) => {
 
   const [enteredName, setEnteredName] = useState()
   const [enteredGender, setEnteredGender] = useState()
-  const [enteredDevice, setEnteredDevice] = useState()
+  const [enteredDevice, setEnteredDevice] = useState('')
   const [enteredDescription, setEnteredDescription] = useState()
   const [enteredMobile, setEnteredMobile] = useState()
-  const [enteredServiceKind, setEnteredServiceKind] = useState()
+  const [enteredServiceKind, setEnteredServiceKind] = useState('')
   const [isExpress, setIsExpress] = useState(false)
 
   var postalCode = 'تخصیص داده نشده'
@@ -40,30 +42,51 @@ const RequestService1 = ({ data }) => {
         setEnteredName(data.fiName + ' ' + data.laName)
         setEnteredGender(data.gender)
         setEnteredMobile(data.mobile)
-      })
+      }, [data.id])
     }
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.replace(
-      {
-        pathname: '/sefaresh/new/2',
-        query: {
-          enteredName,
-          enteredGender,
-          enteredDevice,
-          enteredDescription,
-          enteredMobile,
-          enteredServiceKind,
-          isExpress,
-          address,
-          postalCode,
+    var error = ''
+
+    if (enteredName.length < 2) {
+      new Snackbar('خطا! نام باید حداقل ۲ کاراکتر باشد')
+      error = error + 'fiName'
+    }
+    if (enteredMobile.length !== 11) {
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      error = error + 'mobile'
+    }
+    if (enteredDevice.length < 2) {
+      new Snackbar('خطا! نام دستگاه باید حداقل ۲ کاراکتر باشد')
+      error = error + 'enteredDevice'
+    }
+    if (enteredServiceKind.length < 1) {
+      new Snackbar('خطا! لطفا نوع تعمیر را انتخاب کنید')
+      error = error + 'enteredServiceKind'
+    }
+
+    if (error.length === 0) {
+      router.replace(
+        {
+          pathname: '/sefaresh/new/2',
+          query: {
+            enteredName,
+            enteredGender,
+            enteredDevice,
+            enteredDescription,
+            enteredMobile,
+            enteredServiceKind,
+            isExpress,
+            address,
+            postalCode,
+          },
         },
-      },
-      '/sefaresh/new/2'
-    )
+        '/sefaresh/new/2'
+      )
+    }
   }
 
   return (
@@ -95,6 +118,7 @@ const RequestService1 = ({ data }) => {
               <label className="input-group mt-6">
                 <input
                   type="text"
+                  value={enteredName}
                   onChange={(e) => setEnteredName(e.target.value)}
                   placeholder="شهاب آواژ"
                   className="input input-bordered  text-center w-full "

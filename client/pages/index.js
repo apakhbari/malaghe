@@ -137,7 +137,7 @@ function Home() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-6 h-6 fill-primary-content"
+              className="w-9 h-9 fill-primary-content"
             >
               <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
               <path

@@ -30,6 +30,8 @@ import RemoveUndefinedsToPleaseNext from '../../hooks/removeUndefineds'
 import BuildClient from '../../api/build-client'
 import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdown'
 
+import Snackbar from 'awesome-snackbar'
+
 function Store(data) {
   console.log(data)
 
@@ -46,6 +48,12 @@ function Store(data) {
     themeChange(false)
     // 👆 false parameter is required for react project
   }, [])
+
+  const onFilterClick = (e) => {
+    e.preventDefault()
+
+    new Snackbar('... در حال توسعه')
+  }
 
   return (
     <div className="h-screen">
@@ -225,6 +233,7 @@ function Store(data) {
             <button
               type="submit"
               className="btn btn-primary hover:border-slate-400 mt-6"
+              onClick={onFilterClick}
             >
               اعمال فیلتر
             </button>

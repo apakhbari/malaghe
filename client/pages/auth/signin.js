@@ -10,13 +10,17 @@ import Navbar from '../../components/layout/navbar/navbar'
 import buildClient from '../../api/build-client'
 import CardComponent from '../../components/layout/card'
 
-import { ToastContainer, toast } from 'react-toastify'
+import Snackbar from 'awesome-snackbar'
+
+import loadingIcon from '../../assets/animation/mixer.gif'
 
 const SignIn = () => {
   const router = useRouter()
 
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
+
+  var error
 
   const { doRequest, errors } = useRequest({
     url: '/api/v1/users/signin',
@@ -36,17 +40,23 @@ const SignIn = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
 
-    toast('🦄 Wow so easy!', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    })
-    //doRequest()
+    error = ''
+
+    if (mobile.length !== 11) {
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      error = error + 'mobile'
+    }
+
+    if (password.length < 4) {
+      new Snackbar('خطا! رمز باید حداقل ۴ کاراکتر باشد')
+      error = error + 'password'
+    }
+
+    if (error.length === 0) {
+      //new Snackbar('... لطفا منتظر بمانید')
+
+      doRequest()
+    }
   }
 
   return (

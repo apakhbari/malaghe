@@ -4,6 +4,7 @@ import CardDescriptionComponent from '../../../components/layout/cardDescription
 import FooterNotMain from '../../../components/layout/footernotmain'
 import Navbar from '../../../components/layout/navbar/navbar'
 import Workflow from '../../../components/layout/sefaresh/workflow'
+import Workflow2 from '../../../components/layout/sefaresh/workflow2'
 
 function workflow1() {
   return (
@@ -18,7 +19,7 @@ function workflow1() {
 
           <ol class="relative border-l border-accent">
             <Workflow />
-            <Workflow />
+            <Workflow2 />
           </ol>
         </CardDescriptionComponent>
       </div>

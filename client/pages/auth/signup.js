@@ -8,16 +8,16 @@ import Navbar from '../../components/layout/navbar/navbar'
 import useRequest from '../../hooks/use-request'
 import CardComponent from '../../components/layout/card'
 
-var slugify = require('slugify-persian')
+import Snackbar from 'awesome-snackbar'
 
 const SignUp = () => {
   const router = useRouter()
 
-  const [fiName, setFiName] = useState('نام')
-  const [laName, setLaName] = useState('نام خانوادگی')
+  const [fiName, setFiName] = useState('')
+  const [laName, setLaName] = useState('')
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
-  const [gender, setGender] = useState()
+  const [gender, setGender] = useState('')
 
   const { doRequest, errors } = useRequest({
     url: '/api/v1/users/signup',
@@ -25,7 +25,6 @@ const SignUp = () => {
     body: {
       fiName,
       laName,
-      slug: slugify(fiName + ' ' + laName),
       gender,
       mobile,
       password,
@@ -41,7 +40,34 @@ const SignUp = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
 
-    doRequest()
+    var error = ''
+
+    if (fiName.length < 2) {
+      new Snackbar('خطا! نام باید حداقل ۲ کاراکتر باشد')
+      error = error + 'fiName'
+    }
+    if (laName.length < 2) {
+      new Snackbar('خطا! نام خانوادگی باید حداقل ۲ کاراکتر باشد')
+      error = error + 'laName'
+    }
+    if (mobile.length !== 11) {
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      error = error + 'mobile'
+    }
+    if (gender.length < 2) {
+      new Snackbar('خطا! لطفا جنسیت را انتخاب کنید')
+      error = error + 'gender'
+    }
+    if (password.length < 4) {
+      new Snackbar('خطا! رمز باید حداقل ۴ کاراکتر باشد')
+      error = error + 'password'
+    }
+
+    if (error.length === 0) {
+      //new Snackbar('... لطفا منتظر بمانید')
+
+      doRequest()
+    }
   }
 
   return (

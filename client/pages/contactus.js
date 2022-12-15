@@ -4,6 +4,8 @@ import FooterNotMain from '../components/layout/footernotmain'
 
 import Navbar from '../components/layout/navbar/navbar'
 
+import Snackbar from 'awesome-snackbar'
+
 function ContactUs() {
   const nameRef = useRef()
   const phoneRef = useRef()
@@ -12,9 +14,7 @@ function ContactUs() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if (!userName || !password) {
-      return
-    }
+    //new Snackbar('... لطفا منتظر بمانید')
 
     //Submit
   }
@@ -58,7 +58,7 @@ function ContactUs() {
 
             <button
               type="submit"
-              className="btn btn-primary hover:border-slate-400 mt-6"
+              className="btn btn-primary hover:border-slate-400 mt-6 btn-disabled"
             >
               ثبت
             </button>

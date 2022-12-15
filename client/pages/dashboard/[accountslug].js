@@ -9,6 +9,8 @@ import axios from 'axios'
 
 import useRequest from '../../hooks/use-request'
 
+import Snackbar from 'awesome-snackbar'
+
 import IconDashboardHome from '../../assets/icons/svg/icondashboardhome'
 import IconDashboardMag from '../../assets/icons/svg/icondashboardmag'
 import IconDashboardStore from '../../assets/icons/svg/icondashboardstore'
@@ -73,7 +75,8 @@ function Account({ data }) {
 
   const onPinClick = (e) => {
     e.preventDefault()
-    router.push('/developing')
+
+    new Snackbar('... در حال توسعه')
   }
 
   const { doRequest, errors } = useRequest({
@@ -106,6 +109,9 @@ function Account({ data }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
+    //new Snackbar('... لطفا منتظر بمانید')
+
     setEditing(true)
     doRequest()
   }

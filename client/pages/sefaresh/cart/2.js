@@ -9,6 +9,8 @@ import IconGeoLocation from '../../../assets/icons/svg/icongeolocation'
 import CardComponent from '../../../components/layout/card'
 import FooterNotMain from '../../../components/layout/footernotmain'
 
+import Snackbar from 'awesome-snackbar'
+
 const RequestService2 = () => {
   const router = useRouter()
 
@@ -41,34 +43,44 @@ const RequestService2 = () => {
     }
   }, [router.isReady])
 
-  //console.log(data)
+  const onPinClick = (e) => {
+    e.preventDefault()
+
+    new Snackbar('... در حال توسعه')
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    //if (!name || !unitsNumber) {
-    //toast('لطفاً مقادیر را پر کنید.')
-    //return
-    //}
+    var error = ''
 
-    //Submit
+    if (addressStr.length < 5 || addressStr === 'تخصیص داده نشده') {
+      new Snackbar('خطا! آدرس باید حداقل ۵ کاراکتر باشد')
+      error = error + 'addressStr'
+    }
+    if (postalCodeNum.length < 5 || postalCodeNum === 'تخصیص داده نشده') {
+      new Snackbar('خطا! کد پستی باید حداقل ۵ کاراکتر باشد')
+      error = error + 'postalCodeNum'
+    }
 
-    router.replace(
-      {
-        pathname: '/sefaresh/cart/3',
-        query: {
-          enteredName,
-          enteredGender,
-          enteredDevice,
-          enteredDescription,
-          enteredMobile,
-          isExpress,
-          postalCodeNum,
-          addressStr,
+    if (error.length === 0) {
+      router.replace(
+        {
+          pathname: '/sefaresh/cart/3',
+          query: {
+            enteredName,
+            enteredGender,
+            enteredDevice,
+            enteredDescription,
+            enteredMobile,
+            isExpress,
+            postalCodeNum,
+            addressStr,
+          },
         },
-      },
-      '/sefaresh/cart/3'
-    )
+        '/sefaresh/cart/3'
+      )
+    }
   }
 
   return (
@@ -131,7 +143,10 @@ const RequestService2 = () => {
             </label>
           </div>
 
-          <div className="inline-flex items-center btn btn-accent mt-3 mx-auto justify-evenly">
+          <div
+            className="inline-flex items-center btn btn-accent mt-3 mx-auto justify-evenly"
+            onClick={onPinClick}
+          >
             پین کردن آدرس روی نقشه
             <IconGeoLocation stylingProps={'w-6 h-6'} />
           </div>

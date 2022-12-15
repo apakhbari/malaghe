@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "atropos": "^1.0.2",
+    "awesome-snackbar": "^2.0.7",
     "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
@@ -19,7 +20,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lottie-player": "^1.5.0",
-    "react-toastify": "^9.1.1",
     "slugify-persian": "^1.0.1",
     "swiper": "^8.4.5",
     "tailwindcss-animation-delay": "^1.0.7",

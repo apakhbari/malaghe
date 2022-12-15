@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -7,10 +7,12 @@ import Navbar from '../../../components/layout/navbar/navbar'
 import CardComponent from '../../../components/layout/card'
 import FooterNotMain from '../../../components/layout/footernotmain'
 
+import Snackbar from 'awesome-snackbar'
+
 function GardeshKar() {
   const router = useRouter()
 
-  const idRef = useRef()
+  const [enteredId, setEnteredId] = useState('')
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -20,16 +22,16 @@ function GardeshKar() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.push('/sefaresh/gardeshkar/workflow1')
+    var error = ''
 
-    if (!idRef) {
-      router.push('/sefaresh/gardeshkar/workflow1')
+    if (enteredId.length !== 5) {
+      new Snackbar('خطا! کد پیگیری باید ۵ رقم باشد')
+      error = error + 'mobile'
     }
 
-    //Submit
-
-    // setUserName('')
-    // setPassword('')
+    if (error.length === 0) {
+      router.push('/sefaresh/gardeshkar/workflow1')
+    }
   }
 
   return (
@@ -57,8 +59,9 @@ function GardeshKar() {
               <label className="input-group">
                 <input
                   type="text"
-                  ref={idRef}
-                  placeholder="12345678"
+                  value={enteredId}
+                  onChange={(e) => setEnteredId(e.target.value)}
+                  placeholder="12345"
                   className="input input-bordered text-center w-full"
                 ></input>
                 <span className="text-center">شماره پیگیری</span>

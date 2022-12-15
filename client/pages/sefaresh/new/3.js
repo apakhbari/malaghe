@@ -47,12 +47,7 @@ const RequestService3 = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    //if (!name || !unitsNumber) {
-    //toast('لطفاً مقادیر را پر کنید.')
-    //return
-    //}
-
-    //Submit
+    //new Snackbar('... لطفا منتظر بمانید')
 
     router.replace({
       pathname: '/developing',

@@ -9,6 +9,8 @@ import Navbar from '../../../components/layout/navbar/navbar'
 import CardComponent from '../../../components/layout/card'
 import FooterNotMain from '../../../components/layout/footernotmain'
 
+import Snackbar from 'awesome-snackbar'
+
 const RequestService1 = ({ data }) => {
   const router = useRouter()
 
@@ -39,28 +41,41 @@ const RequestService1 = ({ data }) => {
         setEnteredName(data.fiName + ' ' + data.laName)
         setEnteredGender(data.gender)
         setEnteredMobile(data.mobile)
-      })
+      }, [data.id])
     }
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.replace(
-      {
-        pathname: '/sefaresh/cart/2',
-        query: {
-          enteredName,
-          enteredGender,
-          enteredDescription,
-          enteredMobile,
-          isExpress,
-          address,
-          postalCode,
+    var error = ''
+
+    if (enteredName.length < 2) {
+      new Snackbar('خطا! نام باید حداقل ۲ کاراکتر باشد')
+      error = error + 'fiName'
+    }
+    if (enteredMobile.length !== 11) {
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      error = error + 'mobile'
+    }
+
+    if (error.length === 0) {
+      router.replace(
+        {
+          pathname: '/sefaresh/cart/2',
+          query: {
+            enteredName,
+            enteredGender,
+            enteredDescription,
+            enteredMobile,
+            isExpress,
+            address,
+            postalCode,
+          },
         },
-      },
-      '/sefaresh/cart/2'
-    )
+        '/sefaresh/cart/2'
+      )
+    }
   }
 
   return (

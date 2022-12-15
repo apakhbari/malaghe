@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -7,10 +7,12 @@ import Navbar from '../../components/layout/navbar/navbar'
 import CardComponent from '../../components/layout/card'
 import FooterNotMain from '../../components/layout/footernotmain'
 
+import Snackbar from 'awesome-snackbar'
+
 function Sefaresh() {
   const router = useRouter()
 
-  const mobileRef = useRef()
+  const [enteredMobile, setEnteredMobile] = useState('')
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -20,16 +22,16 @@ function Sefaresh() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.push('/sefaresh/list')
+    var error = ''
 
-    //if (!mobileRef) {
-    //return
-    //}
+    if (enteredMobile.length !== 11) {
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      error = error + 'mobile'
+    }
 
-    //Submit
-
-    // setUserName('')
-    // setPassword('')
+    if (error.length === 0) {
+      router.push('/sefaresh/list')
+    }
   }
 
   return (
@@ -59,8 +61,8 @@ function Sefaresh() {
               <label className="input-group">
                 <input
                   type="text"
-                  set
-                  ref={mobileRef}
+                  value={enteredMobile}
+                  onChange={(e) => setEnteredMobile(e.target.value)}
                   placeholder="09121802250"
                   className="input input-bordered text-center w-full"
                 ></input>
