@@ -43,17 +43,23 @@ const SignIn = () => {
     error = ''
 
     if (mobile.length !== 11) {
-      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'mobile'
     }
 
     if (password.length < 4) {
-      new Snackbar('خطا! رمز باید حداقل ۴ کاراکتر باشد')
+      new Snackbar('خطا! رمز باید حداقل ۴ کاراکتر باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'password'
     }
 
     if (error.length === 0) {
-      //new Snackbar('... لطفا منتظر بمانید')
+      //new Snackbar('... لطفا منتظر بمانید', {
+      //position: 'bottom-right',
+      //})
 
       doRequest()
     }

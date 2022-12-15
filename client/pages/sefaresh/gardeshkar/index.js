@@ -25,7 +25,9 @@ function GardeshKar() {
     var error = ''
 
     if (enteredId.length !== 5) {
-      new Snackbar('خطا! کد پیگیری باید ۵ رقم باشد')
+      new Snackbar('خطا! کد پیگیری باید ۵ رقم باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'mobile'
     }
 

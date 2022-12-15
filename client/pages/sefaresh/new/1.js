@@ -52,19 +52,28 @@ const RequestService1 = ({ data }) => {
     var error = ''
 
     if (enteredName.length < 2) {
-      new Snackbar('خطا! نام باید حداقل ۲ کاراکتر باشد')
+      new Snackbar('خطا! نام باید حداقل ۲ کاراکتر باشد', {
+        position: 'bottom-right',
+      })
+
       error = error + 'fiName'
     }
     if (enteredMobile.length !== 11) {
-      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد')
+      new Snackbar('خطا! موبایل باید ۱۱ رقم باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'mobile'
     }
     if (enteredDevice.length < 2) {
-      new Snackbar('خطا! نام دستگاه باید حداقل ۲ کاراکتر باشد')
+      new Snackbar('خطا! نام دستگاه باید حداقل ۲ کاراکتر باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'enteredDevice'
     }
     if (enteredServiceKind.length < 1) {
-      new Snackbar('خطا! لطفا نوع تعمیر را انتخاب کنید')
+      new Snackbar('خطا! لطفا نوع تعمیر را انتخاب کنید', {
+        position: 'bottom-right',
+      })
       error = error + 'enteredServiceKind'
     }
 

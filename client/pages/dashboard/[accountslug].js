@@ -76,7 +76,9 @@ function Account({ data }) {
   const onPinClick = (e) => {
     e.preventDefault()
 
-    new Snackbar('... در حال توسعه')
+    new Snackbar('... در حال توسعه', {
+      position: 'bottom-right',
+    })
   }
 
   const { doRequest, errors } = useRequest({
@@ -110,7 +112,9 @@ function Account({ data }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    //new Snackbar('... لطفا منتظر بمانید')
+    //new Snackbar('... لطفا منتظر بمانید', {
+    //position: 'bottom-right',
+    //})
 
     setEditing(true)
     doRequest()

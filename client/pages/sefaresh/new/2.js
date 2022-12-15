@@ -48,7 +48,9 @@ const RequestService2 = () => {
   const onPinClick = (e) => {
     e.preventDefault()
 
-    new Snackbar('... در حال توسعه')
+    new Snackbar('... در حال توسعه', {
+      position: 'bottom-right',
+    })
   }
 
   const onSubmit = (e) => {
@@ -57,11 +59,15 @@ const RequestService2 = () => {
     var error = ''
 
     if (addressStr.length < 5 || addressStr === 'تخصیص داده نشده') {
-      new Snackbar('خطا! آدرس باید حداقل ۵ کاراکتر باشد')
+      new Snackbar('خطا! آدرس باید حداقل ۵ کاراکتر باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'addressStr'
     }
     if (postalCodeNum.length < 5 || postalCodeNum === 'تخصیص داده نشده') {
-      new Snackbar('خطا! کد پستی باید حداقل ۵ کاراکتر باشد')
+      new Snackbar('خطا! کد پستی باید حداقل ۵ کاراکتر باشد', {
+        position: 'bottom-right',
+      })
       error = error + 'postalCodeNum'
     }
 

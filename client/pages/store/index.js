@@ -52,7 +52,9 @@ function Store(data) {
   const onFilterClick = (e) => {
     e.preventDefault()
 
-    new Snackbar('... در حال توسعه')
+    new Snackbar('... در حال توسعه', {
+      position: 'bottom-right',
+    })
   }
 
   return (

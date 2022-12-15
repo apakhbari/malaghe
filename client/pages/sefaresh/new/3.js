@@ -47,7 +47,9 @@ const RequestService3 = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    //new Snackbar('... لطفا منتظر بمانید')
+    //new Snackbar('... لطفا منتظر بمانید', {
+    //position: 'bottom-right',
+    //})
 
     router.replace({
       pathname: '/developing',
