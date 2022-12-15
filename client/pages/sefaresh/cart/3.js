@@ -35,7 +35,6 @@ const RequestService3 = () => {
   const [enteredDevice, setEnteredDevice] = useState()
   const [enteredDescription, setEnteredDescription] = useState()
   const [enteredMobile, setEnteredMobile] = useState()
-  const [enteredServiceKind, setEnteredServiceKind] = useState()
   const [isExpress, setIsExpress] = useState()
   //for 2 page
   const [postalCodeNum, setPostalCodeNum] = useState()
@@ -50,15 +49,14 @@ const RequestService3 = () => {
       // Code using query
       var passedData = router.query
       console.log(passedData)
-      setPostalCodeNum(passedData.postalCode)
-      setAddressStr(passedData.address)
+      setPostalCodeNum(passedData.postalCodeNum)
+      setAddressStr(passedData.addressStr)
 
       setEnteredName(passedData.enteredName)
       setEnteredGender(passedData.enteredGender)
       setEnteredDevice(passedData.enteredDevice)
       setEnteredDescription(passedData.enteredDescription)
       setEnteredMobile(passedData.enteredMobile)
-      setEnteredServiceKind(passedData.enteredServiceKind)
       setIsExpress(passedData.isExpress)
     }
   }, [router.isReady])
@@ -73,7 +71,7 @@ const RequestService3 = () => {
 
     //Submit
 
-    router.push({
+    router.replace({
       pathname: '/developing',
       query: {
         enteredName,
@@ -81,7 +79,6 @@ const RequestService3 = () => {
         enteredDevice,
         enteredDescription,
         enteredMobile,
-        enteredServiceKind,
         isExpress,
         postalCodeNum,
         addressStr,
@@ -118,6 +115,40 @@ const RequestService3 = () => {
               اطلاعات پایه
             </li>
           </ul>
+
+          <div className="divider">اطلاعات وارد شده</div>
+
+          <div className="flex justify-around" dir="rtl">
+            <h3 className=" text-lg">
+              {enteredGender === 'زن'
+                ? ' خانم ' + enteredName
+                : ' آقای ' + enteredName}
+            </h3>
+            <h3 className=" text-lg">{enteredMobile}</h3>
+          </div>
+
+          <div className="divider"></div>
+
+          <h3 className="text-lg" dir="rtl">
+            توضیحات: {enteredDescription}
+          </h3>
+
+          {isExpress && (
+            <h3 className="text-lg" dir="rtl">
+              خدمت پرسرعت
+            </h3>
+          )}
+
+          <div className="divider"></div>
+
+          <h3 className="text-lg" dir="rtl">
+            کد پستی: {postalCodeNum}
+          </h3>
+          <h3 className="text-lg" dir="rtl">
+            آدرس: {addressStr}
+          </h3>
+
+          <div className="divider">اطلاعات پرداخت</div>
 
           <select
             className="select select-bordered w-full max-w-xs mt-6"

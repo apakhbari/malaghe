@@ -29,28 +29,28 @@ function ContactUs() {
               تماس با ما
             </h3>
 
-            <label className="input-group mx-auto w-5/6 justify-center">
+            <label className="input-group mx-auto justify-center">
               <input
                 type="text"
                 ref={nameRef}
                 placeholder="احسان عبدالهی"
-                className="input input-bordered hover:border-slate-400 text-center text-white"
+                className="input input-bordered  text-center w-full"
               />
-              <span className=" text-white text-center">نام</span>
+              <span className=" text-center">نام</span>
             </label>
 
-            <label className="input-group mx-auto mt-3 w-5/6 justify-center">
+            <label className="input-group mx-auto mt-3 justify-center">
               <input
                 type="password"
                 ref={phoneRef}
                 placeholder="۰۹۱۲۱۰۲۳۴۵۶"
-                className="input input-bordered text-center hover:border-slate-400 text-white"
+                className="input input-bordered text-center"
               />
-              <span className=" text-white text-center">تلفن تماس</span>
+              <span className=" text-center">تلفن تماس</span>
             </label>
 
             <textarea
-              className="textarea textarea-bordered mx-auto mt-4 w-5/6 justify-center"
+              className="textarea textarea-bordered mx-auto mt-4 justify-center w-full"
               ref={messageRef}
               placeholder="پیام:"
               dir="rtl"

@@ -46,7 +46,7 @@ const RequestService1 = ({ data }) => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.push(
+    router.replace(
       {
         pathname: '/sefaresh/cart/2',
         query: {
@@ -95,7 +95,7 @@ const RequestService1 = ({ data }) => {
                   value={enteredName}
                   onChange={(e) => setEnteredName(e.target.value)}
                   placeholder="شهاب آواژ"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className=" text-center">نام</span>
               </label>
@@ -106,22 +106,18 @@ const RequestService1 = ({ data }) => {
                   value={enteredMobile}
                   onChange={(e) => setEnteredMobile(e.target.value)}
                   placeholder="۰۹۱۲۴۵۰۳۲۳۲"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="text-center">شماره موبایل</span>
               </label>
 
-              <label className="input-group mt-3">
-                <input
-                  type="text"
-                  value={enteredDescription}
-                  onChange={(e) => setEnteredDescription(e.target.value)}
-                  placeholder="به نگهبان تحویل داده شود."
-                  className="input input-bordered  text-center "
-                  dir="rtl"
-                />
-                <span className=" text-center">توضیحات</span>
-              </label>
+              <textarea
+                className="textarea textarea-bordered  mt-4 justify-center w-full"
+                value={enteredDescription}
+                onChange={(e) => setEnteredDescription(e.target.value)}
+                placeholder="توضیحات: به نگهبان تحویل داده شود."
+                dir="rtl"
+              />
 
               <div className="form-control">
                 <label className="label cursor-pointer">

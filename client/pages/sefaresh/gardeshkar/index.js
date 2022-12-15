@@ -53,13 +53,13 @@ function GardeshKar() {
           <br />
 
           <div className=" form-control">
-            <div className="mx-auto w-5/6">
+            <div className="mx-auto mb-4">
               <label className="input-group">
                 <input
                   type="text"
                   ref={idRef}
-                  placeholder="۱۲۳۴۵۶۷۸"
-                  className="input input-bordered text-center"
+                  placeholder="12345678"
+                  className="input input-bordered text-center w-full"
                 ></input>
                 <span className="text-center">شماره پیگیری</span>
               </label>

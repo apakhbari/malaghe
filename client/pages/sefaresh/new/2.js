@@ -55,7 +55,7 @@ const RequestService2 = () => {
 
     //Submit
 
-    router.push(
+    router.replace(
       {
         pathname: '/sefaresh/new/3',
         query: {
@@ -84,7 +84,7 @@ const RequestService2 = () => {
           </h3>
           <ul className="steps">
             <li data-content="3" className="step text-neutral-content">
-              پرداخت
+              ثبت
             </li>
             <li
               data-content="2"
@@ -100,8 +100,8 @@ const RequestService2 = () => {
             </li>
           </ul>
 
-          <div className="form-control mx-auto mt-6">
-            <label className="input-group">
+          <div className=" mt-6">
+            <label className="input-group w-full">
               <input
                 type="text"
                 value={addressStr === 'تخصیص داده نشده' ? '' : addressStr}
@@ -111,13 +111,13 @@ const RequestService2 = () => {
                     ? 'تخصیص داده نشده'
                     : addressStr
                 }
-                className="input input-bordered  text-center "
+                className="input input-bordered  text-center w-full "
               />
               <span className="text-center">آدرس</span>
             </label>
           </div>
 
-          <div className="form-control mx-auto">
+          <div className="form-control">
             <label className="input-group">
               <input
                 type="number"
@@ -128,7 +128,7 @@ const RequestService2 = () => {
                     ? 'تخصیص داده نشده'
                     : postalCodeNum
                 }
-                className="input input-bordered  text-center "
+                className="input input-bordered  text-center w-full"
               />
               <span className="text-center">کد پستی</span>
             </label>

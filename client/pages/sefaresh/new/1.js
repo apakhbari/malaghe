@@ -47,7 +47,7 @@ const RequestService1 = ({ data }) => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    router.push(
+    router.replace(
       {
         pathname: '/sefaresh/new/2',
         query: {
@@ -67,7 +67,7 @@ const RequestService1 = ({ data }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen mx-auto">
+    <div className="flex flex-col items-center justify-center h-screen ">
       <Navbar />
       <CardComponent>
         <form onSubmit={onSubmit} className="card-body">
@@ -77,7 +77,7 @@ const RequestService1 = ({ data }) => {
 
           <ul className="steps">
             <li data-content="3" className="step text-neutral-content">
-              پرداخت
+              ثبت
             </li>
             <li data-content="2" className="step text-neutral-content">
               آدرس
@@ -91,38 +91,15 @@ const RequestService1 = ({ data }) => {
           </ul>
 
           <div className="form-control">
-            <div className="form-control mx-auto">
+            <div className="form-control ">
               <label className="input-group mt-6">
                 <input
                   type="text"
-                  value={enteredName}
                   onChange={(e) => setEnteredName(e.target.value)}
                   placeholder="شهاب آواژ"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full "
                 />
                 <span className=" text-center">نام</span>
-              </label>
-
-              <label className="input-group mt-3">
-                <input
-                  type="text"
-                  value={enteredDevice}
-                  onChange={(e) => setEnteredDevice(e.target.value)}
-                  placeholder="دستگاه آبمیوه‌ گیری"
-                  className="input input-bordered  text-center "
-                />
-                <span className=" text-center">نام وسیله</span>
-              </label>
-
-              <label className="input-group mt-3">
-                <input
-                  type="text"
-                  value={enteredDescription}
-                  onChange={(e) => setEnteredDescription(e.target.value)}
-                  placeholder="نیازمند تعویض تیغه"
-                  className="input input-bordered  text-center "
-                />
-                <span className=" text-center">توضیحات</span>
               </label>
 
               <label className="input-group mt-3">
@@ -131,10 +108,29 @@ const RequestService1 = ({ data }) => {
                   value={enteredMobile}
                   onChange={(e) => setEnteredMobile(e.target.value)}
                   placeholder="۰۹۱۲۴۵۰۳۲۳۲"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="text-center">شماره موبایل</span>
               </label>
+
+              <label className="input-group mt-3">
+                <input
+                  type="text"
+                  value={enteredDevice}
+                  onChange={(e) => setEnteredDevice(e.target.value)}
+                  placeholder="دستگاه آبمیوه‌ گیری"
+                  className="input input-bordered  text-center w-full"
+                />
+                <span className=" text-center">نام وسیله</span>
+              </label>
+
+              <textarea
+                className="textarea textarea-bordered  mt-4 justify-center w-full"
+                value={enteredDescription}
+                onChange={(e) => setEnteredDescription(e.target.value)}
+                placeholder="توضیحات: تیغه نیاز به عیب‌یابی و تعویض دارد."
+                dir="rtl"
+              />
 
               <select
                 className="select select-bordered w-full max-w-xs mt-3 mb-3"
@@ -154,46 +150,44 @@ const RequestService1 = ({ data }) => {
                 </option>
               </select>
 
-              <div className="form-control">
-                <label className="label cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="toggle toggle-primary"
-                    onClick={(e) => setIsExpress(!isExpress)}
-                  />
-                  <div>
-                    <div className="dropdown dropdown-left">
-                      <label
-                        tabIndex={0}
-                        className="btn btn-circle btn-ghost btn-xs text-info"
+              <label className="label cursor-pointer w-full">
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary"
+                  onClick={(e) => setIsExpress(!isExpress)}
+                />
+                <div>
+                  <div className="dropdown dropdown-left">
+                    <label
+                      tabIndex={0}
+                      className="btn btn-circle btn-ghost btn-xs text-info"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="w-4 h-4 stroke-current"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          className="w-4 h-4 stroke-current"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                      </label>
-                      <div
-                        tabIndex={0}
-                        className="card compact dropdown-content shadow bg-base-100 rounded-box w-64"
-                      >
-                        <div className="card-body" dir="rtl">
-                          <p>شامل ۱۰ درصد هزینه بالاتر است.</p>
-                        </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="card compact dropdown-content shadow bg-base-100 rounded-box w-64"
+                    >
+                      <div className="card-body" dir="rtl">
+                        <p>شامل ۱۰ درصد هزینه بالاتر است.</p>
                       </div>
                     </div>
-                    <span className="text-neutral-content"> خدمت پرسرعت</span>
                   </div>
-                </label>
-              </div>
+                  <span className="text-neutral-content"> خدمت پرسرعت</span>
+                </div>
+              </label>
             </div>
           </div>
 

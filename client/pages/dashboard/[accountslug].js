@@ -41,6 +41,7 @@ function Account({ data }) {
 
   const [firstName, setFirstName] = useState(data.fiName)
   const [lastName, setLastName] = useState(data.laName)
+  const [gender, setGender] = useState(data.gender)
   const [mobileNum, setMobileNum] = useState(data.mobile)
   const [phoneNum, setPhoneNum] = useState(data.phone)
   const [emailStr, setEmailStr] = useState(data.email)
@@ -365,6 +366,28 @@ function Account({ data }) {
           </div>
 
           <div className="bottom-3/4">
+            <div className="w-4/5 border m-4 rounded-box p-2 bg-neutral-focus hover:cursor-default flex justify-center mx-auto border-dashed border-primary-focus">
+              <div className="flex flex-col justify-center mr-3">
+                <div
+                  className="cursor-pointer content-center justify-center text-neutral-content"
+                  dir="rtl"
+                >
+                  {gender === 'زن' ? ' خانم ' + lastName : ' آقای ' + lastName}
+                </div>
+                <div className="text-sm text-neutral-content text-opacity-70">
+                  اکانت فعال
+                </div>
+              </div>
+
+              <div class="avatar online placeholder cursor-pointer">
+                <div class="bg-primary-focus text-neutral-content rounded-full w-16">
+                  <span class="text-xl text-neutral-content">
+                    {firstName + lastName}
+                  </span>
+                </div>
+              </div>
+            </div>
+
             <div
               className="btn btn-outline btn-accent normal-case text-xl  w-4/5 flex mx-auto justify-evenly"
               onClick={onLogOutClick}

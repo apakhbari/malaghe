@@ -145,16 +145,6 @@ function Dashboard({ data }) {
 
             <div className="divider">گزارش‌ها</div>
 
-            <div className="btn btn-primary hover:border-slate-400 gap-8 mx-16 mb-2 shadow max-w-lg w-full">
-              سفارش‌ها
-              <IconSefaresh stylingProps={'w-6 h-6'} />
-            </div>
-
-            <div className="btn btn-primary hover:border-slate-400 gap-8 mx-16 mb-2 shadow max-w-lg w-full">
-              مورد علاقه‌ها
-              <IconStar stylingProps={'w-6 h-6'} />
-            </div>
-
             <div
               className="btn btn-primary hover:border-slate-400 gap-8 mx-16 mb-2 shadow max-w-lg w-full"
               onClick={onTransactionsClick}

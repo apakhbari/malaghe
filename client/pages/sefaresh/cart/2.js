@@ -22,7 +22,6 @@ const RequestService2 = () => {
   const [enteredDevice, setEnteredDevice] = useState()
   const [enteredDescription, setEnteredDescription] = useState()
   const [enteredMobile, setEnteredMobile] = useState()
-  const [enteredServiceKind, setEnteredServiceKind] = useState()
   const [isExpress, setIsExpress] = useState()
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const RequestService2 = () => {
       setEnteredDevice(passedData.enteredDevice)
       setEnteredDescription(passedData.enteredDescription)
       setEnteredMobile(passedData.enteredMobile)
-      setEnteredServiceKind(passedData.enteredServiceKind)
       setIsExpress(passedData.isExpress)
     }
   }, [router.isReady])
@@ -55,7 +53,7 @@ const RequestService2 = () => {
 
     //Submit
 
-    router.push(
+    router.replace(
       {
         pathname: '/sefaresh/cart/3',
         query: {
@@ -64,7 +62,6 @@ const RequestService2 = () => {
           enteredDevice,
           enteredDescription,
           enteredMobile,
-          enteredServiceKind,
           isExpress,
           postalCodeNum,
           addressStr,
@@ -100,8 +97,8 @@ const RequestService2 = () => {
             </li>
           </ul>
 
-          <div className="form-control mx-auto mt-6">
-            <label className="input-group">
+          <div className=" mx-auto mt-6 w-full">
+            <label className="input-group w-full">
               <input
                 type="text"
                 value={addressStr === 'تخصیص داده نشده' ? '' : addressStr}
@@ -111,14 +108,14 @@ const RequestService2 = () => {
                     ? 'تخصیص داده نشده'
                     : addressStr
                 }
-                className="input input-bordered  text-center "
+                className="input input-bordered  text-center w-full"
               />
               <span className="text-center">آدرس</span>
             </label>
           </div>
 
-          <div className="form-control mx-auto">
-            <label className="input-group">
+          <div className="form-control mx-auto w-full">
+            <label className="input-group w-full">
               <input
                 type="number"
                 onChange={(e) => setPostalCodeNum(e.target.value)}
@@ -128,7 +125,7 @@ const RequestService2 = () => {
                     ? 'تخصیص داده نشده'
                     : postalCodeNum
                 }
-                className="input input-bordered  text-center "
+                className="input input-bordered  text-center w-full"
               />
               <span className="text-center">کد پستی</span>
             </label>

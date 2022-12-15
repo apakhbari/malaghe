@@ -1,4 +1,5 @@
 import CardComponent from '../components/layout/card'
+import CardDescriptionComponent from '../components/layout/cardDescription'
 import FooterNotMain from '../components/layout/footernotmain'
 import Navbar from '../components/layout/navbar/navbar'
 
@@ -6,7 +7,7 @@ function FAQ() {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-      <CardComponent>
+      <CardDescriptionComponent>
         <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
           پاسخ به پرسش‌های متداول
         </h3>
@@ -90,7 +91,7 @@ function FAQ() {
             </p>
           </div>
         </div>
-      </CardComponent>
+      </CardDescriptionComponent>
       <FooterNotMain />
     </div>
   )

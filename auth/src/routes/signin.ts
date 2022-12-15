@@ -47,6 +47,7 @@ router.post(
       {
         id: existingUser.id,
         mobile: existingUser.mobile,
+        fiName: existingUser.fiName,
         laName: existingUser.laName,
         gender: existingUser.gender,
         role: existingUser.role,

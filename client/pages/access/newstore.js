@@ -75,91 +75,86 @@ const NewStore = () => {
 
         <form onSubmit={onSubmit} className="card-body">
           <div className="form-control">
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
-              <div className="indicator">
-                <span className="indicator-item badge badge-secondary">
-                  لازم
-                </span>
-                <label className="input-group">
-                  <input
-                    type="text"
-                    onChange={(e) => setStrTitle(e.target.value)}
-                    placeholder="عنوان"
-                    className="input input-bordered  text-center "
-                  />
-                  <span className="  text-center">عنوان</span>
-                </label>
-              </div>
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2 w-full">
+              <label className="input-group w-full">
+                <input
+                  type="text"
+                  onChange={(e) => setStrTitle(e.target.value)}
+                  placeholder="عنوان"
+                  className="input input-bordered  text-center w-full"
+                />
+                <span className="  text-center">عنوان</span>
+              </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2 w-full">
               <label className="input-group">
                 <input
                   type="text"
                   value={strDescription}
                   onChange={(e) => setStrDescription(e.target.value)}
                   placeholder="توضیح"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">توضیح</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className=" mx-auto  items-center justify-center content-center mb-2 w-full">
               <label className="input-group">
                 <input
                   type="text"
                   value={strSummary}
                   onChange={(e) => setStrSummary(e.target.value)}
                   placeholder="خلاصه"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
-                <span className="  text-center">خلاصه</span>
+                <span className="text-center">خلاصه</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="mx-auto  items-center justify-center content-center mb-2 w-full">
               <label className="input-group">
                 <input
                   type="number"
                   dir="rtl"
                   value={numPrice}
                   onChange={(e) => setNumPrice(e.target.value)}
-                  placeholder="۳۵۰۰۰"
-                  className="input input-bordered  text-center "
+                  placeholder="35,000"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">قیمت اولیه (ت)</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2">
               <label className="input-group">
                 <input
                   type="text"
                   value={strMadeIn}
                   onChange={(e) => setStrMadeIn(e.target.value)}
                   placeholder="ایران"
-                  className="input input-bordered  text-center "
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">ساخت کشور</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2">
               <label className="input-group">
                 <input
                   type="number"
                   value={numAvailableQuantity}
                   onChange={(e) => setNumAvailableQuantity(e.target.value)}
-                  placeholder="۱۰"
-                  className="input input-bordered  text-center "
+                  placeholder="10"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">تعداد موجودی</span>
               </label>
             </div>
 
             <select
-              className="select select-bordered mx-auto max-w-xs mb-2 w-5/6"
+              className="select select-bordered mx-auto max-w-xs mb-2 w-full"
               dir="rtl"
               onChange={(e) => setEnumGoodKind(e.target.value)}
             >
@@ -175,7 +170,7 @@ const NewStore = () => {
             </select>
 
             <div className="form-control">
-              <label className="label cursor-pointer justify-evenly mb-2">
+              <label className="label cursor-pointer justify-evenly mb-2 w-full">
                 <input
                   type="checkbox"
                   className="toggle"
@@ -187,14 +182,14 @@ const NewStore = () => {
             </div>
 
             {boolHasMag && (
-              <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+              <div className="form-control mx-auto  items-center justify-center content-center mb-2 w-full">
                 <label className="input-group">
                   <input
                     type="text"
                     value={strMagLink}
                     onChange={(e) => setStrMagLink(e.target.value)}
                     placeholder="/mag/1231123"
-                    className="input input-bordered  text-center "
+                    className="input input-bordered  text-center w-full"
                   />
                   <span className="  text-center">لینک</span>
                 </label>
@@ -203,57 +198,57 @@ const NewStore = () => {
 
             <div className="divider">اندازه ها</div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2">
               <label className="input-group">
                 <input
                   type="number"
                   dir="rtl"
                   value={strVolumesLength}
                   onChange={(e) => setStrVolumesLength(e.target.value)}
-                  placeholder="۱۲"
-                  className="input input-bordered  text-center "
+                  placeholder="12"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">طول (cm)</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2">
               <label className="input-group">
                 <input
                   type="number"
                   dir="rtl"
                   value={strVolumesWidth}
                   onChange={(e) => setStrVolumesWidth(e.target.value)}
-                  placeholder="۲۰"
-                  className="input input-bordered  text-center "
+                  placeholder="20"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">عرض (cm)</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2">
               <label className="input-group">
                 <input
                   type="number"
                   dir="rtl"
                   value={strVolumesHeight}
                   onChange={(e) => setStrVolumesHeight(e.target.value)}
-                  placeholder="۳۵"
-                  className="input input-bordered  text-center "
+                  placeholder="35"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">ارتفاع (cm)</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+            <div className="form-control mx-auto  items-center justify-center content-center mb-2 w-full">
               <label className="input-group">
                 <input
                   type="number"
                   dir="rtl"
                   value={strVolumesWeight}
                   onChange={(e) => setStrVolumesWeight(e.target.value)}
-                  placeholder="۱۰۰"
-                  className="input input-bordered  text-center "
+                  placeholder="100"
+                  className="input input-bordered  text-center w-full"
                 />
                 <span className="  text-center">وزن (g)</span>
               </label>
@@ -261,8 +256,8 @@ const NewStore = () => {
 
             <div className="divider">تخفیف</div>
 
-            <div className="form-control">
-              <label className="label cursor-pointer justify-evenly mb-2">
+            <div className="form-control w-full">
+              <label className="label cursor-pointer justify-evenly mb-2 w-full">
                 <input
                   type="checkbox"
                   className="toggle"
@@ -276,7 +271,7 @@ const NewStore = () => {
             {boolHasDiscount && (
               <Fragment>
                 <select
-                  className="select select-bordered mx-auto max-w-xs mb-2 w-5/6"
+                  className="select select-bordered mx-auto max-w-xs mb-2 w-full"
                   dir="rtl"
                   onChange={(e) => setEnumDiscountKind(e.target.value)}
                 >
@@ -295,7 +290,7 @@ const NewStore = () => {
                   </option>
                 </select>
 
-                <div className="form-control mx-auto w-5/6 items-center justify-center content-center mb-2">
+                <div className="form-control mx-auto  items-center justify-center content-center mb-2">
                   <label className="input-group">
                     <input
                       type="number"
@@ -303,10 +298,10 @@ const NewStore = () => {
                       onChange={(e) => setNumDiscountedPrice(e.target.value)}
                       placeholder={
                         enumDiscountKind === 'درصد'
-                          ? '۱۰ :درصد تخفیف'
-                          : '۱۳۵۰۰۰ :قیمت نهایی'
+                          ? '10 :درصد تخفیف'
+                          : '135000 :قیمت نهایی'
                       }
-                      className="input input-bordered  text-center "
+                      className="input input-bordered  text-center w-full"
                     />
                     <span className="text-center">مقدار تخفیف</span>
                   </label>

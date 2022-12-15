@@ -3,35 +3,17 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/layout/navbar/navbar'
+import Navbar from '../components/layout/navbar/navbar'
 
-import useRequest from '../../hooks/use-request'
-import CardComponent from '../../components/layout/card'
+import useRequest from '../hooks/use-request'
+import CardComponent from '../components/layout/card'
 
 var slugify = require('slugify-persian')
 
 const SignUp = () => {
   const router = useRouter()
 
-  const [fiName, setFiName] = useState('نام')
-  const [laName, setLaName] = useState('نام خانوادگی')
-  const [mobile, setMobile] = useState('')
-  const [password, setPassword] = useState('')
   const [gender, setGender] = useState()
-
-  const { doRequest, errors } = useRequest({
-    url: '/api/v1/users/signup',
-    method: 'post',
-    body: {
-      fiName,
-      laName,
-      slug: slugify(fiName + ' ' + laName),
-      gender,
-      mobile,
-      password,
-    },
-    onSuccess: () => router.push('/dashboard'),
-  })
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -47,30 +29,17 @@ const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-hidden mx-auto">
       <Navbar />
-      <CardComponent>
+      <div className="card max-w-2xl w-96 bg-neutral shadow-xl drop-shadow-xl mt-5 p-1 max-h-[630px] overflow-scroll overscroll-contain">
         <form onSubmit={onSubmit} className="card-body">
-          <div className="btn-group justify-center mb-8">
-            <button className="btn btn-active hover:bg-primary-400  btn-disabled">
-              ثبت نام
-            </button>
-            <button
-              onClick={handleClick}
-              className="btn bg-base-100 hover:bg-primary/80"
-            >
-              ورود
-            </button>
-          </div>
-
           <div className="form-control">
-            <div className="mx-auto  items-center justify-center content-center w-full">
+            <div className="form-control mx-auto items-center justify-center content-center w-full">
               <label className="input-group">
                 <input
                   type="text"
-                  onChange={(e) => setFiName(e.target.value)}
                   placeholder="شهاب"
-                  className="input input-bordered text-center w-full"
+                  className="input input-bordered  text-center w-full"
                 />
-                <span className="text-center">نام</span>
+                <span className="  text-center">نام</span>
               </label>
             </div>
 
@@ -78,22 +47,19 @@ const SignUp = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  onChange={(e) => setLaName(e.target.value)}
                   placeholder="آواژ"
-                  className="input input-bordered text-center w-full"
+                  className="input input-bordered text-center  w-full"
                 />
                 <span className="  text-center">نام خانوادگی</span>
               </label>
             </div>
 
-            <div className="form-control mx-auto mt-3 ">
+            <div className="form-control mx-auto mt-3 w-5/6">
               <label className="input-group">
                 <input
                   type="number"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  placeholder="09121802250"
-                  className="input input-bordered text-center w-full"
+                  placeholder="۰۹۱۲۲۴۵۳۲۵۸"
+                  className="input input-bordered text-center  "
                 />
                 <span className="  text-center">شماره موبایل</span>
               </label>
@@ -104,11 +70,7 @@ const SignUp = () => {
               dir="rtl"
               onChange={(e) => setGender(e.target.value)}
             >
-              <option
-                disabled
-                selected
-                className="text-center content-center w-full"
-              >
+              <option disabled selected className="text-center content-center">
                 جنسیت
               </option>
               <option className="text-center content-center" dir="rtl">
@@ -119,14 +81,12 @@ const SignUp = () => {
               </option>
             </select>
 
-            <div className=" mx-auto  items-center justify-center content-center w-full">
+            <div className="form-control mx-auto w-5/6 items-center justify-center content-center">
               <label className="input-group">
                 <input
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="● ● ● ● ● ● ● ●"
-                  className="input input-bordered text-center w-full"
+                  className="input input-bordered  text-center "
                 />
                 <span className="  text-center">رمز</span>
               </label>
@@ -137,7 +97,7 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-      </CardComponent>
+      </div>
     </div>
   )
 }

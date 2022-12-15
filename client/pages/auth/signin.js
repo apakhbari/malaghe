@@ -10,6 +10,8 @@ import Navbar from '../../components/layout/navbar/navbar'
 import buildClient from '../../api/build-client'
 import CardComponent from '../../components/layout/card'
 
+import { ToastContainer, toast } from 'react-toastify'
+
 const SignIn = () => {
   const router = useRouter()
 
@@ -34,7 +36,17 @@ const SignIn = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
 
-    doRequest()
+    toast('🦄 Wow so easy!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    })
+    //doRequest()
   }
 
   return (
@@ -52,28 +64,26 @@ const SignIn = () => {
             <button className="btn btn-active btn-disabled">ورود</button>
           </div>
 
-          <div className="form-control">
-            <div className="mx-auto w-5/6">
-              <label className="input-group">
-                <input
-                  type="text"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  placeholder="۰۹۱۲۲۴۵۳۲۵۸"
-                  className="input input-bordered text-center"
-                ></input>
-                <span className="text-center">شناسه کاربری</span>
-              </label>
-            </div>
+          <div className="mx-auto">
+            <label className="input-group">
+              <input
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="09121802250"
+                className="input input-bordered text-center w-full"
+              ></input>
+              <span className="text-center">شناسه کاربری</span>
+            </label>
 
-            <div className="mx-auto mt-3 w-5/6">
+            <div className="mx-auto mt-3">
               <label className="input-group">
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="● ● ● ● ● ● ● ●"
-                  className="input input-bordered text-center"
+                  className="input input-bordered text-center w-full"
                 />
                 <span className="text-center">رمز عبور</span>
               </label>
@@ -88,7 +98,7 @@ const SignIn = () => {
               </a>
             </label>
 
-            <button type="submit" className="btn btn-primary  mt-6">
+            <button type="submit" className="btn btn-primary  mt-6 w-full">
               ورود
             </button>
           </div>

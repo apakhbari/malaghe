@@ -55,14 +55,14 @@ function Sefaresh() {
           <br />
 
           <div className=" form-control">
-            <div className="mx-auto w-5/6">
+            <div className="mx-auto mb-4">
               <label className="input-group">
                 <input
                   type="text"
                   set
                   ref={mobileRef}
-                  placeholder="۰۹۱۲۲۴۵۳۲۵۸"
-                  className="input input-bordered text-center"
+                  placeholder="09121802250"
+                  className="input input-bordered text-center w-full"
                 ></input>
                 <span className="text-center">شماره موبایل</span>
               </label>

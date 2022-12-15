@@ -30,8 +30,9 @@ const RequestService3 = () => {
       // Code using query
       var passedData = router.query
       console.log(passedData)
-      setPostalCodeNum(passedData.postalCode)
-      setAddressStr(passedData.address)
+
+      setPostalCodeNum(passedData.postalCodeNum)
+      setAddressStr(passedData.addressStr)
 
       setEnteredName(passedData.enteredName)
       setEnteredGender(passedData.enteredGender)
@@ -53,7 +54,7 @@ const RequestService3 = () => {
 
     //Submit
 
-    router.push({
+    router.replace({
       pathname: '/developing',
       query: {
         enteredName,
@@ -78,12 +79,12 @@ const RequestService3 = () => {
           <h3 dir="rtl" className="text-2xl mb-2 text-neutral-content">
             ثبت درخواست تعمیر
           </h3>
-          <ul className="steps">
+          <ul className="steps mb-2">
             <li
               data-content="3"
               className="step step-primary text-neutral-content"
             >
-              پرداخت
+              ثبت
             </li>
             <li
               data-content="2"
@@ -98,62 +99,47 @@ const RequestService3 = () => {
               اطلاعات پایه
             </li>
           </ul>
+          <div className="divider">اطلاعات وارد شده</div>
 
-          <select
-            className="select select-bordered w-full max-w-xs mt-6"
-            onChange={(e) => setEnteredPaymentKind(e.target.value)}
-          >
-            <option selected className="text-center content-center" dir="rtl">
-              پرداخت از طریق درگاه بانکی
-            </option>
-            <option className="text-center content-center" dir="rtl">
-              کارت به کارت
-            </option>
-            <option className="text-center content-center" dir="rtl">
-              پرداخت حضوری
-            </option>
-          </select>
-
-          <div className="form-control">
-            <div className="form-control mx-auto text-neutral-content">
-              <div dir="rtl" className="flex justify-between mt-6">
-                <p className=" text-xl">مبلغ :</p>
-                <p className=" text-xl">۲۵,۰۰۰ تومان</p>
-              </div>
-            </div>
-            <br />
-          </div>
-          <div>
-            <div className="form-control">
-              <div className="relative w-full justify-center text-center">
-                <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">
-                  اعمال کد تخفیف
-                </button>
-                <input
-                  type="text"
-                  placeholder="کد تخفیف"
-                  class="input input-bordered w-full pr-16"
-                />
-              </div>
-            </div>
+          <div className="flex justify-around" dir="rtl">
+            <h3 className=" text-lg">
+              {enteredGender === 'زن'
+                ? ' خانم ' + enteredName
+                : ' آقای ' + enteredName}
+            </h3>
+            <h3 className=" text-lg">{enteredMobile}</h3>
           </div>
 
-          {enteredPaymentKind === 'کارت به کارت' && (
-            <div>
-              <h3 className="mt-3" dir="rtl">
-                انتقال وجه به کارت بانک پاسارگاد، به نام امین کراچیان با شماره:
-              </h3>
-              <h3 className="mt-3 text-center font-bold">
-                ۵۰۲۲-۲۹۱۰-۶۳۰۰-۴۰۲۰
-              </h3>
-            </div>
+          <div className="divider"></div>
+
+          <h3 className="text-lg" dir="rtl">
+            {enteredDevice}
+          </h3>
+          <h3 className="text-lg" dir="rtl">
+            توضیحات: {enteredDescription}
+          </h3>
+          <h3 className="text-lg" dir="rtl">
+            نوع تعمیر: {enteredServiceKind}
+          </h3>
+
+          {isExpress && (
+            <h3 className="text-lg" dir="rtl">
+              خدمت پرسرعت
+            </h3>
           )}
+
+          <div className="divider"></div>
+
+          <h3 className="text-lg" dir="rtl">
+            کد پستی: {postalCodeNum}
+          </h3>
+          <h3 className="text-lg" dir="rtl">
+            آدرس: {addressStr}
+          </h3>
 
           <div className="form-control mt-6">
             <button type="submit" className="btn btn-primary">
-              {enteredPaymentKind === 'پرداخت از طریق درگاه بانکی'
-                ? 'انتقال به درگاه پرداخت'
-                : 'ثبت درخواست'}
+              ثبت درخواست
             </button>
           </div>
         </form>
