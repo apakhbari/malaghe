@@ -32,6 +32,8 @@ import CartDropDown from '../../components/layout/navbar/navbarhelper/cartdropdo
 
 import Snackbar from 'awesome-snackbar'
 
+import axios from 'axios'
+
 function Store(data) {
   console.log(data)
 
@@ -252,8 +254,8 @@ export async function getServerSideProps(context) {
   //const accountId = context.params
   var id = context.query.accountId
 
-  const client = BuildClient(context)
-  const { data } = await client.get('/api/v1/store')
+  const { data } = await axios.get('http://api:3000/api/v1/store')
+
   return {
     props: RemoveUndefinedsToPleaseNext({ data }),
   }

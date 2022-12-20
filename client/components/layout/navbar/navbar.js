@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="dropdown">
               <label
                 className="btn btn-circle swap swap-rotate bg-primary border-none"
-                tabindex="0"
+                tabIndex="0"
               >
                 <input
                   type="checkbox"
@@ -45,8 +45,8 @@ const Navbar = () => {
                 <IconHamburger stylingProps={'w-6 h-6 text-primary-content'} />
               </label>
               <ul
-                tabindex="0"
-                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                tabIndex="0"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {!router.pathname.includes('/auth/sign') && (
                   <li>

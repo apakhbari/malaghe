@@ -29,6 +29,8 @@ import FooterNotMain from '../../components/layout/footernotmain'
 import CartsContext from '../../store/cart-context'
 import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
 
+import axios from 'axios'
+
 var slugify = require('slugify-persian')
 
 function Dashboard({ data }) {
@@ -253,8 +255,9 @@ function Dashboard({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const client = buildClient(context)
-  const { data } = await client.get('/api/v1/users/currentuser')
+  const { data } = await axios.get(
+    'http://app.api:3000/api/v1/users/currentuser'
+  )
 
   if (!data) {
     return {

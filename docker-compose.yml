@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+    container_name: nginx
+    hostname: nginx
+    ports:
+      - '3050:80'
+    depends_on:
+      - app.api
+      - app.client
+
+  app.api:
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    container_name: app.api
+    depends_on:
+      - mongo
+    volumes:
+      - /app/node_modules
+      - ./api:/app
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mongo
+      - JWT_KEY=12345678
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27017:27017'
+
+  app.client:
+    container_name: app.client
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app

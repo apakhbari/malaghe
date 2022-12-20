@@ -1,0 +1,124 @@
+2022-12-20 17:07:05:75 [35mhttp[39m: [35mPOST /api/v1/store 400 933 - 27.455 ms[39m
+[35m[39m
+2022-12-20 17:14:54:1454 [35mhttp[39m: [35mPOST /api/v1/store 400 933 - 10.700 ms[39m
+[35m[39m
+2022-12-20 17:16:28:1628 [35mhttp[39m: [35mGET /api/v1/store 200 2 - 4.482 ms[39m
+[35m[39m
+2022-12-20 17:17:55:1755 [35mhttp[39m: [35mGET /api/v1/store 200 2 - 2.548 ms[39m
+[35m[39m
+2022-12-20 17:19:56:1956 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.774 ms[39m
+[35m[39m
+2022-12-20 17:19:57:1957 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.183 ms[39m
+[35m[39m
+2022-12-20 17:19:59:1959 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.220 ms[39m
+[35m[39m
+2022-12-20 17:20:01:201 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.204 ms[39m
+[35m[39m
+2022-12-20 17:20:46:2046 [35mhttp[39m: [35mPOST /api/v1/users/signup 201 361 - 70.461 ms[39m
+[35m[39m
+2022-12-20 17:20:46:2046 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.182 ms[39m
+[35m[39m
+2022-12-20 17:20:46:2046 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.353 ms[39m
+[35m[39m
+2022-12-20 17:21:19:2119 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.226 ms[39m
+[35m[39m
+2022-12-20 17:29:03:293 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.910 ms[39m
+[35m[39m
+2022-12-20 17:30:43:3043 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.191 ms[39m
+[35m[39m
+2022-12-20 17:31:51:3151 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.211 ms[39m
+[35m[39m
+2022-12-20 17:32:22:3222 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.215 ms[39m
+[35m[39m
+2022-12-20 17:32:45:3245 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.176 ms[39m
+[35m[39m
+2022-12-20 17:35:23:3523 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 1.861 ms[39m
+[35m[39m
+2022-12-20 17:36:42:3642 [35mhttp[39m: [35mPOST /api/v1/users/signup 400 40 - 30.892 ms[39m
+[35m[39m
+2022-12-20 17:37:02:372 [35mhttp[39m: [35mPOST /api/v1/users/signup 201 367 - 100.556 ms[39m
+[35m[39m
+2022-12-20 17:37:02:372 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.196 ms[39m
+[35m[39m
+2022-12-20 17:37:03:373 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.290 ms[39m
+[35m[39m
+2022-12-20 17:37:13:3713 [35mhttp[39m: [35mPOST /api/v1/users/signin 200 367 - 76.753 ms[39m
+[35m[39m
+2022-12-20 17:37:13:3713 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.177 ms[39m
+[35m[39m
+2022-12-20 17:37:13:3713 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.177 ms[39m
+[35m[39m
+2022-12-20 17:37:20:3720 [35mhttp[39m: [35mPOST /api/v1/users/signin 200 367 - 71.102 ms[39m
+[35m[39m
+2022-12-20 17:37:20:3720 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.341 ms[39m
+[35m[39m
+2022-12-20 17:37:20:3720 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.330 ms[39m
+[35m[39m
+2022-12-20 17:37:38:3738 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.187 ms[39m
+[35m[39m
+2022-12-20 17:37:38:3738 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.369 ms[39m
+[35m[39m
+2022-12-20 17:38:19:3819 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.419 ms[39m
+[35m[39m
+2022-12-20 17:38:25:3825 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.245 ms[39m
+[35m[39m
+2022-12-20 17:42:00:420 [35mhttp[39m: [35mPOST /api/v1/users/signup 201 363 - 70.627 ms[39m
+[35m[39m
+2022-12-20 17:42:01:421 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.214 ms[39m
+[35m[39m
+2022-12-20 17:42:01:421 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.285 ms[39m
+[35m[39m
+2022-12-20 17:50:58:5058 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 2.280 ms[39m
+[35m[39m
+2022-12-20 17:50:58:5058 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.394 ms[39m
+[35m[39m
+2022-12-20 17:50:58:5058 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.187 ms[39m
+[35m[39m
+2022-12-20 17:50:58:5058 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.221 ms[39m
+[35m[39m
+2022-12-20 17:51:11:5111 [35mhttp[39m: [35mGET /api/v1/store 200 2 - 13.310 ms[39m
+[35m[39m
+2022-12-20 17:51:13:5113 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.211 ms[39m
+[35m[39m
+2022-12-20 17:51:15:5115 [35mhttp[39m: [35mGET /api/v1/store 200 2 - 3.636 ms[39m
+[35m[39m
+2022-12-20 17:51:29:5129 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.320 ms[39m
+[35m[39m
+2022-12-20 17:51:29:5129 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.206 ms[39m
+[35m[39m
+2022-12-20 17:51:46:5146 [35mhttp[39m: [35mPOST /api/v1/users/signup 201 367 - 97.870 ms[39m
+[35m[39m
+2022-12-20 17:51:46:5146 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.201 ms[39m
+[35m[39m
+2022-12-20 17:51:46:5146 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.204 ms[39m
+[35m[39m
+2022-12-20 17:51:57:5157 [35mhttp[39m: [35mPOST /api/v1/users/signin 200 367 - 79.671 ms[39m
+[35m[39m
+2022-12-20 17:51:57:5157 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.234 ms[39m
+[35m[39m
+2022-12-20 17:51:57:5157 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.186 ms[39m
+[35m[39m
+2022-12-20 17:52:02:522 [35mhttp[39m: [35mPOST /api/v1/users/signin 200 367 - 54.272 ms[39m
+[35m[39m
+2022-12-20 17:52:02:522 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.208 ms[39m
+[35m[39m
+2022-12-20 17:52:02:522 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.375 ms[39m
+[35m[39m
+2022-12-20 18:17:04:174 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 1.954 ms[39m
+[35m[39m
+2022-12-20 18:17:04:174 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.371 ms[39m
+[35m[39m
+2022-12-20 18:17:04:174 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.127 ms[39m
+[35m[39m
+2022-12-20 18:17:05:175 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.211 ms[39m
+[35m[39m
+2022-12-20 18:17:12:1712 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 1.331 ms[39m
+[35m[39m
+2022-12-20 18:17:12:1712 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.529 ms[39m
+[35m[39m
+2022-12-20 18:17:26:1726 [35mhttp[39m: [35mPOST /api/v1/users/signup 201 361 - 96.819 ms[39m
+[35m[39m
+2022-12-20 18:17:26:1726 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.205 ms[39m
+[35m[39m
+2022-12-20 18:17:26:1726 [35mhttp[39m: [35mGET /api/v1/users/currentuser 200 20 - 0.203 ms[39m
+[35m[39m

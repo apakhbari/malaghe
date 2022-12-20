@@ -7,6 +7,8 @@ import Navbar from '../../components/layout/navbar/navbar'
 import useRequest from '../../hooks/use-request'
 import CardComponent from '../../components/layout/card'
 
+import axios from 'axios'
+
 var slugify = require('slugify-persian')
 
 const NewStore = () => {
@@ -31,7 +33,8 @@ const NewStore = () => {
   const [enumGoodKind, setEnumGoodKind] = useState()
 
   const { doRequest, errors } = useRequest({
-    url: '/api/v1/store',
+    url: 'http://localhost:80/api/v1/store',
+
     method: 'post',
     body: {
       title: strTitle,
@@ -62,7 +65,11 @@ const NewStore = () => {
 
     //console.log(slugify(strTitle))
 
-    doRequest()
+    await axios.post('/api/v1/store', {
+      title: strTitle,
+    })
+
+    //doRequest()
   }
 
   return (

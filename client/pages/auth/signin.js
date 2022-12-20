@@ -14,6 +14,8 @@ import Snackbar from 'awesome-snackbar'
 
 import loadingIcon from '../../assets/animation/mixer.gif'
 
+import axios from 'axios'
+
 const SignIn = () => {
   const router = useRouter()
 
@@ -125,8 +127,9 @@ const SignIn = () => {
 }
 
 export async function getServerSideProps(context) {
-  const client = buildClient(context)
-  const { data } = await client.get('/api/v1/users/currentuser')
+  const { data } = await axios.get(
+    'http://app.api:3000/api/v1/users/currentuser'
+  )
 
   if (data) {
     if (data.currentUser) {
