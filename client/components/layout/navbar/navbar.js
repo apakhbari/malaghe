@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="dropdown">
               <label
                 className="btn btn-circle swap swap-rotate bg-primary border-none"
-                tabIndex="0"
+                tabindex="0"
               >
                 <input
                   type="checkbox"
@@ -45,13 +45,13 @@ const Navbar = () => {
                 <IconHamburger stylingProps={'w-6 h-6 text-primary-content'} />
               </label>
               <ul
-                tabIndex="0"
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                tabindex="0"
+                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {!router.pathname.includes('/auth/sign') && (
                   <li>
                     <Link
-                      href="/auth/signin"
+                      href="/dashboard"
                       className="btn btn-outline btn-secondary m-1 normal-case text-xl mx-4"
                     >
                       داشبورد
@@ -110,7 +110,7 @@ const Navbar = () => {
 
             {!router.pathname.includes('/auth/sign') && (
               <Link
-                href="/auth/signin"
+                href="/dashboard"
                 className="btn btn-outline normal-case text-xl mx-4 text-primary-content"
               >
                 داشبورد

@@ -21,8 +21,8 @@ function CartDropDown(props) {
       {cartsCtx.totalCarts === 0 && (
         <div className="dropdown">
           <div className="rounded-full p-2 hover:cursor-pointer" tabIndex={0}>
-            <div className="avatar placeholder cursor-pointer">
-              <div className={props.stylingProps}>
+            <div class="avatar placeholder cursor-pointer">
+              <div class={props.stylingProps}>
                 <IconCart stylingProps={'w-6 h-6'} />
               </div>
             </div>

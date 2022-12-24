@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,13 +10,8 @@ import CardComponent from '../../components/layout/card'
 
 import Snackbar from 'awesome-snackbar'
 
-import UserCredentialsContext from '../../store/user-context'
-import ParseJwt from '../../hooks/jwtDecode'
-
 const SignUp = () => {
   const router = useRouter()
-
-  const userCtx = useContext(UserCredentialsContext)
 
   const [fiName, setFiName] = useState('')
   const [laName, setLaName] = useState('')
@@ -34,32 +29,8 @@ const SignUp = () => {
       mobile,
       password,
     },
-    onSuccess: (response) => onSignUpSuccess(response),
+    onSuccess: () => router.push('/dashboard'),
   })
-
-  const onSignUpSuccess = async (data) => {
-    userCtx.removeAll()
-
-    const decoded = ParseJwt(data)
-
-    userCtx.addUserCredentials({ decoded })
-
-    console.log(userCtx.userCredential)
-
-    setTimeout(function () {
-      console.log(userCtx.userCredential)
-    }, 3000)
-
-    if (userCtx.totalUserCredential > 0) {
-      if (userCtx.userCredential[0]) {
-        if (userCtx.userCredential[0].decoded.valid === 1) {
-          router.push('/dashboard')
-        }
-      }
-    } else {
-      router.push('/auth/signin')
-    }
-  }
 
   const handleClick = (e) => {
     e.preventDefault()
