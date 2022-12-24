@@ -3,37 +3,9 @@
 ![ascii_malaghe.png](ascii_malaghe.png)
 
 ---
+## ⚠️ WARNING ⚠️
 
-### TODO:
-
-1- for all of code
-
-    res.status(204).json({
-      status: 'success',
-      data: null
-    });
-
-2- userClicks in the database model
-
----
-
-http://www.nic.ir/
-
----
-
-### ⌘K V --> split view
-
-### ⇧⌘V --> separate view
-
-### code /etc/hosts
-
----
-
-https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/
-
-https://kubernetes.io/docs/concepts/services-networking/ingress/
-
-https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/ingress-versions/
+This project is using kubernetes and no longer maintained. I've stopped using the workflow that made it relevant to me.
 
 ---
 
@@ -46,12 +18,6 @@ docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
 npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
 
 github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
-
----
-
-### Readme.md CheatSheet -->
-
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 ---
 
@@ -74,23 +40,6 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 <br>
 
 # USER SERVICE
-
-### ToDo:
-
-- refactor routes/signin
-- refactor routes/currentuser
-- refactor routes/signout
-
-- delete user route
-
-<br>
-
-### ROUTES:
-
-- /api/v1/users/signin --> POST
-- /api/v1/users/signout --> POST
-- /api/v1/users/signup --> POST
-- '/api/v1/users/currentuser --> GET
 
 <br>
 
@@ -136,6 +85,18 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 |   1    | long  | number |
 |   2    |  lat  | number |
 
+
+<br>
+
+### ROUTES:
+
+- /api/v1/users/signin --> POST
+- /api/v1/users/signout --> POST
+- /api/v1/users/signup --> POST
+- '/api/v1/users/currentuser --> GET
+
+<br>
+
 ---
 
 <br>
@@ -147,17 +108,6 @@ ToDo:
 <br>
 
 ### ROUTES:
-
-- index: /api/v1/store --> GET
-- new: /api/v1/store --> POST
-
-  yoooooooooo
-
-- show: /api/v1/store/:storeId --> GET
-- patch: /api/v1/mag/:storeId --> PATCH
-- delete: /api/v1/mag/:storeId --> DELETE
-
-### EVENTS:
 
 ### STORE MODEL:
 
@@ -194,6 +144,15 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
+- index: /api/v1/store --> GET
+- new: /api/v1/store --> POST
+- show: /api/v1/store/:storeId --> GET
+- patch: /api/v1/mag/:storeId --> PATCH
+- delete: /api/v1/mag/:storeId --> DELETE
+
+### EVENTS:
+
+
 ---
 
 <br>
@@ -211,8 +170,6 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
     /api/v1/mag/?(.*)
     auth-srv:3000
     ---
-
-############################
 
     path: /api/v1/store/?(.*)
       backend:
@@ -233,11 +190,8 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 ---
 
-## Developed by APA
+## Developed by APA-2022
 
-### copyright © 2022 all rights reserved
-
-<br>
 <br>
 
 ![ascii_apa.png](ascii_apa.png)
