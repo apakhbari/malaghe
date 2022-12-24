@@ -11,7 +11,7 @@ This project is using kubernetes + microservices architecture and no longer main
 
 ## Links:
 
-github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
+github: malaghe_utility --> https://github.com/apakhbari//malaghe-k8s-utility
 
 npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
 
