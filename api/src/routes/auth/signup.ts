@@ -42,7 +42,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { fiName, laName, gender, mobile, password } = req.body
 
-    console.log(req.body)
+    //console.log(req.body)
 
     const existingUser = await User.findOne({ mobile })
 
@@ -62,6 +62,7 @@ router.post(
         laName: user.laName,
         gender: user.gender,
         role: user.role,
+        valid: 1,
       },
       process.env.JWT_KEY!
     )
@@ -71,7 +72,7 @@ router.post(
       jwt: userJWT,
     }
 
-    res.status(201).send(user)
+    res.status(201).send(userJWT)
   }
 )
 

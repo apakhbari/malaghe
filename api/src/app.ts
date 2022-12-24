@@ -78,7 +78,8 @@ app.use(ExpressMongoSanitize())
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV != 'test',
+    secure: false,
+    sameSite: false,
   })
 )
 app.use(currentUser)

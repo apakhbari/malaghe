@@ -20,7 +20,7 @@ const Developing = () => {
         <div className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <p className="label text-4xl justify-center place-content-center items-center mb-12">
-              ... درحال توسعه
+              ... نسخه موبایل درحال توسعه
             </p>
 
             <div className="flex mx-auto items-center h-96 w-96">

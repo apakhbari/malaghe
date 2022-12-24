@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -12,6 +12,8 @@ import CardComponent from '../../components/layout/card'
 
 import Snackbar from 'awesome-snackbar'
 
+import UserCredentialsContext from '../../store/user-context'
+
 import loadingIcon from '../../assets/animation/mixer.gif'
 
 import axios from 'axios'
@@ -21,6 +23,16 @@ const SignIn = () => {
 
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
+
+  const userCtx = useContext(UserCredentialsContext)
+
+  if (userCtx.totalUserCredential === 1) {
+    data = userCtx.userCredential[0].decoded
+
+    console.log(data)
+
+    //router.push('/auth/signin')
+  }
 
   var error
 
@@ -126,10 +138,10 @@ const SignIn = () => {
   )
 }
 
+{
+  /*
 export async function getServerSideProps(context) {
-  const { data } = await axios.get(
-    'http://app.api:3000/api/v1/users/currentuser'
-  )
+  const { data } = await axios.get('http://api:3000/api/v1/users/currentuser')
 
   if (data) {
     if (data.currentUser) {
@@ -147,6 +159,8 @@ export async function getServerSideProps(context) {
   return {
     props: { data }, // will be passed to the page component as props
   }
+}
+ */
 }
 
 export default SignIn

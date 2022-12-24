@@ -29,16 +29,29 @@ import FooterNotMain from '../../components/layout/footernotmain'
 import CartsContext from '../../store/cart-context'
 import NavBarTheme from '../../components/layout/navbar/navbarhelper/navbartheme'
 
+import UserCredentialsContext from '../../store/user-context'
+
 import axios from 'axios'
 
 var slugify = require('slugify-persian')
 
-function Dashboard({ data }) {
+function Dashboard() {
   const router = useRouter()
 
   const cartsCtx = useContext(CartsContext)
+  const userCtx = useContext(UserCredentialsContext)
 
-  console.log(data)
+  var data = { gender: 1 }
+
+  console.log(userCtx.totalUserCredential)
+
+  if (userCtx.totalUserCredential === 1) {
+    data = userCtx.userCredential[0].decoded
+
+    console.log(data)
+
+    //router.push('/auth/signin')
+  }
 
   const { doRequest } = useRequest({
     url: '/api/v1/users/signout',
@@ -58,7 +71,7 @@ function Dashboard({ data }) {
     router.push(
       {
         pathname: '/sefaresh/new/1',
-        query: { accountId: `${data.currentUser.id}` },
+        query: { accountId: `${data.id}` },
       },
       '/sefaresh/new/1'
     )
@@ -78,20 +91,14 @@ function Dashboard({ data }) {
   const onAccountClick = (e) => {
     e.preventDefault()
 
-    console.log(
-      slugify(data.currentUser.fiName + ' ' + data.currentUser.laName)
-    )
+    console.log(slugify(data.fiName + ' ' + data.laName))
 
     router.push(
       {
-        pathname: `/dashboard/${slugify(
-          data.currentUser.fiName + ' ' + data.currentUser.laName
-        )}`,
-        query: { id: data.currentUser.id },
+        pathname: `/dashboard/${slugify(data.fiName + ' ' + data.laName)}`,
+        query: { id: data.id },
       },
-      `/dashboard/${slugify(
-        data.currentUser.fiName + ' ' + data.currentUser.laName
-      )}`
+      `/dashboard/${slugify(data.fiName + ' ' + data.laName)}`
     )
   }
 
@@ -222,9 +229,9 @@ function Dashboard({ data }) {
                   className="cursor-pointer content-center justify-center text-neutral-content"
                   dir="rtl"
                 >
-                  {data.currentUser.gender === 'زن'
-                    ? ' خانم ' + data.currentUser.laName
-                    : ' آقای ' + data.currentUser.laName}
+                  {data.gender === 'زن'
+                    ? ' خانم ' + data.laName
+                    : ' آقای ' + data.laName}
                 </div>
                 <div className="text-sm text-neutral-content text-opacity-70">
                   اکانت فعال
@@ -234,7 +241,7 @@ function Dashboard({ data }) {
               <div class="avatar online placeholder cursor-pointer">
                 <div class="bg-primary-focus text-neutral-content rounded-full w-16">
                   <span class="text-xl text-neutral-content">
-                    {data.currentUser.fiName + data.currentUser.laName}
+                    {data.fiName + data.laName}
                   </span>
                 </div>
               </div>
@@ -254,10 +261,10 @@ function Dashboard({ data }) {
   )
 }
 
+{
+  /*
 export async function getServerSideProps(context) {
-  const { data } = await axios.get(
-    'http://app.api:3000/api/v1/users/currentuser'
-  )
+  const { data } = await axios.get('http://api:3000/api/v1/users/currentuser')
 
   if (!data) {
     return {
@@ -268,7 +275,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  if (!data.currentUser) {
+  if (!data) {
     return {
       redirect: {
         destination: '/auth/signin',
@@ -277,7 +284,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  if (!data.currentUser.id) {
+  if (!data.id) {
     return {
       redirect: {
         destination: '/auth/signin',
@@ -287,6 +294,8 @@ export async function getServerSideProps(context) {
   }
 
   return { props: { data } }
+}
+*/
 }
 
 export default Dashboard

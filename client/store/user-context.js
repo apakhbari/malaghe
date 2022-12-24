@@ -5,6 +5,7 @@ const UserCredentialsContext = createContext({
   totalUserCredential: 0,
   addUserCredentials: (userToAdd) => {},
   removeUserCredentials: (userId) => {},
+  removeAll: () => {},
   userIsAvailable: (userId) => {},
 })
 
@@ -23,6 +24,12 @@ export function UserCredentialsContextProvider(props) {
     })
   }
 
+  function removeAllHandler() {
+    setUserCredentials(() => {
+      return []
+    })
+  }
+
   function userIsAvailableHandler(userId) {
     return userCredentials.some((user) => user.id === userId)
   }
@@ -32,6 +39,7 @@ export function UserCredentialsContextProvider(props) {
     totalUserCredential: userCredentials.length,
     addUserCredentials: addUserCredentialsHandler,
     removeUserCredentials: removeUserCredentialsHandler,
+    removeAll: removeAllHandler,
     userIsAvailable: userIsAvailableHandler,
   }
 

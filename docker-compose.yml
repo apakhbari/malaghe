@@ -14,14 +14,14 @@ services:
     ports:
       - '3050:80'
     depends_on:
-      - app.api
-      - app.client
+      - api
+      - client
 
-  app.api:
+  api:
     build:
       dockerfile: Dockerfile
       context: ./api
-    container_name: app.api
+    container_name: api
     depends_on:
       - mongo
     volumes:
@@ -39,8 +39,8 @@ services:
     ports:
       - '27017:27017'
 
-  app.client:
-    container_name: app.client
+  client:
+    container_name: client
     build:
       dockerfile: Dockerfile
       context: ./client
