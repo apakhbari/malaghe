@@ -11,33 +11,11 @@ This project is using kubernetes and no longer maintained. I've stopped using th
 
 ## Links:
 
-github: malaghe --> https://github.com/apakhbari/malaghe
-
-docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
+github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
 
 npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
 
-github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
-
 ---
-
-## Service Setup:
-
-1- Copy a service
-
-2- Install dependencies
-
-3- Build an image out of service
-
-4- create a kubernetes deployment file
-
-5- set up file sync options in skaffold.yaml file
-
-6- set up routing rules in ingress service
-
----
-
-<br>
 
 # USER SERVICE
 
@@ -187,6 +165,23 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
         servicePort: 3000
 
 <br>
+
+
+---
+
+## Service Setup:
+
+1- Copy a service
+
+2- Install dependencies
+
+3- Build an image out of service
+
+4- create a kubernetes deployment file
+
+5- set up file sync options in skaffold.yaml file
+
+6- set up routing rules in ingress service
 
 ---
 
