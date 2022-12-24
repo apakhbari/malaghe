@@ -5,7 +5,7 @@
 ---
 ## ⚠️ WARNING ⚠️
 
-This project is using kubernetes and no longer maintained. I've stopped using the workflow that made it relevant to me.
+This project is using kubernetes + microservices architecture and no longer maintained. I've stopped using the workflow that made it relevant to me.
 
 ---
 
