@@ -112,6 +112,8 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
+### ROUTES:
+
 - index: /api/v1/store --> GET
 - new: /api/v1/store --> POST
 - show: /api/v1/store/:storeId --> GET
