@@ -120,9 +120,6 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 - patch: /api/v1/mag/:storeId --> PATCH
 - delete: /api/v1/mag/:storeId --> DELETE
 
-### EVENTS:
-
-
 ---
 
 <br>
