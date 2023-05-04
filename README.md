@@ -11,9 +11,7 @@ I've stopped using the workflow that made it relevant to me.
 
 ## Links:
 
-github: malaghe_utility --> https://github.com/apakhbari//malaghe-k8s-utility
-
-npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
+### [malaghe utility package](https://github.com/apakhbari/malaghe-k8s-utility), [npm utility package](https://www.npmjs.com/package/@apa_malaghe/utility)
 
 ---
 
