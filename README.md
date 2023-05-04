@@ -5,7 +5,7 @@
 ---
 ## ⚠️ WARNING ⚠️
 
-This project is using kubernetes + microservices architecture and no longer maintained. I've stopped using the workflow that made it relevant to me.
+I've stopped using the workflow that made it relevant to me.
 
 ---
 
@@ -18,9 +18,6 @@ npm utility package --> https://www.npmjs.com/package/@apa_malaghe/utility
 ---
 
 # USER SERVICE
-
-<br>
-
 ### USER MODEL:
 
 <br>
@@ -80,13 +77,6 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 <br>
 
 # STORE SERVICE
-
-ToDo:
-
-<br>
-
-### ROUTES:
-
 ### STORE MODEL:
 
 <br>
